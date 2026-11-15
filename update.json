@@ -1,6 +1,6 @@
 {
-  "version": "6.6",
-  "notes": "小工具箱 v6.6（直连解锁 + 全功能升级）\n· Steam 一键解锁改为直连 Steamworks：不打开任何游戏页，整库平均 0.5 秒一款；全库 234 款实跑 138 秒\n· 防误停确认、续跑游标、按钮实时进度（停止解锁 i/n）、报告新增「受保护」分类\n· 全功能优化：音乐双源并发 + 超时重试，组件下载/yt-dlp/ffmpeg 60 秒看门狗，修掉 stdout-stderr 死锁，图片不再占用文件，schema 扫描缓存 5 分钟\n· 各页能力补齐：快捷定时预设、清理报告导出+定位、Steam 价值 CSV、成就全库清单 CSV、重装环境检测、宠物回屏幕中央\n· 发布前清理：删除 195 MB 第三方构建源码残留与 3 个死方法，0 警告 0 错误",
-  "size": 762880,
-  "url": "https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe"
+  "version": "6.7",
+  "url": "https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe",
+  "notes": "小工具箱 v6.7（体检 · 启动项 · 看板 · 互传）\n· 一键体检：15 项检查（组件完整性 / Steam / 网络与更新源 / C盘余量 / WinRE / error.log / 启动项），红灯项一键修复，报告可导出\n· 开机启动管理：注册表 Run、启动文件夹、自启服务全列出，禁用先备份、随时恢复\n· 桌面看板：宠物右键开启，CPU / 内存 / 网速 / C盘余量 实时显示\n· 手机互传：同一 WiFi 手机浏览器上传下载，不装 App 不走数据线\n· 入口都在电脑配置页右上；顺带修好体检里的 TLS 与权限判断",
+  "size": 808960
 }
