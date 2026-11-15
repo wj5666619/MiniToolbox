@@ -1,6 +1,6 @@
 {
-  "version": "6.5",
-  "size": 591360,
-  "url": "https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe",
-  "notes": "小工具箱 v6.5（体积精简版）\n· 主程序从 136 MB 瘦身到 0.6 MB：GCM / 电脑开荒 / 视频下载三个大组件不再内嵌\n· 这三大组件改为首次使用对应功能时自动下载部署，下完长期可用、之后完全离线\n· 下载带暗色进度框，完成后校验字节数，失败写 error.log 并提示重试\n· 已装过旧版或用安装程序安装的机器，组件本来就在本地，打开即用、不联网\n· 更新包随之从 136 MB 降到 0.6 MB，检查更新与下载几乎瞬时完成\n· 版本号对齐 6.5"
+  "version": "6.6",
+  "notes": "小工具箱 v6.6（直连解锁 + 全功能升级）\n· Steam 一键解锁改为直连 Steamworks：不打开任何游戏页，整库平均 0.5 秒一款；全库 234 款实跑 138 秒\n· 防误停确认、续跑游标、按钮实时进度（停止解锁 i/n）、报告新增「受保护」分类\n· 全功能优化：音乐双源并发 + 超时重试，组件下载/yt-dlp/ffmpeg 60 秒看门狗，修掉 stdout-stderr 死锁，图片不再占用文件，schema 扫描缓存 5 分钟\n· 各页能力补齐：快捷定时预设、清理报告导出+定位、Steam 价值 CSV、成就全库清单 CSV、重装环境检测、宠物回屏幕中央\n· 发布前清理：删除 195 MB 第三方构建源码残留与 3 个死方法，0 警告 0 错误",
+  "size": 762880,
+  "url": "https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe"
 }
