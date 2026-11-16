@@ -1,72 +1,104 @@
-[README.md](https://github.com/user-attachments/files/34909611/README.md)
+# 小工具箱 · MiniToolbox
 
+Windows 桌面端「一个程序装齐常用工具」的集合程序。单文件 WinForms 写成，安装包自带全部组件，装完就能用，不联网也能用。
 
-    @keyframes kt-loading-bounce-1 { 0%, 100% { transform: translateY(15px); } 50% { transform: translateY(-15px); } }
+- 当前版本：**v7.0**
+- 运行环境：Windows 7 SP1 / 10 / 11（x64），需要 .NET Framework 4.0 以上（系统自带）
+- 体积：主程序约 1 MB，完整安装包约 166 MB（内含全部离线组件）
 
-    @keyframes kt-loading-bounce-1 { 0%, 100% { transform: translateY(15px); } 50% { transform: translateY(-15px); } }
-    @keyframes kt-loading-bounce-2 { 0%, 100% { transform: translateY(10px); } 50% { transform: translateY(-10px); } }
-    @keyframes kt-loading-bounce-3 { 0%, 100% { transform: translateY(5px); } 50% { transform: translateY(-5px); } }
-  
+---
 
-    @keyframes kt-loading-bounce-1 { 0%, 100% { transform: translateY(15px); } 50% { transform: translateY(-15px); } }
-    @keyframes kt-loading-bounce-2 { 0%, 100% { transform: translateY(10px); } 50% { transform: translateY(-10px); } }
-    @keyframes kt-loading-bounce-3 { 0%, 100% { transform: translateY(5px); } 50% { transform: translateY(-5px); } }
-  
-    @keyframes kt-loading-bounce-2 { 0%, 100% { transform: translateY(10px); } 50% { transform: translateY(-10px); } }
+## 下载与安装
 
-    @keyframes kt-loading-bounce-1 { 0%, 100% { transform: translateY(15px); } 50% { transform: translateY(-15px); } }
-    @keyframes kt-loading-bounce-2 { 0%, 100% { transform: translateY(10px); } 50% { transform: translateY(-10px); } }
-    @keyframes kt-loading-bounce-3 { 0%, 100% { transform: translateY(5px); } 50% { transform: translateY(-5px); } }
-  
+1. 打开右侧 **Releases**，下载最新一版的安装包 `小工具箱_安装程序.exe`；
+2. 双击运行，选安装目录，一路下一步；
+3. 装完桌面会有快捷方式，直接双击打开。
 
-    @keyframes kt-loading-bounce-1 { 0%, 100% { transform: translateY(15px); } 50% { transform: translateY(-15px); } }
+想免安装也可以用：把 `小工具箱.exe` 单独拷到任意文件夹运行（部分依赖外部组件的功能需要安装版）。
 
-    @keyframes kt-loading-bounce-1 { 0%, 100% { transform: translateY(15px); } 50% { transform: translateY(-15px); } }
-    @keyframes kt-loading-bounce-2 { 0%, 100% { transform: translateY(10px); } 50% { transform: translateY(-10px); } }
-    @keyframes kt-loading-bounce-3 { 0%, 100% { transform: translateY(5px); } 50% { transform: translateY(-5px); } }
-  
-    @keyframes kt-loading-bounce-2 { 0%, 100% { transform: translateY(10px); } 50% { transform: translateY(-10px); } }
+---
 
-    @keyframes kt-loading-bounce-1 { 0%, 100% { transform: translateY(15px); } 50% { transform: translateY(-15px); } }
-    @keyframes kt-loading-bounce-2 { 0%, 100% { transform: translateY(10px); } 50% { transform: translateY(-10px); } }
-    @keyframes kt-loading-bounce-3 { 0%, 100% { transform: translateY(5px); } 50% { transform: translateY(-5px); } }
-  
-    @keyframes kt-loading-bounce-3 { 0%, 100% { transform: translateY(5px); } 50% { transform: translateY(-5px); } }
-  
+## 功能清单
 
-    @keyframes kt-loading-bounce-1 { 0%, 100% { transform: translateY(15px); } 50% { transform: translateY(-15px); } }
+### 基础工具
 
-    @keyframes kt-loading-bounce-1 { 0%, 100% { transform: translateY(15px); } 50% { transform: translateY(-15px); } }
-    @keyframes kt-loading-bounce-2 { 0%, 100% { transform: translateY(10px); } 50% { transform: translateY(-10px); } }
-    @keyframes kt-loading-bounce-3 { 0%, 100% { transform: translateY(5px); } 50% { transform: translateY(-5px); } }
-  
-    @keyframes kt-loading-bounce-2 { 0%, 100% { transform: translateY(10px); } 50% { transform: translateY(-10px); } }
+| 功能 | 说明 |
+| --- | --- |
+| 定时关机 / 重启 / 注销 | 按时长或指定时刻执行，可取消 |
+| 鼠标连点 | 自定义间隔、次数、按键，支持热键启停 |
+| C 盘清理 | 扫临时文件、缓存、更新残留，删除走回收站 |
+| 拼音显示 | 输入或选中文字即时转拼音，带声调 |
+| 文件查重 | 按内容哈希比对，支持自定义图片查重 |
+| 内存加速 | 释放工作集，不结束进程、不强杀 |
+| 文件整理 | 按类型/日期归入子文件夹 |
+| 重装系统 | 一键准备重装环境 |
+| 桌面看板 / 宠物 | 桌面悬浮信息条与联机版桌面宠物 |
 
-    @keyframes kt-loading-bounce-1 { 0%, 100% { transform: translateY(15px); } 50% { transform: translateY(-15px); } }
-    @keyframes kt-loading-bounce-2 { 0%, 100% { transform: translateY(10px); } 50% { transform: translateY(-10px); } }
-    @keyframes kt-loading-bounce-3 { 0%, 100% { transform: translateY(5px); } 50% { transform: translateY(-5px); } }
-  
-    @keyframes kt-loading-bounce-3 { 0%, 100% { transform: translateY(5px); } 50% { transform: translateY(-5px); } }
+### 增强工具（v6.x 起陆续加入）
 
-    @keyframes kt-loading-bounce-1 { 0%, 100% { transform: translateY(15px); } 50% { transform: translateY(-15px); } }
-    @keyframes kt-loading-bounce-2 { 0%, 100% { transform: translateY(10px); } 50% { transform: translateY(-10px); } }
-    @keyframes kt-loading-bounce-3 { 0%, 100% { transform: translateY(5px); } 50% { transform: translateY(-5px); } }
-  
-  
-    @keyframes kt-loading-bounce-3 { 0%, 100% { transform: translateY(5px); } 50% { transform: translateY(-5px); } }
+| 功能 | 说明 |
+| --- | --- |
+| 剪贴板历史 | 记录历史复制内容，支持搜索、固定、一键回填 |
+| 录屏 GIF | 框选区域录成 GIF，可直接复制分享 |
+| 截图标注 | 截图后画笔、箭头、文字、马赛克 |
+| 配置备份 / 还原 | 打包配置与数据，换机一键迁移 |
+| 单文件加密 | AES-256 加密任意文件，密码独立 |
+| 文件保险箱 | 加密存放私密文件，独立密码 |
+| 检查更新 | 见下方「更新机制」 |
+| Steam 成就一键解锁 | **全库直连**：一次把库里所有游戏全部写入成就，不打开任何游戏页；失败款自动重试并补跑一轮 |
+| 游戏工具链 | 集成启动器、开荒工具、视频/音乐下载等离线组件 |
+| 快捷指令面板 | `Ctrl+Alt+Space` 弹出搜索框，输入即筛选，回车直达任意功能 |
+| 系统监控悬浮条 | CPU / 内存 / 上下行网速 / GPU 实时显示，可拖动、置顶 |
+| 批量重命名 / 格式转换 | 整文件夹一次处理，四种重命名规则，图片视频互转，可一键撤销 |
+| 键鼠宏录制 | 录制鼠标键盘操作（含延迟、连击）存为 `.mac`，可回放调速 |
+| 离线密码本 + 两步验证 | 本地 AES-256 保存账号密码，内置 TOTP 动态码，断网可用 |
+| 隐私痕迹清理 | 扫描浏览器缓存/Cookie、最近文档、Temp、缩略图、DNS、剪贴板等，勾选即清 |
 
-    @keyframes kt-loading-bounce-1 { 0%, 100% { transform: translateY(15px); } 50% { transform: translateY(-15px); } }
-    @keyframes kt-loading-bounce-2 { 0%, 100% { transform: translateY(10px); } 50% { transform: translateY(-10px); } }
+---
 
-    @keyframes kt-loading-bounce-1 { 0%, 100% { transform: translateY(15px); } 50% { transform: translateY(-15px); } }
-    @keyframes kt-loading-bounce-2 { 0%, 100% { transform: translateY(10px); } 50% { transform: translateY(-10px); } }
-    @keyframes kt-loading-bounce-3 { 0%, 100% { transform: translateY(5px); } 50% { transform: translateY(-5px); } }
-  
-    @keyframes kt-loading-bounce-3 { 0%, 100% { transform: translateY(5px); } 50% { transform: translateY(-5px); } }
+## 更新机制
 
-    @keyframes kt-loading-bounce-1 { 0%, 100% { transform: translateY(15px); } 50% { transform: translateY(-15px); } }
-    @keyframes kt-loading-bounce-2 { 0%, 100% { transform: translateY(10px); } 50% { transform: translateY(-10px); } }
-    @keyframes kt-loading-bounce-3 { 0%, 100% { transform: translateY(5px); } 50% { transform: translateY(-5px); } }
-  
-  
-  
+程序内置「检查更新」：
+
+- 先读 **exe 同目录** 的 `update_url.txt`（一行，更新源地址）；
+- 拉取该地址的 JSON：`{ "version", "url", "notes", "size" }`；
+- 远端版本比本机高才提示，点更新后自动下载 → 替换 → 重启。
+
+为适应网络波动，v7.0 起清单与下载都支持多源：
+
+- 清单：`raw.githubusercontent` → `cdn.jsdelivr.net` → `fastly.jsdelivr.net` → `ghproxy.net` → `gh-proxy.com`，每源试两遍；
+- 下载：按资产名（`MiniToolbox.exe` / `default.exe` / `小工具箱.exe`）× 版本号 × 代理自动拼出多条候选直链，逐个尝试；
+- 全部失败会列出每个源的具体错误，并提供「选本地安装包更新」「打开发布页」两条退路。
+
+程序数据默认写在 exe 同目录：`config.txt`、`hotkeys.json`、`reminders.json`、`密码本.pwb`（加密）、`宏\*.mac` 等，删程序不会动你的数据。
+
+---
+
+## 常见问题
+
+| 现象 | 处理 |
+| --- | --- |
+| 提示「未配置更新源」 | exe 同目录缺 `update_url.txt` |
+| 检查更新 404 | 该版本 Release 还没发布，或资产名不一致（v7.0 起已自动换名重试） |
+| 下载后不自动重启 | 杀毒拦了 `%TEMP%` 下的替换脚本，把程序目录加白即可 |
+| 显示偏大或错位 | 系统缩放非 100% 时可在设置里关掉「跟随系统缩放」 |
+
+---
+
+## 版本历史
+
+| 版本 | 主要变化 |
+| --- | --- |
+| v7.0 | 六项新功能（快捷指令面板 / 系统监控悬浮条 / 批量重命名与格式转换 / 键鼠宏录制 / 离线密码本 + TOTP / 隐私痕迹清理）；Steam 成就改「全库直连」；检查更新多源加固 |
+| v6.9 | 剪贴板历史 / 录屏 GIF / 截图标注 / 配置备份 / 单文件加密 / 检查更新中心 |
+| v6.8 | 六项增强：热键 / 剪贴板 / 加速 / 整理 / 保险箱 / 查重 |
+| v6.5 及更早 | 定时关机、清理、拼音、游戏工具链等基础功能成型 |
+
+---
+
+## 说明
+
+- 所有清理类操作默认删除到**回收站**，可自行恢复；加速类操作只释放内存，不结束进程。
+- 请仅在自己拥有的账号与文件上使用 Steam 成就、隐私清理等功能。
+- 程序不含任何联网上传行为，密码本、剪贴板、宏等数据只保存在本机。
+
