@@ -41,9 +41,7 @@ SHA256  0852c872e7ac364717a7a5e7e600f29b47e98203de22ce1d41ec31878b08b0cb
 
 界面：五套皮肤（新粗野 / 赛博 HUD / 弹性色块 / 静谧便当 / 纸感手绘），外观设置里可预览、调 95–115% 缩放、跟随系统 DPI。
 
-<img src="docs/assets/paper.png" width="49%" alt="纸感手绘皮肤" /> <img src="docs/assets/appearance.png" width="49%" alt="外观与缩放" />
-
-![关于页：版本、更新源与诊断包导出](docs/assets/about.png)
+![外观设置：五套皮肤缩略预览与界面缩放](docs/assets/appearance.png)
 
 ## 快速上手
 
