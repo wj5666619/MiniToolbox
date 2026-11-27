@@ -6,7 +6,7 @@
 [![Size](https://img.shields.io/badge/size-2.1%20MB-2ea043)](#)
 [![Enterprise](https://img.shields.io/badge/enterprise-policy%20%2B%20audit%20%2B%20deploy-8957e5)](#企业部署)
 
-**官网 · 下载页**：<https://wj5666619.github.io/MiniToolbox/> ｜ **最新版**：v19.9 ｜ **免安装 · 单文件 · 源码公开 · 企业就绪**
+**官网 · 下载页**：<https://wj5666619.github.io/MiniToolbox/> ｜ **最新版**：v19.10 ｜ **免安装 · 单文件 · 源码公开 · 企业就绪**
 
 一台电脑的小事，交给它就行：定时关机、C 盘清理、Steam 进阶、视频与音乐下载、去水印、局域网剪贴板、录屏、单文件加密……20+ 项日常工具打包进一个 exe，双击就跑，不写注册表、不留后台服务，五套皮肤一键换。企业环境另有策略管控、审计日志、更新验签与部署脚本。
 
@@ -16,14 +16,14 @@
 
 | 渠道 | 文件 | 说明 |
 | --- | --- | --- |
-| 最新版（推荐） | [MiniToolbox.exe](https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe) | 单文件主程序，2,174,864 字节 |
-| 压缩包 | [MiniToolbox_v19.9.7z](https://github.com/wj5666619/MiniToolbox/releases) | 963,437 字节，含 exe 与说明 |
+| 最新版（推荐） | [MiniToolbox.exe](https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe) | 单文件主程序，2,172,304 字节 |
+| 压缩包 | [MiniToolbox_v19.10.7z](https://github.com/wj5666619/MiniToolbox/releases) | 962,636 字节，含 exe 与说明 |
 | 全部版本 | [Releases](https://github.com/wj5666619/MiniToolbox/releases) | 全部 tag，可回退旧版 |
 
-校验（v19.9）：
+校验（v19.10）：
 
 ```
-SHA256  0852c872e7ac364717a7a5e7e600f29b47e98203de22ce1d41ec31878b08b0cb
+SHA256  aead4410dce0917de26e848bc509cad8d54c424ce71f633d5a58a5a6665a8e6f
 ```
 
 > 程序使用自签名证书，作者本机可信；他人电脑首次运行可能提示「未知发布者」，属正常现象，可对照上面的哈希确认文件未被改动。
@@ -80,7 +80,13 @@ SHA256  0852c872e7ac364717a7a5e7e600f29b47e98203de22ce1d41ec31878b08b0cb
 - 更新验签：`SHA256` 通过后还要比对证书指纹，和当前程序不是同一张证书直接拒绝。
 - 诊断包：关于页导出 zip（版本环境 + 最近日志 + 配置），不含聊天记录、密码库、剪贴板内容。
 
-## 本版改动（v19.9）
+## 本版改动（v19.10）
+
+- 下线「投递文件」：侧栏入口、整窗拖放与投递遮罩一并撤掉。
+- 文件拖进窗口不再触发分流跳转，需要处理文件时进对应功能页选择。
+- 「开机自启」「关闭进托盘」两个开关上移，补上原投递卡片的位置，侧栏不再留空档。
+
+### v19.9 改动
 
 - 企业策略：程序目录或 `%ProgramData%\MiniToolbox\策略.json` 可禁用在线更新、禁用诊断导出、禁用指定功能页、强制详细日志；被禁用的页在侧栏与 `/go:` 跳转时都会被拦下。
 - 审计日志：`日志\审计.log` 记录启动退出、系统清理、一键重装、安装更新、拒绝更新、导出诊断包，1MB 滚动两份。
@@ -89,6 +95,7 @@ SHA256  0852c872e7ac364717a7a5e7e600f29b47e98203de22ce1d41ec31878b08b0cb
 - 主程序补上文件版本号（19.9.0.0），资源管理器、任务管理器、卸载列表都可见。
 
 详见 [企业管理指南.md](企业管理指南.md)。
+
 ### v19.8 改动
 
 - 全仓 1,182 处空 `catch {}` 接入统一忽略日志：默认零开销（一次布尔判断即返回），只有配置里 `diagVerbose=true` 才逐条写 TRACE。
