@@ -3,11 +3,12 @@
 [![Release](https://img.shields.io/github/v/release/wj5666619/MiniToolbox?color=c8f751)](https://github.com/wj5666619/MiniToolbox/releases/latest)
 [![Downloads](https://img.shields.io/github/downloads/wj5666619/MiniToolbox/total?color=5ad2ff)](https://github.com/wj5666619/MiniToolbox/releases)
 [![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-0078d4)](#)
-[![Size](https://img.shields.io/badge/size-2.0%20MB-2ea043)](#)
+[![Size](https://img.shields.io/badge/size-2.1%20MB-2ea043)](#)
+[![Enterprise](https://img.shields.io/badge/enterprise-policy%20%2B%20audit%20%2B%20deploy-8957e5)](#企业部署)
 
-**官网 · 下载页**：<https://wj5666619.github.io/MiniToolbox/> ｜ **最新版**：v19.9 ｜ **免安装 · 单文件 · 源码公开**
+**官网 · 下载页**：<https://wj5666619.github.io/MiniToolbox/> ｜ **最新版**：v19.9 ｜ **免安装 · 单文件 · 源码公开 · 企业就绪**
 
-一台电脑的小事，交给它就行：定时关机、C 盘清理、Steam 进阶、视频与音乐下载、去水印、局域网剪贴板、录屏、单文件加密……20+ 项日常工具打包进一个 exe，双击就跑，不写注册表、不留后台服务，五套皮肤一键换。
+一台电脑的小事，交给它就行：定时关机、C 盘清理、Steam 进阶、视频与音乐下载、去水印、局域网剪贴板、录屏、单文件加密……20+ 项日常工具打包进一个 exe，双击就跑，不写注册表、不留后台服务，五套皮肤一键换。企业环境另有策略管控、审计日志、更新验签与部署脚本。
 
 ![小工具箱工作台](docs/assets/workbench.png)
 
@@ -42,11 +43,44 @@ SHA256  0852c872e7ac364717a7a5e7e600f29b47e98203de22ce1d41ec31878b08b0cb
 
 <img src="docs/assets/paper.png" width="49%" alt="纸感手绘皮肤" /> <img src="docs/assets/appearance.png" width="49%" alt="外观与缩放" />
 
+![关于页：版本、更新源与诊断包导出](docs/assets/about.png)
+
 ## 快速上手
 
 1. 下载 `MiniToolbox.exe`，放到任意目录（建议非系统盘）。
 2. 双击运行，首次启动有三步引导：功能概览 → 选皮肤 → 音效与托盘说明。
 3. 顶部搜索框或 `Ctrl+K` 指令舱，输几个字就能跳到任意功能。
+
+## 企业部署
+
+面向公司 / 机房 / 多台机器：策略可下发、敏感动作留痕、更新验签、安装卸载脚本化。个人用户不配置就完全不受影响。
+
+| 文件 | 用途 |
+| --- | --- |
+| [企业管理指南.md](企业管理指南.md) | 策略字段、审计动作、验签规则、排障路径 |
+| [部署.ps1](部署.ps1) | `-Install` / `-Uninstall` / `-Status` / `-MachinePolicy`，装到 `%LOCALAPPDATA%`，无需管理员 |
+| [策略示例.json](策略示例.json) | 可直接改用的策略模板 |
+
+策略读取顺序：`%ProgramData%\MiniToolbox\策略.json`（全员）→ 程序目录 `策略.json`（覆盖）。只收紧不放宽，删掉即恢复默认。
+
+```json
+{
+  "禁用在线更新": true,
+  "禁用诊断导出": false,
+  "详细日志": false,
+  "禁用功能": ["video", "music"]
+}
+```
+
+```powershell
+.\部署.ps1 -Install -AutoStart   # 装到当前用户并开机自启
+.\部署.ps1 -Status               # 版本 / 快捷方式 / 自启 / 卸载项
+.\部署.ps1 -MachinePolicy        # 生成机器级策略模板（需管理员）
+```
+
+- 审计日志 `日志\审计.log`：启动退出、系统清理、一键重装、安装更新、拒绝更新、导出诊断包，1MB 滚动两份。
+- 更新验签：`SHA256` 通过后还要比对证书指纹，和当前程序不是同一张证书直接拒绝。
+- 诊断包：关于页导出 zip（版本环境 + 最近日志 + 配置），不含聊天记录、密码库、剪贴板内容。
 
 ## 本版改动（v19.9）
 
@@ -129,9 +163,12 @@ csc.exe /nologo /target:winexe /optimize+ /codepage:65001 `
 
 ```
 定时关机.cs          入口、主窗口骨架、RoundBtn 自绘控件
-Src\               125 个类型文件（各功能页、皮肤、音效、配置）
+Src\               138 个源文件（各功能页、皮肤、音效、配置、诊断、策略、审计、验签）
 官网\              官方网站静态页（同 docs\，由 GitHub Pages 发布）
 发布\              update 清单、README、签名与上传脚本
+部署.ps1           企业安装 / 卸载 / 状态 / 机器级策略模板
+策略示例.json       企业策略模板
+企业管理指南.md     策略字段、审计动作、验签与排障说明
 build.ps1          一键构建
 ```
 
