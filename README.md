@@ -6,7 +6,7 @@
 [![Size](https://img.shields.io/badge/size-2.1%20MB-2ea043)](#)
 [![Enterprise](https://img.shields.io/badge/enterprise-policy%20%2B%20audit%20%2B%20deploy-8957e5)](#企业部署)
 
-**官网 · 下载页**：<https://wj5666619.github.io/MiniToolbox/> ｜ **最新版**：v19.11 ｜ **免安装 · 单文件 · 源码公开 · 企业就绪**
+**官网 · 下载页**：<https://wj5666619.github.io/MiniToolbox/> ｜ **最新版**：v19.12 ｜ **免安装 · 单文件 · 源码公开 · 企业就绪**
 
 一台电脑的小事，交给它就行：定时关机、C 盘清理、Steam 进阶、视频与音乐下载、去水印、局域网剪贴板、录屏、单文件加密……26+ 项日常工具打包进一个 exe，双击就跑，不写注册表、不留后台服务，五套皮肤一键换。企业环境另有策略管控、审计日志、更新验签与部署脚本。
 
@@ -16,14 +16,14 @@
 
 | 渠道 | 文件 | 说明 |
 | --- | --- | --- |
-| 最新版（推荐） | [MiniToolbox.exe](https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe) | 单文件主程序，2,209,680 字节 |
-| 压缩包 | [MiniToolbox_v19.11.7z](https://github.com/wj5666619/MiniToolbox/releases) | 974,648 字节，含 exe 与说明 |
+| 最新版（推荐） | [MiniToolbox.exe](https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe) | 单文件主程序，2,212,240 字节 |
+| 压缩包 | [MiniToolbox_v19.12.7z](https://github.com/wj5666619/MiniToolbox/releases) | 975,850 字节，含 exe 与说明 |
 | 全部版本 | [Releases](https://github.com/wj5666619/MiniToolbox/releases) | 全部 tag，可回退旧版 |
 
-校验（v19.11）：
+校验（v19.12）：
 
 ```
-SHA256  f77332491b4dbefc0aeb7a1febd5bc4297e9bd34824b80290c7de8a25a0a7fe0
+SHA256  d730aa76597593906566c9fc599e22730ca7fce840d7ca1e61ce48be656738c6
 ```
 
 > 程序使用自签名证书，作者本机可信；他人电脑首次运行可能提示「未知发布者」，属正常现象，可对照上面的哈希确认文件未被改动。
@@ -81,7 +81,13 @@ SHA256  f77332491b4dbefc0aeb7a1febd5bc4297e9bd34824b80290c7de8a25a0a7fe0
 - 更新验签：`SHA256` 通过后还要比对证书指纹，和当前程序不是同一张证书直接拒绝。
 - 诊断包：关于页导出 zip（版本环境 + 最近日志 + 配置），不含聊天记录、密码库、剪贴板内容。
 
-## 本版改动（v19.11）
+## 本版改动（v19.12）
+
+- 「反馈与建议」现在把诊断包发到 m18371900557@163.com，不再只提示“发给开发者”。
+- 点「是」后自动复制邮件正文（版本、Windows 版本、诊断包路径、问题模板）并打开邮箱：有桌面邮件应用直接开写信窗口；没有则打开 163 网页邮箱。
+- 诊断包需在邮件里手动作为附件添加；导出、审计与策略开关保持不变。
+
+### v19.11 改动
 
 - 工作台新增「实用工具」磁贴，点开独立深色小窗，六件常用小工具集中在一处。
 - 文件哈希校验：MD5 / SHA-1 / SHA-256 / SHA-512，支持粘贴官方哈希一键比对。
