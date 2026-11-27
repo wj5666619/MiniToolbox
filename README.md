@@ -5,7 +5,7 @@
 [![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-0078d4)](#)
 [![Size](https://img.shields.io/badge/size-2.0%20MB-2ea043)](#)
 
-**官网 · 下载页**：<https://wj5666619.github.io/MiniToolbox/> ｜ **最新版**：v19.2 ｜ **免安装 · 单文件 · 源码公开**
+**官网 · 下载页**：<https://wj5666619.github.io/MiniToolbox/> ｜ **最新版**：v19.3 ｜ **免安装 · 单文件 · 源码公开**
 
 一台电脑的小事，交给它就行：定时关机、C 盘清理、Steam 进阶、视频与音乐下载、去水印、局域网剪贴板、录屏、单文件加密……20+ 项日常工具打包进一个 exe，双击就跑，不写注册表、不留后台服务，五套皮肤一键换。
 
@@ -15,17 +15,17 @@
 
 | 渠道 | 文件 | 说明 |
 | --- | --- | --- |
-| 最新版（推荐） | [MiniToolbox.exe](https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe) | 单文件主程序，2,083,728 字节 |
-| 压缩包 | [MiniToolbox_v19.2.7z](https://github.com/wj5666619/MiniToolbox/releases) | 940,970 字节，含 exe 与说明 |
-| 全部版本 | [Releases](https://github.com/wj5666619/MiniToolbox/releases) | 18 个 tag，可回退旧版 |
+| 最新版（推荐） | [MiniToolbox.exe](https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe) | 单文件主程序，2,084,240 字节 |
+| 压缩包 | [MiniToolbox_v19.3.7z](https://github.com/wj5666619/MiniToolbox/releases) | 940,995 字节，含 exe 与说明 |
+| 全部版本 | [Releases](https://github.com/wj5666619/MiniToolbox/releases) | 全部 tag，可回退旧版 |
 
-校验（v19.2）：
+校验（v19.3）：
 
 ```
-SHA256  3fbac848d441f52c9517fe930721965f58858a655e2f931d6254a04794a2b580
+SHA256  8b846fe5b249c65bb8dff81e577ac081acd667d5acbb4deaa08e8721ab8cc6dc
 ```
 
-> 程序使用自签名证书，作者本机可信；他人电脑首次运行可能提示“未知发布者”，属正常现象，可对照上面的哈希确认文件未被改动。
+> 程序使用自签名证书，作者本机可信；他人电脑首次运行可能提示「未知发布者」，属正常现象，可对照上面的哈希确认文件未被改动。
 
 ## 能做什么
 
@@ -40,10 +40,7 @@ SHA256  3fbac848d441f52c9517fe930721965f58858a655e2f931d6254a04794a2b580
 
 界面：五套皮肤（新粗野 / 赛博 HUD / 弹性色块 / 静谧便当 / 纸感手绘），外观设置里可预览、调 95–115% 缩放、跟随系统 DPI。
 
-<p>
-  <img src="docs/assets/paper.png" width="49%" alt="纸感手绘皮肤" />
-  <img src="docs/assets/appearance.png" width="49%" alt="外观与缩放" />
-</p>
+<img src="docs/assets/paper.png" width="49%" alt="纸感手绘皮肤" /> <img src="docs/assets/appearance.png" width="49%" alt="外观与缩放" />
 
 ## 快速上手
 
@@ -51,12 +48,15 @@ SHA256  3fbac848d441f52c9517fe930721965f58858a655e2f931d6254a04794a2b580
 2. 双击运行，首次启动有三步引导：功能概览 → 选皮肤 → 音效与托盘说明。
 3. 顶部搜索框或 `Ctrl+K` 指令舱，输几个字就能跳到任意功能。
 
-## 本版改动（v19.2）
+## 本版改动（v19.3）
 
-- 精简增强中心：16 张卡收到 13 张，“隐私痕迹清理”“v7.1 七项新工具”“v7.2 五项新工具”入口撤下。
+- 新增官方网站：<https://wj5666619.github.io/MiniToolbox/>，含下载、功能、皮肤、实拍截图、更新日志与构建说明。
+- 关于页「源码与编译」重写：给出仓库与官网地址、真实的 125 文件源码结构、`build.ps1` 与 csc 命令。
+
+### v19.2 改动
+
+- 精简增强中心：16 张卡收到 13 张，「隐私痕迹清理」「v7.1 七项新工具」「v7.2 五项新工具」入口撤下。
 - v7.2 只保留高清录屏；页头副标题与指令舱同步去掉对应条目。
-
-完整历史（近 10 个版本时间线）：程序内「关于 → 更新日志」，或 [Releases](https://github.com/wj5666619/MiniToolbox/releases)。
 
 ## 自动更新
 
@@ -74,7 +74,8 @@ SHA256  3fbac848d441f52c9517fe930721965f58858a655e2f931d6254a04794a2b580
 只编 `定时关机.cs` 会缺类型，必须带 `Src\*.cs`：
 
 ```powershell
-csc /target:winexe /optimize+ /codepage:65001 定时关机.cs Src\*.cs
+csc.exe /nologo /target:winexe /optimize+ /codepage:65001 `
+  /win32icon:定时关机.ico /out:小工具箱.exe 定时关机.cs Src\*.cs
 ```
 
 ## 目录
