@@ -5,7 +5,7 @@
 [![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-0078d4)](#)
 [![Size](https://img.shields.io/badge/size-2.0%20MB-2ea043)](#)
 
-**官网 · 下载页**：<https://wj5666619.github.io/MiniToolbox/> ｜ **最新版**：v19.4 ｜ **免安装 · 单文件 · 源码公开**
+**官网 · 下载页**：<https://wj5666619.github.io/MiniToolbox/> ｜ **最新版**：v19.5 ｜ **免安装 · 单文件 · 源码公开**
 
 一台电脑的小事，交给它就行：定时关机、C 盘清理、Steam 进阶、视频与音乐下载、去水印、局域网剪贴板、录屏、单文件加密……20+ 项日常工具打包进一个 exe，双击就跑，不写注册表、不留后台服务，五套皮肤一键换。
 
@@ -16,10 +16,10 @@
 | 渠道 | 文件 | 说明 |
 | --- | --- | --- |
 | 最新版（推荐） | [MiniToolbox.exe](https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe) | 单文件主程序，2,085,264 字节 |
-| 压缩包 | [MiniToolbox_v19.4.7z](https://github.com/wj5666619/MiniToolbox/releases) | 941,116 字节，含 exe 与说明 |
+| 压缩包 | [MiniToolbox_v19.5.7z](https://github.com/wj5666619/MiniToolbox/releases) | 941,355 字节，含 exe 与说明 |
 | 全部版本 | [Releases](https://github.com/wj5666619/MiniToolbox/releases) | 全部 tag，可回退旧版 |
 
-校验（v19.4）：
+校验（v19.5）：
 
 ```
 SHA256  17829182dc412c9d097fc5d1a70771ac82422984771f3feae188c6b00c46ac01
@@ -48,7 +48,13 @@ SHA256  17829182dc412c9d097fc5d1a70771ac82422984771f3feae188c6b00c46ac01
 2. 双击运行，首次启动有三步引导：功能概览 → 选皮肤 → 音效与托盘说明。
 3. 顶部搜索框或 `Ctrl+K` 指令舱，输几个字就能跳到任意功能。
 
-## 本版改动（v19.4）
+## 本版改动（v19.5）
+
+- 侧栏与功能卡图标底板统一到青绿 / 青 / 蓝 / 灰蓝一套冷色系，不再出现红黄粉混色。
+- 右上角语言胶囊、最小化、关闭统一为同款圆角底板、同高 32px，悬停统一提亮。
+- 功能卡图标与标题纵向对齐修正，文字块整体下移 3px，64px 卡高内视觉居中。
+
+### v19.4 改动
 
 - 工作台重排：壁纸只在页面上半部露脸，下半部渐隐压深，文字与卡片不再被背景照片干扰。
 - 快捷开始分出层级：30 分钟为主按钮实心，1 小时 / 今晚 22:00 为次级，取消改为低调的灰字按钮。
