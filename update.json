@@ -1,7 +1,7 @@
 {
-  "version": "19.7",
-  "size": 2106256,
-  "sha256": "f8156ebbea75161f97d99fe8388dc71b1b3939ad185c8a63b9795cfd0a6c99a1",
+  "version": "19.8",
+  "size": 2168208,
+  "sha256": "f2829c7c476f798f644accac62335a97f8004b9f34a3ab1812d4e8480d0d74b8",
   "url": "https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe",
   "notes": [
     "新增统一诊断日志：分级记录、1MB 自动滚动 3 份，路径与令牌样式脱敏；启动头写入版本/系统/屏幕/参数/耗时",
