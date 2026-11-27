@@ -5,7 +5,7 @@
 [![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-0078d4)](#)
 [![Size](https://img.shields.io/badge/size-2.0%20MB-2ea043)](#)
 
-**官网 · 下载页**：<https://wj5666619.github.io/MiniToolbox/> ｜ **最新版**：v19.5 ｜ **免安装 · 单文件 · 源码公开**
+**官网 · 下载页**：<https://wj5666619.github.io/MiniToolbox/> ｜ **最新版**：v19.6 ｜ **免安装 · 单文件 · 源码公开**
 
 一台电脑的小事，交给它就行：定时关机、C 盘清理、Steam 进阶、视频与音乐下载、去水印、局域网剪贴板、录屏、单文件加密……20+ 项日常工具打包进一个 exe，双击就跑，不写注册表、不留后台服务，五套皮肤一键换。
 
@@ -15,14 +15,14 @@
 
 | 渠道 | 文件 | 说明 |
 | --- | --- | --- |
-| 最新版（推荐） | [MiniToolbox.exe](https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe) | 单文件主程序，2,085,264 字节 |
-| 压缩包 | [MiniToolbox_v19.5.7z](https://github.com/wj5666619/MiniToolbox/releases) | 941,355 字节，含 exe 与说明 |
+| 最新版（推荐） | [MiniToolbox.exe](https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe) | 单文件主程序，2,093,968 字节 |
+| 压缩包 | [MiniToolbox_v19.6.7z](https://github.com/wj5666619/MiniToolbox/releases) | 943,916 字节，含 exe 与说明 |
 | 全部版本 | [Releases](https://github.com/wj5666619/MiniToolbox/releases) | 全部 tag，可回退旧版 |
 
-校验（v19.5）：
+校验（v19.6）：
 
 ```
-SHA256  17829182dc412c9d097fc5d1a70771ac82422984771f3feae188c6b00c46ac01
+SHA256  031faf79ecaa84d72999339a97b68a488700d5dbd6c34bb7cf0f18b61e5e17dd
 ```
 
 > 程序使用自签名证书，作者本机可信；他人电脑首次运行可能提示「未知发布者」，属正常现象，可对照上面的哈希确认文件未被改动。
@@ -48,7 +48,16 @@ SHA256  17829182dc412c9d097fc5d1a70771ac82422984771f3feae188c6b00c46ac01
 2. 双击运行，首次启动有三步引导：功能概览 → 选皮肤 → 音效与托盘说明。
 3. 顶部搜索框或 `Ctrl+K` 指令舱，输几个字就能跳到任意功能。
 
-## 本版改动（v19.5）
+## 本版改动（v19.6）
+
+- 窗口位置记忆：退出时记录 x / y 与最大化状态，下次启动回到原处；屏幕变化或坐标越界时自动回主屏居中。
+- 双击标题栏最大化 / 还原，按工作区尺寸展开，不盖任务栏；无边框窗体下也保持内容列居中。
+- 单实例唤醒：再次双击 exe 不再弹提示框，直接激活已运行窗口；新增 `/go:槽名` 参数可直接落到指定页（如 `/go:clean`、`/go:music`）。
+- 音效面板夜间静默时段可自定义：起止整点用深色时间菜单选择，写入 `音效夜间时段.txt`；`Esc` 先关面板、再退回工作台。
+- 外观面板新增四套主题包（静谧便当 / 赛博霓虹 / 弹性色块 / 纸感手绘），皮肤与音色一次切换。
+- 关于页新增「官方网站」入口，可直接打开看截图与更新日志。
+
+### v19.5 改动
 
 - 侧栏与功能卡图标底板统一到青绿 / 青 / 蓝 / 灰蓝一套冷色系，不再出现红黄粉混色。
 - 右上角语言胶囊、最小化、关闭统一为同款圆角底板、同高 32px，悬停统一提亮。
