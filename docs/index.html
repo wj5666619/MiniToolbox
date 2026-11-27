@@ -4,9 +4,40 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>小工具箱 · MiniToolbox — Windows 单文件小工具集</title>
-<meta name="description" content="小工具箱：20+ 项 Windows 小工具合集，定时关机、C 盘清理、Steam 进阶、视频音乐下载、去水印、局域网剪贴板、录屏……单文件免安装，五套皮肤一键切换，源码公开。" />
+<meta name="description" content="小工具箱 MiniToolbox：20+ 项 Windows 小工具，定时关机、C 盘清理、Steam 进阶、视频音乐下载、去水印、录屏、局域网互传。单文件免安装，企业策略、审计日志、更新验签与一键部署齐备，源码公开。" />
+<meta name="keywords" content="小工具箱,MiniToolbox,Windows工具集,单文件,免安装,定时关机,C盘清理,Steam成就,视频下载,音乐下载,去水印,局域网剪贴板,企业部署,策略,审计日志" />
+<meta name="author" content="wj5666619" />
+<meta name="robots" content="index,follow" />
+<link rel="canonical" href="https://wj5666619.github.io/MiniToolbox/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="小工具箱 · MiniToolbox" />
+<meta property="og:title" content="小工具箱 · MiniToolbox — Windows 单文件小工具集（v19.9 企业就绪）" />
+<meta property="og:description" content="20+ 项 Windows 小工具打包成一个 exe：定时关机、C 盘清理、Steam 进阶、视频音乐下载、去水印、录屏、互传。诊断日志、企业策略、审计、更新验签、部署脚本齐备。" />
+<meta property="og:url" content="https://wj5666619.github.io/MiniToolbox/" />
+<meta property="og:image" content="https://wj5666619.github.io/MiniToolbox/assets/workbench.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="小工具箱 · MiniToolbox — Windows 单文件小工具集" />
+<meta name="twitter:description" content="20+ 项 Windows 小工具打包成一个 exe，免安装、五套皮肤，企业策略与审计就绪，源码公开。" />
+<meta name="twitter:image" content="https://wj5666619.github.io/MiniToolbox/assets/workbench.png" />
 <meta name="theme-color" content="#0b0f16" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230b0f16'/%3E%3Crect x='12' y='12' width='40' height='40' rx='10' fill='%23c8f751'/%3E%3C/svg%3E" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "小工具箱 MiniToolbox",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Windows 10, Windows 11",
+  "softwareVersion": "19.9",
+  "fileSize": "2174864",
+  "inLanguage": "zh-CN",
+  "url": "https://wj5666619.github.io/MiniToolbox/",
+  "downloadUrl": "https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe",
+  "codeRepository": "https://github.com/wj5666619/MiniToolbox",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" },
+  "description": "20+ 项 Windows 小工具打包成单文件 exe：定时关机、C 盘清理、Steam 进阶、视频音乐下载、去水印、录屏、局域网互传；带诊断日志、企业策略、审计日志、更新验签与部署脚本。"
+}
+</script>
 <style>
   :root{
     --bg:#0b0f16; --bg2:#0e131c; --card:#121826; --card2:#151d2c;
@@ -212,6 +243,7 @@
       <a href="#features">功能</a>
       <a href="#skins">皮肤</a>
       <a href="#shots">截图</a>
+      <a href="#enterprise">企业</a>
       <a href="#changelog">更新日志</a>
       <a href="#opensource">开源</a>
     </nav>
@@ -240,7 +272,7 @@
         <div class="meta">
           <span>Win 10 / 11 · x64 / x86</span>
           <span>绿色免安装</span>
-          <span>SHA256 <code>3fbac848…b2b580</code></span>
+          <span>SHA256 <code>0852c872…b08b0cb</code></span>
         </div>
       </div>
       <div class="shot-frame">
@@ -251,7 +283,7 @@
 
     <div class="stats reveal">
       <div class="stat"><b>20<em>+</em></b><span>内置工具</span></div>
-      <div class="stat"><b>2.0<em>MB</em></b><span>单文件体积</span></div>
+      <div class="stat"><b>2.1<em>MB</em></b><span>单文件体积</span></div>
       <div class="stat"><b>5<em>套</em></b><span>界面皮肤</span></div>
       <div class="stat"><b>0<em>步</em></b><span>安装步骤</span></div>
     </div>
@@ -312,7 +344,7 @@
       <div class="gallery reveal">
         <div class="shot-frame">
           <div class="shot-bar"><i></i><i></i><i></i><span>C 盘清理</span></div>
-          <img src="assets/clean.jpg" alt="C 盘清理界面" loading="lazy" />
+          <img src="assets/clean.png" alt="C 盘清理界面（v19.9 实拍）" loading="lazy" />
           <div class="gcap">按类别勾选、按大小排序，删之前会告诉你腾出多少空间</div>
         </div>
         <div class="stack">
@@ -321,9 +353,54 @@
             <img src="assets/appearance.png" alt="外观设置" loading="lazy" />
           </div>
           <div class="shot-frame">
-            <div class="shot-bar"><i></i><i></i><i></i><span>更新日志</span></div>
-            <img src="assets/changelog.png" alt="更新日志" loading="lazy" />
+            <div class="shot-bar"><i></i><i></i><i></i><span>关于 · 更新与诊断</span></div>
+            <img src="assets/about.png" alt="关于页：版本、更新源、诊断包导出（v19.9 实拍）" loading="lazy" />
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="enterprise">
+      <div class="sec-head reveal">
+        <div>
+          <span class="kicker">Enterprise</span>
+          <h2>企业里也能放心铺开</h2>
+          <p>策略管控、审计留痕、更新验签、脚本化部署——个人用户不受影响，管理员可集中收紧。</p>
+        </div>
+        <a class="btn btn-ghost" href="https://github.com/wj5666619/MiniToolbox/blob/main/企业管理指南.md" target="_blank" rel="noopener" style="padding:10px 16px;font-size:13px">企业管理指南 →</a>
+      </div>
+      <div class="os reveal">
+        <div class="panel">
+          <h3>策略文件 <code>策略.json</code></h3>
+          <p>放程序目录只影响这一份安装；放 <code>%ProgramData%\MiniToolbox\</code> 全员生效，本地可再覆盖。</p>
+<pre><span class="c">// 只收紧，不放宽；删掉文件即恢复默认</span>
+{
+  "禁用在线更新": true,
+  "禁用诊断导出": false,
+  "详细日志": false,
+  "禁用功能": ["video", "music"]
+}</pre>
+          <p style="margin-top:14px;font-size:12.5px;color:var(--txt3)">
+            禁用功能支持槽位名或中文名：home / power / clean / wm / val / sys / video / music / sam / reinstall，或「视频下载」「音乐下载」。
+          </p>
+        </div>
+        <div class="panel">
+          <h3>审计与更新验签</h3>
+          <div class="kv"><span>审计日志</span><code>日志\审计.log · 1MB 滚动</code></div>
+          <div class="kv"><span>记录动作</span><code>启动 / 退出 / 清理 / 重装 / 更新 / 导出诊断</code></div>
+          <div class="kv"><span>更新验签</span><code>SHA256 + 证书指纹一致才替换</code></div>
+          <div class="kv"><span>诊断日志</span><code>日志\小工具箱.log · 1MB × 3 · 已脱敏</code></div>
+          <p style="margin:16px 0 8px">部署脚本（无需管理员，装到当前用户）：</p>
+<pre><span class="c"># 安装到 %LOCALAPPDATA%\MiniToolbox，建开始菜单与卸载项</span>
+.\部署.ps1
+<span class="c"># 开机自启 / 查看状态 / 卸载 / 生成机器级策略模板</span>
+.\部署.ps1 -Install -AutoStart
+.\部署.ps1 -Status
+.\部署.ps1 -Uninstall
+.\部署.ps1 -MachinePolicy</pre>
+          <p style="margin-top:14px;font-size:12.5px;color:var(--txt3)">
+            脚本与 <code>策略示例.json</code> 都在仓库根目录，和 exe 放同一文件夹即可运行。
+          </p>
         </div>
       </div>
     </section>
@@ -396,7 +473,7 @@
           </ul>
         </div>
         <div class="release">
-          <h4>v19.3 <em>官网</em></h4>
+          <h4>v19.2 <em>精简</em></h4>
           <ul>
             <li>精简增强中心：从 16 张卡收到 13 张，“隐私痕迹清理”“v7.1 七项”“v7.2 五项”入口撤下。</li>
             <li>v7.2 只留高清录屏；页头副标题与指令舱同步去掉对应条目。</li>
@@ -450,7 +527,7 @@
 <span class="c"># 编译 → 签名 → 算 SHA256 → 打 7z</span>
 <span class="c"># 跳过签名： .\build.ps1 -NoSign</span></pre>
           <p style="margin-top:14px;font-size:12.5px;color:var(--txt3)">
-            源码 = <code>定时关机.cs</code> + <code>Src\*.cs</code>（125 个类型文件），编译必须一起带上。
+            源码 = <code>定时关机.cs</code> + <code>Src\*.cs</code>（138 个源文件），编译必须一起带上。
           </p>
         </div>
         <div class="panel">
@@ -479,6 +556,8 @@
         <div class="card reveal"><h3>怎么更新？</h3><p>启动 25 秒后后台查一次更新，发现新版本下载并校验 size 与 SHA256，通过才替换重启。</p></div>
         <div class="card reveal"><h3>支持哪些系统？</h3><p>Windows 10 / 11 为主，Win 8.1 也能运行；面向 .NET Framework 4.x，系统自带。</p></div>
         <div class="card reveal"><h3>能改能分发吗？</h3><p>源码公开，欢迎读、改、提 issue；商用或再分发前请先在仓库里确认许可说明。</p></div>
+        <div class="card reveal"><h3>公司电脑能统一管吗？</h3><p>可以。下发 <code>策略.json</code> 就能禁用更新、禁用指定功能页、强制详细日志；审计日志记录清理、重装、更新等敏感动作。</p></div>
+        <div class="card reveal"><h3>怎么批量装到多台机器？</h3><p>用仓库里的 <code>部署.ps1</code>：<code>-Install</code> 装到当前用户并建开始菜单，<code>-MachinePolicy</code> 生成机器级策略模板，<code>-Uninstall</code> 干净卸载。</p></div>
       </div>
     </section>
 
@@ -490,7 +569,7 @@
       <div class="dl-card">
         <a class="btn btn-primary" href="https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe">下载 v19.9（exe）</a>
         <a class="btn btn-ghost" href="https://github.com/wj5666619/MiniToolbox/releases" target="_blank" rel="noopener">历史版本与 7z 包</a>
-        <div class="dl-note">GitHub Releases 直链，随时可查哈希</div>
+        <div class="dl-note">GitHub Releases 直链，随时可查哈希 · 企业部署看 <a href="#enterprise" style="color:var(--txt2);text-decoration:underline">策略与脚本</a></div>
       </div>
     </div>
 
@@ -504,6 +583,7 @@
           <a href="https://github.com/wj5666619/MiniToolbox" target="_blank" rel="noopener">GitHub</a>
           <a href="https://github.com/wj5666619/MiniToolbox/releases" target="_blank" rel="noopener">Releases</a>
           <a href="https://github.com/wj5666619/MiniToolbox/issues" target="_blank" rel="noopener">Issues</a>
+          <a href="https://github.com/wj5666619/MiniToolbox/blob/main/企业管理指南.md" target="_blank" rel="noopener">企业管理指南</a>
           <a href="#top">回到顶部</a>
         </nav>
       </div>
