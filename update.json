@@ -1,7 +1,7 @@
 {
   "version": "18.9",
   "size": 2068368,
-  "sha256": "035623481a0eee5285ed4da78ccdfce91de4e9b7cb4a5f7e9beb0ff5ee30c6e3",
+  "sha256": "686b48ac15e2d9c7325cb8116f7f034edf63fe7843cd0ea6e6d12a88232b0b93",
   "url": "https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe",
   "notes": [
     "更新日志弹窗重做：按版本分块的纵向时间线（强调条 + 圆点条目 + 新版本在前，只保留最近 10 个版本），并补齐 v18.6–v18.8 的日志条目",
