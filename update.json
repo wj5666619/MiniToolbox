@@ -1,13 +1,13 @@
 {
-  "url": "https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe",
-  "size": 2168208,
   "notes": [
-    "全仓 1182 处空 catch 接入统一忽略日志，默认零开销（一次布尔判断），配置 diagVerbose=true 才逐条记录",
-    "详细日志带文件与行号，例如 已忽略 MainForm.Ui.cs:3837 | NullReferenceException: ...，被吞异常也能定位",
-    "MainForm.cs 由 23,926 行拆成 6 个 partial 文件：界面构建、Steam 工作台、首页价值、工具页、壁纸动效",
-    "拆分后日志标签自动重算到新文件与真实行号；界面、功能、配置与 19.7 完全一致",
-    "主程序 2,168,208 字节，压缩包 960,850 字节，签名与更新链路不变"
+    "新增企业策略 策略.json：可禁用在线更新、禁用诊断导出、按槽位禁用功能页、强制详细日志；机器级放 %ProgramData%\\MiniToolbox 全员生效",
+    "新增审计日志 日志\\审计.log：启动退出、系统清理、一键重装、安装更新、拒绝更新、导出诊断包逐条留痕，1MB 滚动",
+    "更新包再加一道验签：新包证书指纹必须与当前程序一致，不一致或未签名直接拒绝替换",
+    "新增 部署.ps1：安装/卸载/状态/机器级策略模板，装到 %LOCALAPPDATA%，带开始菜单快捷方式与「应用和功能」卸载项",
+    "主程序补上文件版本信息（19.9.0.0），资源管理器、任务管理器和卸载列表都能看到版本"
   ],
-  "sha256": "f2829c7c476f798f644accac62335a97f8004b9f34a3ab1812d4e8480d0d74b8",
-  "version": "19.8"
+  "url": "https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe",
+  "version": "19.9",
+  "size": 2174864,
+  "sha256": "0852c872e7ac364717a7a5e7e600f29b47e98203de22ce1d41ec31878b08b0cb"
 }
