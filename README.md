@@ -180,7 +180,10 @@ build.ps1          一键构建
 
 ## 说明
 
-源码公开，欢迎读、改、提 Issue。二次分发请保留出处与本仓库链接；自签名证书不随代码分发，自行构建的版本请自行签名。
+源码公开，欢迎读、改、提 Issue。二次分发请保留出处与本仓库链接；自签名证书不随代码分发，自行构建的版本请自行签名。仓库暂未附开源许可证文件，商用或再分发前请先开 Issue 确认。
 
 - Issues：<https://github.com/wj5666619/MiniToolbox/issues>
 - 官网：<https://wj5666619.github.io/MiniToolbox/>
+- 企业管理指南：<https://github.com/wj5666619/MiniToolbox/blob/main/企业管理指南.md>
+- 部署脚本：<https://github.com/wj5666619/MiniToolbox/blob/main/部署.ps1>
+- 策略模板：<https://github.com/wj5666619/MiniToolbox/blob/main/策略示例.json>
