@@ -1,5 +1,7 @@
 # 小工具箱 v18.7 发布 MANIFEST
 
+![小工具箱](https://github.com/wj5666619/MiniToolbox/releases/download/v18.7/cover.jpg)
+
 - 版本：18.7
 - 日期：2026-11-27
 - 主程序：小工具箱.exe（2058128 字节，SHA256 `4164362bd4b721afa2b25114dc0447c4fd0cc7904ccf8c6806e33584002c72cf`）
