@@ -5,7 +5,7 @@
 [![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-0078d4)](#)
 [![Size](https://img.shields.io/badge/size-2.0%20MB-2ea043)](#)
 
-**官网 · 下载页**：<https://wj5666619.github.io/MiniToolbox/> ｜ **最新版**：v19.7 ｜ **免安装 · 单文件 · 源码公开**
+**官网 · 下载页**：<https://wj5666619.github.io/MiniToolbox/> ｜ **最新版**：v19.8 ｜ **免安装 · 单文件 · 源码公开**
 
 一台电脑的小事，交给它就行：定时关机、C 盘清理、Steam 进阶、视频与音乐下载、去水印、局域网剪贴板、录屏、单文件加密……20+ 项日常工具打包进一个 exe，双击就跑，不写注册表、不留后台服务，五套皮肤一键换。
 
@@ -15,14 +15,14 @@
 
 | 渠道 | 文件 | 说明 |
 | --- | --- | --- |
-| 最新版（推荐） | [MiniToolbox.exe](https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe) | 单文件主程序，2,106,256 字节 |
-| 压缩包 | [MiniToolbox_v19.7.7z](https://github.com/wj5666619/MiniToolbox/releases) | 948,203 字节，含 exe 与说明 |
+| 最新版（推荐） | [MiniToolbox.exe](https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe) | 单文件主程序，2,168,208 字节 |
+| 压缩包 | [MiniToolbox_v19.8.7z](https://github.com/wj5666619/MiniToolbox/releases) | 960,850 字节，含 exe 与说明 |
 | 全部版本 | [Releases](https://github.com/wj5666619/MiniToolbox/releases) | 全部 tag，可回退旧版 |
 
-校验（v19.7）：
+校验（v19.8）：
 
 ```
-SHA256  f8156ebbea75161f97d99fe8388dc71b1b3939ad185c8a63b9795cfd0a6c99a1
+SHA256  f2829c7c476f798f644accac62335a97f8004b9f34a3ab1812d4e8480d0d74b8
 ```
 
 > 程序使用自签名证书，作者本机可信；他人电脑首次运行可能提示「未知发布者」，属正常现象，可对照上面的哈希确认文件未被改动。
@@ -48,7 +48,13 @@ SHA256  f8156ebbea75161f97d99fe8388dc71b1b3939ad185c8a63b9795cfd0a6c99a1
 2. 双击运行，首次启动有三步引导：功能概览 → 选皮肤 → 音效与托盘说明。
 3. 顶部搜索框或 `Ctrl+K` 指令舱，输几个字就能跳到任意功能。
 
-## 本版改动（v19.7）
+## 本版改动（v19.8）
+
+- 全仓 1,182 处空 `catch {}` 接入统一忽略日志：默认零开销（一次布尔判断即返回），只有配置里 `diagVerbose=true` 才逐条写 TRACE。
+- 详细日志带位置：`已忽略 MainForm.Ui.cs:3837 | NullReferenceException: ...`，排障直接跳文件行，不用再猜哪里被吞。
+- `MainForm.cs` 由 23,926 行拆成 6 个 partial 文件：界面构建与页面切换、Steam 解锁与工作台、首页与 Steam 价值、电脑配置/去水印/下载/音乐、壁纸与动效。
+- 拆分后日志标签自动重算到新文件与真实行号，拆文件不影响日志可读性；编译产物与界面行为与 19.7 一致。
+### v19.7 改动
 
 - 统一诊断日志：`日志\小工具箱.log` 分级记录，1MB 自动滚动保留 3 份；路径、用户名与令牌样式落盘前脱敏。
 - 启动头一次写齐版本、系统、.NET、屏幕与工作区、启动参数、启动耗时，排查不用再问用户环境。
