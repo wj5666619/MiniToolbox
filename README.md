@@ -5,7 +5,7 @@
 [![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-0078d4)](#)
 [![Size](https://img.shields.io/badge/size-2.0%20MB-2ea043)](#)
 
-**官网 · 下载页**：<https://wj5666619.github.io/MiniToolbox/> ｜ **最新版**：v19.6 ｜ **免安装 · 单文件 · 源码公开**
+**官网 · 下载页**：<https://wj5666619.github.io/MiniToolbox/> ｜ **最新版**：v19.7 ｜ **免安装 · 单文件 · 源码公开**
 
 一台电脑的小事，交给它就行：定时关机、C 盘清理、Steam 进阶、视频与音乐下载、去水印、局域网剪贴板、录屏、单文件加密……20+ 项日常工具打包进一个 exe，双击就跑，不写注册表、不留后台服务，五套皮肤一键换。
 
@@ -15,14 +15,14 @@
 
 | 渠道 | 文件 | 说明 |
 | --- | --- | --- |
-| 最新版（推荐） | [MiniToolbox.exe](https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe) | 单文件主程序，2,093,968 字节 |
-| 压缩包 | [MiniToolbox_v19.6.7z](https://github.com/wj5666619/MiniToolbox/releases) | 943,916 字节，含 exe 与说明 |
+| 最新版（推荐） | [MiniToolbox.exe](https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe) | 单文件主程序，2,106,256 字节 |
+| 压缩包 | [MiniToolbox_v19.7.7z](https://github.com/wj5666619/MiniToolbox/releases) | 948,203 字节，含 exe 与说明 |
 | 全部版本 | [Releases](https://github.com/wj5666619/MiniToolbox/releases) | 全部 tag，可回退旧版 |
 
-校验（v19.6）：
+校验（v19.7）：
 
 ```
-SHA256  031faf79ecaa84d72999339a97b68a488700d5dbd6c34bb7cf0f18b61e5e17dd
+SHA256  f8156ebbea75161f97d99fe8388dc71b1b3939ad185c8a63b9795cfd0a6c99a1
 ```
 
 > 程序使用自签名证书，作者本机可信；他人电脑首次运行可能提示「未知发布者」，属正常现象，可对照上面的哈希确认文件未被改动。
@@ -48,7 +48,17 @@ SHA256  031faf79ecaa84d72999339a97b68a488700d5dbd6c34bb7cf0f18b61e5e17dd
 2. 双击运行，首次启动有三步引导：功能概览 → 选皮肤 → 音效与托盘说明。
 3. 顶部搜索框或 `Ctrl+K` 指令舱，输几个字就能跳到任意功能。
 
-## 本版改动（v19.6）
+## 本版改动（v19.7）
+
+- 统一诊断日志：`日志\小工具箱.log` 分级记录，1MB 自动滚动保留 3 份；路径、用户名与令牌样式落盘前脱敏。
+- 启动头一次写齐版本、系统、.NET、屏幕与工作区、启动参数、启动耗时，排查不用再问用户环境。
+- 崩溃窗口升级：错误摘要 + 「重新启动 / 打开日志 / 复制诊断 / 继续使用」，后台线程异常退回系统提示，不再只是一个是/否框。
+- 配置原子写：先写 `.tmp`，再 `Replace` 成正式文件并留 `.bak`；JSON 损坏时隔离为 `配置_损坏_*.json` 并从备份恢复，原因进日志。
+- 启动自检：磁盘剩余、从临时目录运行、系统时钟异常、配置目录状态、单实例互斥体失败降级，全部只记录不打断启动。
+- 关于页「反馈与建议」改为导出诊断包 zip：版本与环境 + 最近日志 + 配置，一个文件即可反馈。
+- 更新链路留痕：候选源数量、SHA256 校验失败、每个源的下载失败、替换就绪都写日志。
+
+### v19.6 改动
 
 - 窗口位置记忆：退出时记录 x / y 与最大化状态，下次启动回到原处；屏幕变化或坐标越界时自动回主屏居中。
 - 双击标题栏最大化 / 还原，按工作区尺寸展开，不盖任务栏；无边框窗体下也保持内容列居中。
