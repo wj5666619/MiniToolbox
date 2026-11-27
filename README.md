@@ -5,7 +5,7 @@
 [![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-0078d4)](#)
 [![Size](https://img.shields.io/badge/size-2.0%20MB-2ea043)](#)
 
-**官网 · 下载页**：<https://wj5666619.github.io/MiniToolbox/> ｜ **最新版**：v19.3 ｜ **免安装 · 单文件 · 源码公开**
+**官网 · 下载页**：<https://wj5666619.github.io/MiniToolbox/> ｜ **最新版**：v19.4 ｜ **免安装 · 单文件 · 源码公开**
 
 一台电脑的小事，交给它就行：定时关机、C 盘清理、Steam 进阶、视频与音乐下载、去水印、局域网剪贴板、录屏、单文件加密……20+ 项日常工具打包进一个 exe，双击就跑，不写注册表、不留后台服务，五套皮肤一键换。
 
@@ -15,14 +15,14 @@
 
 | 渠道 | 文件 | 说明 |
 | --- | --- | --- |
-| 最新版（推荐） | [MiniToolbox.exe](https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe) | 单文件主程序，2,084,240 字节 |
-| 压缩包 | [MiniToolbox_v19.3.7z](https://github.com/wj5666619/MiniToolbox/releases) | 940,995 字节，含 exe 与说明 |
+| 最新版（推荐） | [MiniToolbox.exe](https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe) | 单文件主程序，2,085,264 字节 |
+| 压缩包 | [MiniToolbox_v19.4.7z](https://github.com/wj5666619/MiniToolbox/releases) | 941,116 字节，含 exe 与说明 |
 | 全部版本 | [Releases](https://github.com/wj5666619/MiniToolbox/releases) | 全部 tag，可回退旧版 |
 
-校验（v19.3）：
+校验（v19.4）：
 
 ```
-SHA256  8b846fe5b249c65bb8dff81e577ac081acd667d5acbb4deaa08e8721ab8cc6dc
+SHA256  17829182dc412c9d097fc5d1a70771ac82422984771f3feae188c6b00c46ac01
 ```
 
 > 程序使用自签名证书，作者本机可信；他人电脑首次运行可能提示「未知发布者」，属正常现象，可对照上面的哈希确认文件未被改动。
@@ -48,7 +48,14 @@ SHA256  8b846fe5b249c65bb8dff81e577ac081acd667d5acbb4deaa08e8721ab8cc6dc
 2. 双击运行，首次启动有三步引导：功能概览 → 选皮肤 → 音效与托盘说明。
 3. 顶部搜索框或 `Ctrl+K` 指令舱，输几个字就能跳到任意功能。
 
-## 本版改动（v19.3）
+## 本版改动（v19.4）
+
+- 工作台重排：壁纸只在页面上半部露脸，下半部渐隐压深，文字与卡片不再被背景照片干扰。
+- 快捷开始分出层级：30 分钟为主按钮实心，1 小时 / 今晚 22:00 为次级，取消改为低调的灰字按钮。
+- 最近使用去掉[跳转：]前缀、右侧加箭头；功能卡悬停出现同色箭头，说明字号 7.5改8。
+- 内存卡副标题由[已用 x / y GB]改成[共 y GB · 占用 x%]，不再和主数字重复。
+
+### v19.3 改动
 
 - 新增官方网站：<https://wj5666619.github.io/MiniToolbox/>，含下载、功能、皮肤、实拍截图、更新日志与构建说明。
 - 关于页「源码与编译」重写：给出仓库与官网地址、真实的 125 文件源码结构、`build.ps1` 与 csc 命令。
