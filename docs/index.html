@@ -82,7 +82,7 @@
     {
       "@type": "Question",
       "name": "企业级有哪些可核验的？",
-      "acceptedAnswer": { "@type": "Answer", "text": "分支保护、Windows CI、SHA256、SBOM、构建来源证明、MIT 许可证、私密漏洞披露、策略与审计说明都给出可点开的入口，详见企业信任中心 /trust.html。项目不声称 ISO、SOC 2 或等保认证。" }
+      "acceptedAnswer": { "@type": "Answer", "text": "分支保护、Windows CI、SHA256、SBOM、新版本构建来源证明、MIT 许可证、私密漏洞披露、策略与审计说明都给出可点开的入口，详见企业信任中心 /trust.html。项目不声称 ISO、SOC 2 或等保认证。" }
     }
   ]
 }
@@ -1064,7 +1064,7 @@
       </div>
       <div class="ent-panel" data-no="CTL–05">
         <h3>发布可核验 / SUPPLY</h3>
-        <p>源码公开、Windows CI 每次编译；Release 附 <code>SHA256SUMS</code>、<code>SBOM</code> 与构建来源证明，tag 必须与源码版本一致。</p>
+        <p>源码公开、Windows CI 每次编译；新版本 Release 附 <code>SHA256SUMS</code>、<code>SBOM</code> 与构建来源证明，v19.15 旧资产已补清单与 SBOM；tag 必须与源码版本一致。</p>
         <div class="kv"><span>校验</span><b>SHA256 + Authenticode</b></div>
         <div class="kv"><span>供应链</span><b>SBOM / Provenance</b></div>
       </div>
@@ -1212,7 +1212,7 @@
         <details><summary>为什么提示“未知发布者”？</summary><p>程序使用自签名证书，作者本机可信；他人电脑首次运行可能提示。可对照上面的 SHA256 确认文件未被改动。</p></details>
         <details><summary>GitHub 直链慢怎么办？</summary><p>先换 7z 包，体积更小；仍慢可换网络或 DNS，再去 Releases 页重试。无论走哪个入口，下载后都要对照同一个 SHA256。站点不放第三方镜像，避免镜像被替换后哈希对不上。</p></details>
         <details><summary>工具站需要 WebView2 吗？</summary><p>绝大多数 Win10 / 11 已带 Edge WebView2 运行时。纯精简系统若缺失会提示重试，也可点窗口右上角「↗」用系统浏览器打开在线版。</p></details>
-        <details><summary>企业级有哪些可核验的？</summary><p>分支保护、Windows CI、SHA256、SBOM、构建来源证明、MIT、私密漏洞披露、策略与审计都有可点开的入口；项目不声称 ISO、SOC 2 或等保认证。详见 <a href="trust.html">企业信任中心 ↗</a>。</p></details>
+        <details><summary>企业级有哪些可核验的？</summary><p>分支保护、Windows CI、SHA256、SBOM、新版本构建来源证明、MIT、私密漏洞披露、策略与审计都有可点开的入口；项目不声称 ISO、SOC 2 或等保认证。详见 <a href="trust.html">企业信任中心 ↗</a>。</p></details>
       </div>
       <div class="reveal" style="--d:.08s">
         <h4>CHANGELOG / 最近版本</h4>
