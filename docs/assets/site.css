@@ -295,6 +295,48 @@
   .dotarena-round,.dotarena-move,.dotarena-hint,.dotarena-sig{position:absolute; z-index:1; font-family:var(--mono); font-size:8px; letter-spacing:.1em; color:rgba(11,12,11,.34); pointer-events:none}
   .dotarena-round{right:16px; top:12px}
   .dotarena-move{left:22px; top:14px; color:rgba(11,12,11,.52)}
+  .dotarena-big,.dotarena-big-zh,.dotarena-combo{position:absolute; z-index:2; pointer-events:none}
+  .dotarena-big{
+    left:50%; top:11%; transform:translate(-50%,-50%) scale(.72) rotate(-3deg); opacity:0;
+    font-family:var(--disp); font-size:clamp(52px,8.4vw,104px); line-height:.88; font-weight:900;
+    letter-spacing:-.055em; color:var(--ink); -webkit-text-stroke:2px #fff;
+  }
+  .dotarena-big.hit{animation:duelBigIn .52s cubic-bezier(.16,.84,.2,1) both}
+  .dotarena-big-zh{
+    left:50%; top:calc(11% + clamp(34px,4.4vw,52px)); transform:translateX(-50%); opacity:0;
+    font-family:var(--mono); font-size:11px; letter-spacing:.18em; color:rgba(11,12,11,.72); white-space:nowrap;
+  }
+  .dotarena-big-zh.hit{animation:duelZhIn .62s .06s ease-out both}
+  .dotarena-combo{
+    right:16px; top:28px; padding:3px 6px; border:1px solid rgba(11,12,11,.18);
+    font-family:var(--mono); font-size:8px; letter-spacing:.08em; color:rgba(11,12,11,.62); background:#fff;
+  }
+  .dotarena-combo.hit{animation:duelComboPop .34s ease-out both}
+  .dotarena-round.pop{animation:duelRoundPop .38s ease-out both}
+  @keyframes duelBigIn{
+    0%{opacity:0; transform:translate(-50%,-50%) scale(.62) rotate(-5deg); -webkit-text-stroke-width:1px}
+    18%{opacity:1; transform:translate(-50%,-50%) scale(1.04) rotate(-1deg); -webkit-text-stroke-width:3px}
+    38%{opacity:1; transform:translate(-50%,-50%) scale(.98) rotate(0)}
+    78%{opacity:1; transform:translate(-50%,-56%) scale(.99) rotate(0)}
+    100%{opacity:0; transform:translate(-50%,-62%) scale(.94) rotate(0)}
+  }
+  @keyframes duelZhIn{
+    0%{opacity:0; transform:translate(-50%,8px)}
+    20%{opacity:1; transform:translate(-50%,0)}
+    80%{opacity:1}
+    100%{opacity:0; transform:translate(-50%,-4px)}
+  }
+  @keyframes duelComboPop{
+    0%{transform:scale(.7); opacity:.2}
+    40%{transform:scale(1.08); opacity:1}
+    100%{transform:scale(1); opacity:1}
+  }
+  @keyframes duelRoundPop{
+    0%{transform:scale(.7); opacity:.2}
+    35%{transform:scale(1.16); opacity:1}
+    100%{transform:scale(1); opacity:1}
+  }
+  .dotarena-tools button[aria-pressed="true"]{background:var(--ink); border-color:var(--ink); color:#fff}
   .dotarena-hint{left:16px; bottom:12px}
   .dotarena-sig{right:16px; bottom:12px}
   .duel-legend{display:flex; flex-wrap:wrap; gap:7px 22px; margin-top:18px; padding:9px 14px; border:1px solid rgba(11,12,11,.16); border-bottom:0; background:#fff; font-family:var(--mono); font-size:9px; letter-spacing:.08em; color:rgba(11,12,11,.52)}
@@ -316,6 +358,9 @@
     .dotlab-row button{min-height:42px; flex:0 0 88px}
     .dotarena-stage{min-height:300px}
     .dotarena h3{font-size:30px}
+    .dotarena-big{top:13%; font-size:54px}
+    .dotarena-big-zh{top:calc(13% + 32px); font-size:9px}
+    .dotarena-combo{top:30px; font-size:7px}
   }
   @keyframes wheel{0%,100%{transform:translateY(0);opacity:.25}50%{transform:translateY(7px);opacity:1}}
   /* ---------- system ---------- */
@@ -477,6 +522,7 @@
     .js .reveal{opacity:1; transform:none; transition:none}
     .mouse::after{animation:none}
     *{animation-duration:.001s!important; animation-iteration-count:1!important}
+    .dotarena-big,.dotarena-big-zh,.dotarena-combo{display:none}
   }
   /* ---------- enhancement layer ---------- */
   .figure[data-zoom]{cursor:zoom-in}
