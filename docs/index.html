@@ -12,7 +12,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; media-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />
 <link rel="canonical" href="https://wj5666619.github.io/MiniToolbox/" />
 <link rel="license" href="https://github.com/wj5666619/MiniToolbox/blob/main/LICENSE" />
-<link rel="preload" as="image" type="image/avif" href="assets/workbench_v1913-1200.avif" imagesrcset="assets/workbench_v1913-800.avif 800w, assets/workbench_v1913-1200.avif 1200w" imagesizes="(max-width:860px) 92vw, 560px" fetchpriority="high" />
+<link rel="preload" as="image" type="image/avif" href="assets/workbench_v1913-1200.avif" imagesrcset="assets/workbench_v1913-800.avif 800w, assets/workbench_v1913-1200.avif 1200w" imagesizes="(max-width:860px) 92vw, 600px" fetchpriority="high" />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="zh_CN" />
 <meta property="og:site_name" content="小工具箱 · MiniToolbox" />
@@ -28,7 +28,7 @@
 <meta name="twitter:description" content="26+ 项 Windows 小工具 + 88 个网页工具按需加载，主程序 3.37 MB 免安装，五套皮肤，企业策略与审计就绪，源码公开。" />
 <meta name="twitter:image" content="https://wj5666619.github.io/MiniToolbox/assets/workbench_v1913.png" />
 <meta name="theme-color" content="#ffffff" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230b0c0b'/%3E%3Crect x='10' y='10' width='44' height='44' fill='none' stroke='%23ff4d12' stroke-width='3'/%3E%3Crect x='24' y='24' width='16' height='16' fill='%23d9d6ce'/%3E%3C/svg%3E" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230b0c0b'/%3E%3Crect x='10' y='10' width='44' height='44' fill='none' stroke='%23ffffff' stroke-width='3'/%3E%3Crect x='24' y='24' width='16' height='16' fill='%23d9d6ce'/%3E%3C/svg%3E" />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -93,8 +93,6 @@
     --bone-2:#c7c3b8;
     --ink:#0b0c0b;
     --ink-soft:#353730;
-    --orange:#ff4d12;
-    --orange-deep:#c93408;
     --panel:#121313;
     --panel-2:#181a19;
     --paper:#ece8de;
@@ -125,12 +123,12 @@
     font-family:var(--sans); -webkit-font-smoothing:antialiased;
     line-height:1.6; overflow-x:hidden;
   }
-  body::selection{background:var(--orange); color:#fff}
-  ::selection{background:var(--orange); color:#fff}
+  body::selection{background:var(--ink); color:#fff}
+  ::selection{background:var(--ink); color:#fff}
   a{color:inherit; text-decoration:none}
   img{max-width:100%; display:block}
   button{font:inherit; color:inherit}
-  a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--orange); outline-offset:3px}
+  a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--ink); outline-offset:3px}
   .skip-link{position:fixed; left:16px; top:-90px; z-index:100; background:var(--ink); color:#fff; padding:12px 18px; font-family:var(--mono); font-size:10px; letter-spacing:.1em; transition:top .2s}
   .skip-link:focus{top:12px}
   .mono{font-family:var(--mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase}
@@ -139,8 +137,8 @@
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.85'/%3E%3C/svg%3E");
   }
   .progress{
-    position:fixed; top:0; left:0; height:2px; width:0; background:var(--orange); z-index:80;
-    box-shadow:0 0 18px rgba(255,77,18,.45);
+    position:fixed; top:0; left:0; height:2px; width:0; background:var(--ink); z-index:80;
+    box-shadow:0 0 18px rgba(11,12,11,.45);
   }
   /* ---------- header ---------- */
   .site-header{
@@ -161,7 +159,7 @@
     display:grid; place-items:center; flex:0 0 auto;
   }
   .brand-mark::before{content:""; position:absolute; inset:5px; border:1px solid currentColor; opacity:.35}
-  .brand-mark::after{content:""; width:11px; height:11px; background:var(--orange); display:block}
+  .brand-mark::after{content:""; width:11px; height:11px; background:var(--ink); display:block}
   .brand-txt{display:flex; flex-direction:column; line-height:1}
   .brand-txt b{font-size:17px; letter-spacing:.02em; font-weight:800}
   .brand-txt small{font-family:var(--mono); font-size:8px; letter-spacing:.18em; opacity:.55; margin-top:5px}
@@ -171,17 +169,17 @@
     opacity:.72; transition:opacity .2s;
   }
   .navlinks a::after{
-    content:""; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--orange); transition:width .25s;
+    content:""; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--ink); transition:width .25s;
   }
   .navlinks a:hover,.navlinks a.active{opacity:1}
   .navlinks a:hover::after,.navlinks a.active::after{width:100%}
   .hdr-cta{
-    margin-left:0; background:var(--orange); color:#0b0c0b; padding:11px 18px;
+    margin-left:0; background:var(--ink); color:#fff; padding:11px 18px;
     font-family:var(--mono); font-size:10px; font-weight:700; letter-spacing:.1em;
     clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));
     transition:background .2s, transform .2s;
   }
-  .hdr-cta:hover{background:#ff6733; transform:translateY(-1px)}
+  .hdr-cta:hover{background:#262626; transform:translateY(-1px)}
   .menu-btn{display:none; margin-left:auto; background:none; border:0; padding:8px; cursor:pointer}
   .menu-btn span{display:block; width:22px; height:1px; background:currentColor; margin:5px 0}
   .mobile-nav{
@@ -190,7 +188,7 @@
   }
   .mobile-nav.open{display:block}
   .mobile-nav a{display:block; padding:18px 0; border-bottom:1px solid rgba(255,255,255,.13); font-family:var(--disp); font-size:28px; letter-spacing:.04em}
-  .mobile-nav a small{font-family:var(--mono); font-size:9px; color:var(--orange); margin-right:12px}
+  .mobile-nav a small{font-family:var(--mono); font-size:9px; color:var(--ink); margin-right:12px}
   /* ---------- side rail ---------- */
   .rail{
     position:fixed; left:28px; top:50%; transform:translateY(-50%); z-index:55;
@@ -199,7 +197,7 @@
   .rail::before{content:""; position:absolute; left:9px; top:0; bottom:0; width:1px; background:currentColor; opacity:.35}
   .rail a{display:flex; align-items:center; gap:9px; padding:9px 0; position:relative; width:34px}
   .rail i{width:19px; height:19px; border:1px solid currentColor; border-radius:50%; display:grid; place-items:center; font-style:normal; font-family:var(--mono); font-size:8px; background:transparent; position:relative; z-index:1; transition:background .25s,color .25s,border-color .25s}
-  .rail a.active i{background:var(--orange); border-color:var(--orange); color:#fff}
+  .rail a.active i{background:var(--ink); border-color:var(--ink); color:#fff}
   .rail b{font-family:var(--mono); font-size:9px; font-weight:400; opacity:0}
   .rail a.active b,.rail a:hover b{opacity:1}
   /* ---------- shared ---------- */
@@ -207,12 +205,14 @@
   .s-light{background:var(--bone); color:var(--ink)}
   .s-dark{background:#0a0b0a; color:#ece8de}
   .s-dark a{color:inherit}
+  .s-dark .btn-primary{color:#fff}
+  .s-dark .btn-primary:hover{color:#fff}
   .s-light .muted,.s-dark .muted{opacity:.58}
   .sec-head{display:grid; grid-template-columns:70px minmax(0,.9fr) minmax(260px,420px); gap:clamp(22px,4vw,56px); align-items:start; border-top:1px solid currentColor; opacity:.98; padding-top:18px; margin-bottom:clamp(40px,6vw,78px)}
   .sec-head .idx{font-family:var(--mono); font-size:10px; letter-spacing:.14em; opacity:.6; padding-top:6px}
   .sec-head h2{margin:0; font-size:clamp(32px,4.2vw,60px); line-height:1.03; letter-spacing:-.04em; font-weight:900}
   .sec-head .lead{margin:6px 0 0; font-size:14px; line-height:1.85; opacity:.65; max-width:36em}
-  .kicker{font-family:var(--mono); font-size:9px; letter-spacing:.18em; color:var(--orange); display:block; margin-bottom:12px; font-weight:700}
+  .kicker{font-family:var(--mono); font-size:9px; letter-spacing:.18em; color:var(--ink); display:block; margin-bottom:12px; font-weight:700}
   .btn{
     display:inline-flex; align-items:center; gap:14px; padding:15px 22px; border:1px solid currentColor;
     font-family:var(--mono); font-size:10px; font-weight:700; letter-spacing:.13em; text-transform:uppercase;
@@ -220,27 +220,27 @@
     clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px));
   }
   .btn:hover{transform:translateY(-2px)}
-  .btn-primary{background:var(--orange); border-color:var(--orange); color:#0b0c0b}
-  .btn-primary:hover{background:#ff6733}
+  .btn-primary{background:var(--ink); border-color:var(--ink); color:#fff}
+  .btn-primary:hover{background:#262626}
   .btn-ghost{background:transparent; color:currentColor}
-  .dot-entry .ar{color:var(--orange)}
+  .dot-entry .ar{color:var(--ink)}
   .btn-ghost:hover{background:currentColor; color:var(--bone)}
   .s-dark .btn-ghost:hover{background:#ece8de; color:#0a0b0a}
   .btn .ar{font-size:14px; line-height:1}
   .tagline{font-family:var(--mono); font-size:9px; letter-spacing:.18em; opacity:.55}
   .figure{position:relative; margin:0 0 0 auto; width:100%; max-width:600px; background:#050606; border:1px solid rgba(255,255,255,.18); padding:8px; box-shadow:0 30px 70px rgba(0,0,0,.28)}
-  .figure::before,.figure::after{content:""; position:absolute; width:20px; height:20px; border-color:var(--orange); border-style:solid; pointer-events:none}
+  .figure::before,.figure::after{content:""; position:absolute; width:20px; height:20px; border-color:var(--ink); border-style:solid; pointer-events:none}
   .figure::before{left:-1px; top:-1px; border-width:2px 0 0 2px}
   .figure::after{right:-1px; bottom:-1px; border-width:0 2px 2px 0}
   .figure img{width:100%; height:auto; filter:contrast(1.05) saturate(.85)}
   .fig-bar{display:flex; align-items:center; justify-content:space-between; padding:2px 4px 8px; color:#a6a49d; font-family:var(--mono); font-size:8px; letter-spacing:.12em}
   .fig-bar .dots{display:flex; gap:5px}
   .fig-bar .dots i{width:5px; height:5px; border-radius:50%; background:#464842; display:block}
-  .fig-bar .dots i:first-child{background:var(--orange)}
+  .fig-bar .dots i:first-child{background:var(--ink)}
   .caption{font-family:var(--mono); font-size:8px; letter-spacing:.1em; opacity:.45; margin-top:10px; display:flex; justify-content:space-between; gap:10px}
   .scan{position:absolute; inset:9px; pointer-events:none; background:repeating-linear-gradient(to bottom,transparent 0 3px,rgba(255,255,255,.022) 3px 4px)}
   .cross{position:absolute; width:11px; height:11px; pointer-events:none}
-  .cross::before,.cross::after{content:""; position:absolute; background:var(--orange)}
+  .cross::before,.cross::after{content:""; position:absolute; background:var(--ink)}
   .cross::before{width:11px; height:1px; top:5px; left:0}
   .cross::after{width:1px; height:11px; left:5px; top:0}
   /* ---------- hero ---------- */
@@ -267,16 +267,16 @@
   .hero-inner{position:relative; z-index:2; display:grid; grid-template-columns:minmax(0,1fr) minmax(340px,600px); gap:clamp(30px,4vw,64px); align-items:center; flex:1}
   .hero-copy{max-width:820px; padding-top:12px; min-width:0}
   .hero-kicker{display:flex; align-items:center; gap:14px; margin-bottom:26px}
-  .hero-kicker::before{content:""; width:34px; height:2px; background:var(--orange)}
+  .hero-kicker::before{content:""; width:34px; height:2px; background:var(--ink)}
   .hero-kicker span{font-family:var(--mono); font-size:9px; letter-spacing:.16em; opacity:.6}
   .hero h1{
     margin:0; font-size:clamp(40px,5vw,82px); line-height:.98; letter-spacing:-.055em;
     font-weight:900;
   }
-  .hero h1 .dot{color:var(--orange)}
+  .hero h1 .dot{color:var(--ink)}
   .hero h1 .sub{display:block; font-size:.54em; letter-spacing:-.03em; opacity:.62; margin-top:.2em; font-weight:800}
   .hero-manifesto{
-    font-family:var(--mono); font-size:10px; letter-spacing:.2em; color:var(--orange-deep);
+    font-family:var(--mono); font-size:10px; letter-spacing:.2em; color:var(--ink);
     margin:24px 0 0; text-transform:uppercase;
   }
   .hero-lead{max-width:38em; margin:20px 0 0; font-size:15px; line-height:1.85; color:rgba(11,12,11,.70)}
@@ -290,9 +290,9 @@
     position:absolute; z-index:3; font-family:var(--mono); font-size:8px; letter-spacing:.1em;
     padding:7px 10px; background:#0b0c0b; color:#e9e5db; border:1px solid rgba(255,255,255,.22);
   }
-  .stage-tag.tl{left:-16px; top:18%; border-left:2px solid var(--orange)}
-  .stage-tag.br{right:-12px; bottom:16%; border-right:2px solid var(--orange)}
-  .stage-tag b{color:var(--orange); font-weight:700}
+  .stage-tag.tl{left:-16px; top:18%; border-left:2px solid var(--ink)}
+  .stage-tag.br{right:-12px; bottom:16%; border-right:2px solid var(--ink)}
+  .stage-tag b{color:var(--ink); font-weight:700}
   .hero-stats{
     position:relative; z-index:2; display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--line); border-bottom:1px solid var(--line);
     margin-top:clamp(28px,4vw,56px);
@@ -300,19 +300,19 @@
   .hstat{padding:18px 2px 16px 18px; border-left:1px solid var(--line); position:relative}
   .hstat:first-child{border-left:0; padding-left:0}
   .hstat b{font-family:var(--disp); font-size:clamp(26px,2.5vw,40px); line-height:1; font-weight:900; display:block; letter-spacing:-.02em}
-  .hstat b em{font-style:normal; font-size:.48em; color:var(--orange); margin-left:3px}
+  .hstat b em{font-style:normal; font-size:.48em; color:var(--ink); margin-left:3px}
   .hstat span{display:block; margin-top:7px; font-family:var(--mono); font-size:8px; letter-spacing:.12em; opacity:.55}
   .hero-foot{position:relative; z-index:2; display:grid; grid-template-columns:1fr auto 1fr; align-items:end; gap:20px; margin-top:26px; font-family:var(--mono); font-size:8px; letter-spacing:.12em; opacity:.62}
   .hero-foot .mid{display:flex; flex-direction:column; align-items:center; gap:8px}
   .mouse{width:18px; height:28px; border:1px solid currentColor; border-radius:10px; position:relative}
   .mouse::after{content:""; width:1px; height:6px; background:currentColor; position:absolute; left:8px; top:5px; animation:wheel 1.8s infinite}
   .hero-foot .right{text-align:right}
-  .hero-foot a:hover{color:var(--orange)}
+  .hero-foot a:hover{color:var(--ink)}
   /* ---------- dot lab ---------- */
   .dotlab{position:relative; padding:clamp(70px,9vw,132px) var(--px) clamp(70px,8vw,120px); background:#fff; overflow:hidden}
   .dotlab-stage{display:grid; grid-template-columns:minmax(276px,.72fr) minmax(0,1.45fr); gap:clamp(28px,4vw,60px); align-items:stretch; margin-top:clamp(40px,6vw,78px)}
   .dotlab-panel{display:flex; flex-direction:column; gap:16px; border-top:2px solid var(--ink); padding-top:18px; min-width:0}
-  .dotlab-kicker{font-family:var(--mono); font-size:9px; letter-spacing:.14em; color:var(--orange); text-transform:uppercase}
+  .dotlab-kicker{font-family:var(--mono); font-size:9px; letter-spacing:.14em; color:var(--ink); text-transform:uppercase}
   .dotlab-form label{display:block; margin-bottom:8px; font-family:var(--mono); font-size:9px; letter-spacing:.12em; color:rgba(11,12,11,.56)}
   .dotlab-row{display:flex; gap:8px}
   .dotlab-row input{
@@ -320,24 +320,24 @@
     color:var(--ink); font-family:var(--sans); font-size:13px; outline:none;
   }
   .dotlab-row input::placeholder{color:rgba(11,12,11,.36)}
-  .dotlab-row input:focus{border-color:var(--orange)}
+  .dotlab-row input:focus{border-color:var(--ink)}
   .dotlab-row button{
     padding:0 16px; border:1px solid var(--ink); background:var(--ink); color:#fff;
     font-family:var(--mono); font-size:9px; letter-spacing:.1em; cursor:pointer; transition:background .2s,border-color .2s;
   }
-  .dotlab-row button:hover{background:var(--orange); border-color:var(--orange)}
+  .dotlab-row button:hover{background:var(--ink); border-color:var(--ink)}
   .dotlab-quick{display:flex; flex-wrap:wrap; gap:6px}
   .dotlab-quick button{
     padding:6px 9px; border:1px solid rgba(11,12,11,.16); background:#fff; color:rgba(11,12,11,.62);
     font-family:var(--mono); font-size:8px; letter-spacing:.08em; cursor:pointer; transition:border-color .2s,color .2s;
   }
-  .dotlab-quick button:hover{border-color:var(--orange); color:var(--orange)}
+  .dotlab-quick button:hover{border-color:var(--ink); color:var(--ink)}
   .dotlab-actions{display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; margin-top:auto; padding-top:14px}
   .dotlab-actions button{
     padding:7px 10px; border:1px solid rgba(11,12,11,.18); background:#fff; color:var(--ink);
     font-family:var(--mono); font-size:8px; letter-spacing:.08em; cursor:pointer; transition:border-color .2s,color .2s;
   }
-  .dotlab-actions button:hover{border-color:var(--orange); color:var(--orange)}
+  .dotlab-actions button:hover{border-color:var(--ink); color:var(--ink)}
   .dotlab-status{font-family:var(--mono); font-size:8px; letter-spacing:.08em; color:rgba(11,12,11,.42); margin-left:auto}
   .dotlab-canvas{
     position:relative; min-height:420px; border:1px solid rgba(11,12,11,.16); overflow:hidden; background:#fff;
@@ -345,7 +345,7 @@
   }
   .dotlab-canvas canvas{position:absolute; inset:0; width:100%; height:100%; display:block; cursor:crosshair; touch-action:pan-y}
   .dotlab-canvas::before,.dotlab-canvas::after{
-    content:""; position:absolute; z-index:1; width:18px; height:18px; pointer-events:none; border-color:var(--orange); border-style:solid;
+    content:""; position:absolute; z-index:1; width:18px; height:18px; pointer-events:none; border-color:var(--ink); border-style:solid;
   }
   .dotlab-canvas::before{left:10px; top:10px; border-width:1px 0 0 1px}
   .dotlab-canvas::after{right:10px; bottom:10px; border-width:0 1px 1px 0}
@@ -362,7 +362,7 @@
   }
   .dotarena-head .idx{font-family:var(--mono); font-size:10px; letter-spacing:.14em; opacity:.6; padding-top:6px}
   .dotarena-side{display:flex; flex-direction:column; gap:16px; align-items:stretch; padding-top:6px}
-  .dotarena-kicker{display:block; font-family:var(--mono); font-size:9px; letter-spacing:.14em; color:var(--orange); margin-bottom:10px}
+  .dotarena-kicker{display:block; font-family:var(--mono); font-size:9px; letter-spacing:.14em; color:var(--ink); margin-bottom:10px}
   .dotarena h3{margin:0; font-family:var(--disp); font-size:clamp(28px,3.2vw,46px); line-height:.98; font-weight:900; letter-spacing:-.03em}
   .dotarena-copy{margin:0; font-family:var(--sans); font-size:13px; line-height:1.85; color:rgba(11,12,11,.58); max-width:none}
   .dotarena-tools{display:flex; flex-wrap:wrap; gap:6px; justify-content:flex-end}
@@ -370,7 +370,7 @@
     padding:8px 11px; border:1px solid rgba(11,12,11,.18); background:#fff; color:var(--ink);
     font-family:var(--mono); font-size:8px; letter-spacing:.08em; cursor:pointer; transition:border-color .2s,color .2s,background .2s;
   }
-  .dotarena-tools button:hover{border-color:var(--orange); color:var(--orange)}
+  .dotarena-tools button:hover{border-color:var(--ink); color:var(--ink)}
   .dotarena-tools button.solo{background:var(--ink); border-color:var(--ink); color:#fff}
   .dotarena-stage{
     position:relative; min-height:420px; margin-top:20px; border:1px solid rgba(11,12,11,.16); overflow:hidden; background:#fff;
@@ -378,7 +378,7 @@
   }
   .dotarena-stage canvas{position:absolute; inset:0; width:100%; height:100%; display:block; cursor:pointer; touch-action:pan-y}
   .dotarena-stage::before,.dotarena-stage::after{
-    content:""; position:absolute; z-index:1; width:18px; height:18px; pointer-events:none; border-color:var(--orange); border-style:solid;
+    content:""; position:absolute; z-index:1; width:18px; height:18px; pointer-events:none; border-color:var(--ink); border-style:solid;
   }
   .dotarena-stage::before{left:10px; top:10px; border-width:1px 0 0 1px}
   .dotarena-stage::after{right:10px; bottom:10px; border-width:0 1px 1px 0}
@@ -409,18 +409,18 @@
   .system-layout{display:grid; grid-template-columns:minmax(0,1fr) minmax(380px,600px); gap:clamp(36px,7vw,96px); align-items:start}
   .spec-list{border-top:1px solid rgba(238,234,225,.2)}
   .spec{display:grid; grid-template-columns:44px 1fr; gap:18px; padding:24px 0 26px; border-bottom:1px solid rgba(238,234,225,.14); position:relative}
-  .spec:hover .spec-num{color:var(--orange)}
+  .spec:hover .spec-num{color:var(--ink)}
   .spec-num{font-family:var(--mono); font-size:10px; opacity:.45; padding-top:3px}
   .spec h3{margin:0 0 8px; font-size:20px; letter-spacing:-.02em; font-weight:800}
   .spec p{margin:0; font-size:13px; line-height:1.8; opacity:.57; max-width:30em}
-  .spec::after{content:"+"; position:absolute; right:0; top:24px; font-family:var(--mono); color:var(--orange); opacity:0; transition:opacity .2s}
+  .spec::after{content:"+"; position:absolute; right:0; top:24px; font-family:var(--mono); color:var(--ink); opacity:0; transition:opacity .2s}
   .spec:hover::after{opacity:1}
   .system-visual{position:sticky; top:100px}
   .system-visual .figure{border-color:rgba(255,255,255,.16)}
   .callout{position:absolute; z-index:2; background:#0d0e0e; border:1px solid rgba(255,255,255,.2); padding:10px 12px; font-family:var(--mono); font-size:8px; letter-spacing:.08em; color:#d5d1c7; line-height:1.7}
-  .callout b{color:var(--orange); display:block; font-size:14px; letter-spacing:0; font-family:var(--disp); margin-top:2px}
-  .callout.c1{left:-22px; bottom:18%; border-left:2px solid var(--orange)}
-  .callout.c2{right:-16px; top:13%; border-right:2px solid var(--orange)}
+  .callout b{color:var(--ink); display:block; font-size:14px; letter-spacing:0; font-family:var(--disp); margin-top:2px}
+  .callout.c1{left:-22px; bottom:18%; border-left:2px solid var(--ink)}
+  .callout.c2{right:-16px; top:13%; border-right:2px solid var(--ink)}
   .system-ribbon{display:flex; flex-wrap:wrap; gap:8px; margin-top:28px}
   .system-ribbon span{border:1px solid rgba(238,234,225,.2); padding:7px 10px; font-family:var(--mono); font-size:8px; letter-spacing:.08em; opacity:.64}
   /* ---------- matrix ---------- */
@@ -434,13 +434,13 @@
   .mtab .no{font-family:var(--mono); font-size:9px}
   .mtab .nm{font-size:17px; font-weight:800; letter-spacing:-.02em}
   .mtab .en{font-family:var(--mono); font-size:8px; letter-spacing:.12em}
-  .mtab::before{content:""; position:absolute; left:-14px; top:0; bottom:0; width:2px; background:var(--orange); transform:scaleY(0); transition:transform .25s}
+  .mtab::before{content:""; position:absolute; left:-14px; top:0; bottom:0; width:2px; background:var(--ink); transform:scaleY(0); transition:transform .25s}
   .mtab:hover{opacity:.8}
   .mtab.active{opacity:1}
   .mtab.active::before{transform:scaleY(1)}
   .mstage{position:relative; min-height:470px; border:1px solid rgba(238,234,225,.18); padding:clamp(22px,3vw,38px); background:linear-gradient(135deg,rgba(255,255,255,.025),transparent 55%)}
   .mstage::before{content:"CAPABILITY / SELECTED"; position:absolute; right:18px; top:14px; font-family:var(--mono); font-size:8px; letter-spacing:.12em; opacity:.33}
-  .mstage::after{content:""; position:absolute; left:0; bottom:0; width:62px; height:2px; background:var(--orange)}
+  .mstage::after{content:""; position:absolute; left:0; bottom:0; width:62px; height:2px; background:var(--ink)}
   .mpanel{display:none}
   .mpanel.active{display:block; animation:panelIn .45s ease both}
   @keyframes panelIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
@@ -449,7 +449,7 @@
   .mpanel .desc{max-width:38em; margin:12px 0 24px; font-size:13px; line-height:1.8; opacity:.58}
   .chips{display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid rgba(238,234,225,.18); border-left:1px solid rgba(238,234,225,.18)}
   .chip{border-right:1px solid rgba(238,234,225,.18); border-bottom:1px solid rgba(238,234,225,.18); padding:15px 14px; min-height:74px; display:flex; flex-direction:column; justify-content:space-between; gap:10px; transition:background .2s}
-  .chip:hover{background:rgba(255,77,18,.1)}
+  .chip:hover{background:rgba(11,12,11,.1)}
   .chip small{font-family:var(--mono); font-size:7px; opacity:.35; letter-spacing:.08em}
   .chip b{font-size:12px; font-weight:600; letter-spacing:.01em}
   .matrix-note{display:flex; justify-content:space-between; align-items:center; margin-top:22px; font-family:var(--mono); font-size:8px; letter-spacing:.08em; opacity:.42}
@@ -458,20 +458,20 @@
   .station::before{content:""; position:absolute; inset:0; pointer-events:none; opacity:.25; background-image:radial-gradient(rgba(11,12,11,.18) .7px,transparent .8px); background-size:18px 18px}
   .station-top{position:relative; display:grid; grid-template-columns:minmax(260px,.62fr) minmax(0,1fr); gap:clamp(26px,5vw,70px); align-items:end; margin-bottom:34px}
   .station-number{font-family:var(--disp); font-size:clamp(150px,21vw,300px); line-height:.74; letter-spacing:-.08em; font-weight:900}
-  .station-number span{color:var(--orange)}
+  .station-number span{color:var(--ink)}
   .station-copy{padding-bottom:8px}
   .station-copy h2{margin:0 0 14px; font-size:clamp(30px,3.4vw,46px); line-height:1.06; letter-spacing:-.04em}
   .station-copy p{max-width:36em; margin:0; font-size:13px; line-height:1.8; color:rgba(11,12,11,.62)}
   .station-layout{position:relative; display:grid; grid-template-columns:minmax(0,1fr) minmax(380px,600px); gap:clamp(34px,6vw,84px); align-items:start}
   .cats{display:grid; grid-template-columns:1fr 1fr; border-top:1px solid var(--line); border-left:1px solid var(--line)}
   .cat{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:14px 12px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); font-size:12px; transition:background .2s}
-  .cat:hover{background:rgba(255,77,18,.09)}
+  .cat:hover{background:rgba(11,12,11,.09)}
   .cat small{font-family:var(--mono); font-size:7px; opacity:.42}
   .station-metrics{display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-top:26px}
   .smetric{padding:14px 16px 12px 0; border-left:1px solid var(--line)}
   .smetric:first-child{border-left:0}
   .smetric b{font-family:var(--disp); font-size:28px; line-height:1; display:block}
-  .smetric b em{font-style:normal; color:var(--orange); font-size:.55em; margin-left:2px}
+  .smetric b em{font-style:normal; color:var(--ink); font-size:.55em; margin-left:2px}
   .smetric span{font-family:var(--mono); font-size:7px; letter-spacing:.1em; opacity:.5; display:block; margin-top:6px}
   .station-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:24px}
   .station .figure{box-shadow:0 24px 60px rgba(11,12,11,.16); border-color:rgba(11,12,11,.2); transform:rotate(1deg)}
@@ -483,7 +483,7 @@
   .skins-copy p{font-size:13px; line-height:1.85; opacity:.58; max-width:34em}
   .skin-deck{display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-top:clamp(34px,5vw,64px)}
   .skin-card{border:1px solid rgba(238,234,225,.16); min-height:190px; position:relative; overflow:hidden; padding:12px; display:flex; flex-direction:column; justify-content:space-between; transition:transform .25s,border-color .25s; background:#101111}
-  .skin-card:hover{transform:translateY(-6px); border-color:var(--orange)}
+  .skin-card:hover{transform:translateY(-6px); border-color:var(--ink)}
   .skin-card::before{content:""; position:absolute; left:0; right:0; top:0; height:68%; background:var(--sw); opacity:.88; transition:height .3s}
   .skin-card:hover::before{height:74%}
   .skin-no{position:relative; z-index:1; font-family:var(--mono); font-size:8px; color:#fff; mix-blend-mode:difference}
@@ -492,7 +492,7 @@
   .skin-name small{display:block; font-family:var(--mono); font-size:7px; letter-spacing:.1em; opacity:.45; margin-top:3px}
   .skin-swatch{position:absolute; left:12px; bottom:44px; display:flex; gap:4px}
   .skin-swatch i{width:13px; height:3px; background:currentColor; opacity:.6; display:block}
-  .skin-swatch i:first-child{background:var(--orange); opacity:1}
+  .skin-swatch i:first-child{background:var(--ink); opacity:1}
   .skins-figure .figure{border-color:rgba(255,255,255,.14)}
   /* ---------- enterprise ---------- */
   .ent-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:30px}
@@ -507,13 +507,13 @@
   .policy-bar{display:flex; justify-content:space-between; padding:9px 14px; border-bottom:1px solid rgba(238,234,225,.12); font-family:var(--mono); font-size:8px; opacity:.55}
   pre{margin:0; padding:18px; overflow:auto; font-family:var(--mono); font-size:11px; line-height:1.8; color:#c9c6bd; background:transparent}
   pre .c{color:#736f67}
-  pre .o{color:var(--orange)}
+  pre .o{color:var(--ink)}
   .ent-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:22px}
   /* ---------- download ---------- */
   .download{background:linear-gradient(180deg,#e1ddd4,var(--bone)); color:var(--ink)}
   .download-grid{display:grid; grid-template-columns:minmax(0,.9fr) minmax(380px,1.1fr); gap:clamp(32px,6vw,90px); align-items:start}
   .download-word{font-family:var(--disp); font-size:clamp(110px,18vw,260px); line-height:.75; letter-spacing:-.07em; font-weight:900; margin-top:20px}
-  .download-word span{color:var(--orange)}
+  .download-word span{color:var(--ink)}
   .download-word small{display:block; font-family:var(--mono); font-size:9px; letter-spacing:.16em; font-weight:400; color:var(--ink); margin-top:22px; opacity:.55}
   .download-card{border-top:1px solid var(--line); padding-top:22px}
   .download-card h2{margin:0 0 12px; font-size:clamp(32px,3.6vw,50px); line-height:1.02; letter-spacing:-.045em}
@@ -528,18 +528,18 @@
   .hash-wrap{display:flex; align-items:center; gap:10px; min-width:0}
   .hash-wrap b{flex:1; min-width:0}
   .copy-btn{flex:0 0 auto; min-width:48px; min-height:24px; display:inline-grid; place-items:center; border:1px solid var(--line); background:transparent; color:inherit; padding:3px 8px; font-family:var(--mono); font-size:9px; letter-spacing:.08em; cursor:pointer; transition:background .2s,color .2s,border-color .2s}
-  .copy-btn:hover,.copy-btn.ok{background:var(--orange); border-color:var(--orange); color:#fff}
+  .copy-btn:hover,.copy-btn.ok{background:var(--ink); border-color:var(--ink); color:#fff}
   .download-bottom{display:grid; grid-template-columns:1fr 1fr; gap:clamp(30px,5vw,70px); margin-top:clamp(46px,7vw,88px); border-top:1px solid var(--line); padding-top:28px}
   details{border-bottom:1px solid var(--line)}
   details summary{list-style:none; cursor:pointer; padding:15px 0; display:flex; align-items:center; justify-content:space-between; gap:20px; font-size:13px; font-weight:700}
   details summary::-webkit-details-marker{display:none}
-  details summary::after{content:"+"; font-family:var(--mono); color:var(--orange); font-size:15px; transition:transform .2s}
+  details summary::after{content:"+"; font-family:var(--mono); color:var(--ink); font-size:15px; transition:transform .2s}
   details[open] summary::after{transform:rotate(45deg)}
   details p{margin:0 0 16px; font-size:12px; line-height:1.85; color:rgba(11,12,11,.62); max-width:42em}
   .download h4{margin:0 0 12px; font-family:var(--mono); font-size:9px; letter-spacing:.13em; opacity:.58; font-weight:500}
   .foot-links{display:flex; flex-wrap:wrap; gap:10px 18px; margin-top:20px; font-family:var(--mono); font-size:9px; letter-spacing:.06em}
   .foot-links a{border-bottom:1px solid rgba(11,12,11,.22); padding-bottom:2px}
-  .foot-links a:hover{color:var(--orange); border-color:var(--orange)}
+  .foot-links a:hover{color:var(--ink); border-color:var(--ink)}
   /* ---------- footer ---------- */
   .site-footer{background:#080909; color:#cfccc3; padding:48px var(--px) 30px; border-top:1px solid rgba(255,255,255,.12)}
   .foot-grid{display:grid; grid-template-columns:1fr auto; gap:36px; align-items:end}
@@ -548,14 +548,14 @@
   .foot-brand p{margin:14px 0 0; font-size:12px; line-height:1.8; opacity:.45; max-width:32em}
   .foot-nav{display:flex; flex-wrap:wrap; gap:8px 22px; justify-content:flex-end}
   .foot-nav a{font-family:var(--mono); font-size:9px; letter-spacing:.08em; opacity:.55}
-  .foot-nav a:hover{color:var(--orange); opacity:1}
+  .foot-nav a:hover{color:var(--ink); opacity:1}
   .foot-legal{display:flex; justify-content:space-between; gap:20px; border-top:1px solid rgba(255,255,255,.1); margin-top:36px; padding-top:18px; font-family:var(--mono); font-size:8px; letter-spacing:.06em; opacity:.3; flex-wrap:wrap}
   /* ---------- lightbox ---------- */
   .lightbox{position:fixed; inset:0; z-index:95; background:rgba(5,6,6,.94); display:none; align-items:center; justify-content:center; padding:30px}
   .lightbox.open{display:flex}
   .lightbox img{max-width:94vw; max-height:90vh; border:1px solid rgba(255,255,255,.2); box-shadow:0 30px 100px rgba(0,0,0,.5)}
   .lb-close{position:absolute; right:24px; top:18px; background:none; border:1px solid rgba(255,255,255,.4); color:#fff; width:38px; height:38px; cursor:pointer; font-size:18px}
-  .lb-close:hover{background:var(--orange); border-color:var(--orange)}
+  .lb-close:hover{background:var(--ink); border-color:var(--ink)}
   /* ---------- reveal ---------- */
   .js .reveal{opacity:0; transform:translateY(24px); transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); transition-delay:var(--d,0s)}
   .js .reveal.in{opacity:1; transform:none}
@@ -572,31 +572,31 @@
     padding:5px 7px; background:rgba(11,12,11,.84); border:1px solid rgba(255,255,255,.22);
     color:#ece8de; font-family:var(--mono); font-size:8px; letter-spacing:.1em; pointer-events:none;
   }
-  .zoom-hint b{color:var(--orange); font-size:12px; line-height:1; font-weight:400}
+  .zoom-hint b{color:var(--ink); font-size:12px; line-height:1; font-weight:400}
   .hotspot{
     position:absolute; z-index:4; left:var(--x); top:var(--y); width:25px; height:25px; padding:0;
-    transform:translate(-50%,-50%); border:1px dashed rgba(255,77,18,.9); border-radius:50%;
+    transform:translate(-50%,-50%); border:1px dashed rgba(11,12,11,.9); border-radius:50%;
     background:rgba(11,12,11,.46); color:#fff; display:grid; place-items:center; cursor:pointer;
     font-family:var(--mono); font-size:8px; letter-spacing:.02em;
     transition:background .2s,border-color .2s,transform .2s;
   }
-  .hotspot::before{content:""; position:absolute; inset:-7px; border:1px solid rgba(255,77,18,.2); border-radius:50%; pointer-events:none}
+  .hotspot::before{content:""; position:absolute; inset:-7px; border:1px solid rgba(11,12,11,.2); border-radius:50%; pointer-events:none}
   .hotspot span{
     position:absolute; left:50%; bottom:calc(100% + 9px); transform:translateX(-50%);
     white-space:nowrap; padding:6px 8px; background:#080909; color:#ece8de;
     border:1px solid rgba(255,255,255,.24); font-family:var(--mono); font-size:8px; letter-spacing:.08em;
     opacity:0; pointer-events:none; transition:opacity .2s;
   }
-  .hotspot:hover,.hotspot:focus-visible{background:var(--orange); border-color:var(--orange); transform:translate(-50%,-50%) scale(1.06)}
+  .hotspot:hover,.hotspot:focus-visible{background:var(--ink); border-color:var(--ink); transform:translate(-50%,-50%) scale(1.06)}
   .hotspot:hover span,.hotspot:focus-visible span{opacity:1}
   .hotspot.spot-3 span{bottom:auto; top:calc(100% + 9px)}
   .chip-tip{
     position:fixed; z-index:75; max-width:250px; padding:9px 11px; background:#070808;
-    border:1px solid rgba(255,77,18,.55); color:#ece8de; font-size:11px; line-height:1.65;
+    border:1px solid rgba(11,12,11,.55); color:#ece8de; font-size:11px; line-height:1.65;
     opacity:0; transform:translateY(5px); pointer-events:none; transition:opacity .18s,transform .18s;
   }
   .chip-tip.show{opacity:1; transform:none}
-  .chip-tip b{display:block; margin-bottom:3px; color:var(--orange); font-family:var(--mono); font-size:8px; letter-spacing:.12em; font-weight:500}
+  .chip-tip b{display:block; margin-bottom:3px; color:var(--ink); font-family:var(--mono); font-size:8px; letter-spacing:.12em; font-weight:500}
   .chip-tip em{display:block; margin-top:5px; color:#8e8b83; font-family:var(--mono); font-size:8px; font-style:normal; letter-spacing:.06em}
   .sfx-btn{
     display:inline-flex; align-items:center; gap:6px; margin-left:0; padding:8px 9px;
@@ -604,8 +604,8 @@
     font-family:var(--mono); font-size:8px; letter-spacing:.1em; transition:opacity .2s,border-color .2s,color .2s;
   }
   .sfx-btn i{width:5px; height:5px; border-radius:50%; background:currentColor; display:block; opacity:.5}
-  .sfx-btn[aria-pressed="true"]{opacity:1; border-color:var(--orange); color:var(--orange)}
-  .sfx-btn[aria-pressed="true"] i{background:var(--orange); opacity:1}
+  .sfx-btn[aria-pressed="true"]{opacity:1; border-color:var(--ink); color:var(--ink)}
+  .sfx-btn[aria-pressed="true"] i{background:var(--ink); opacity:1}
   .sfx-btn:hover{opacity:1}
   .mobile-dock{
     position:fixed; left:12px; right:12px; bottom:calc(12px + env(safe-area-inset-bottom)); z-index:58;
@@ -616,7 +616,7 @@
   .mobile-dock.show{transform:none; visibility:visible}
   .mobile-dock a{
     flex:1; display:flex; align-items:center; justify-content:space-between; gap:10px;
-    padding:11px 14px; background:var(--orange); color:#0b0c0b;
+    padding:11px 14px; background:var(--ink); color:#fff;
     font-family:var(--mono); font-size:10px; font-weight:700; letter-spacing:.08em;
   }
   .mobile-dock a small{font-weight:400; opacity:.7; font-size:8px}
@@ -625,22 +625,22 @@
     font-size:16px; cursor:pointer; line-height:1;
   }
   @media(min-width:861px){.mobile-dock{display:none!important}}
-  .latest-notes{margin-top:20px; border-left:2px solid var(--orange); padding-left:13px}
-  .latest-notes h4{margin:0 0 7px; color:var(--orange); opacity:1}
+  .latest-notes{margin-top:20px; border-left:2px solid var(--ink); padding-left:13px}
+  .latest-notes h4{margin:0 0 7px; color:var(--ink); opacity:1}
   .latest-notes ul{margin:0; padding:0 0 0 14px; color:rgba(11,12,11,.66); font-size:11px; line-height:1.75}
   .latest-notes li{margin:0 0 4px}
   .security-note{
-    display:flex; gap:12px; margin-top:18px; padding:12px 14px; border:1px solid var(--line); border-left:2px solid var(--orange);
+    display:flex; gap:12px; margin-top:18px; padding:12px 14px; border:1px solid var(--line); border-left:2px solid var(--ink);
     background:#fff;
   }
   .security-note .ico{
     flex:0 0 20px; width:20px; height:20px; display:grid; place-items:center;
-    background:var(--orange); color:#fff; font-family:var(--mono); font-size:11px; font-weight:700;
+    background:var(--ink); color:#fff; font-family:var(--mono); font-size:11px; font-weight:700;
   }
   .security-note b{display:block; font-size:12px; margin-bottom:3px}
   .security-note p{margin:0; font-size:11px; line-height:1.65; color:rgba(11,12,11,.6); max-width:none}
   .security-note a{display:inline-block; margin-top:6px; border-bottom:1px solid currentColor; font-family:var(--mono); font-size:8px; letter-spacing:.08em}
-  .security-note a:hover{color:var(--orange); border-color:var(--orange)}
+  .security-note a:hover{color:var(--ink); border-color:var(--ink)}
   .verify-box{margin-top:12px; padding:12px 14px; border:1px solid var(--line); background:rgba(11,12,11,.035); scroll-margin-top:90px}
   .verify-box label{display:block; margin-bottom:8px; font-family:var(--mono); font-size:8px; letter-spacing:.1em; opacity:.55}
   .verify-line{display:flex; align-items:center; gap:8px; min-width:0}
@@ -651,7 +651,7 @@
   .verify-box p{margin:8px 0 0; font-size:10px; line-height:1.65; color:rgba(11,12,11,.55); max-width:none}
   .policy-actions{display:flex; gap:6px; align-items:center}
   .policy-actions .copy-btn{background:rgba(255,255,255,.04); color:#ece8de; border-color:rgba(255,255,255,.2); font-size:8px; min-width:auto; min-height:22px; padding:2px 7px}
-  .policy-actions .copy-btn:hover{background:var(--orange); border-color:var(--orange); color:#fff}
+  .policy-actions .copy-btn:hover{background:var(--ink); border-color:var(--ink); color:#fff}
   .policy-doc{margin-top:12px; border-color:rgba(238,234,225,.14)}
   .policy-doc summary{font-size:11px; padding:11px 0; opacity:.65}
   .policy-doc p{color:rgba(238,234,225,.62); font-size:11px; margin:0 0 12px; max-width:52em}
@@ -682,9 +682,9 @@
   }
   .demo-note{margin:8px 0 0; font-family:var(--mono); font-size:7px; letter-spacing:.08em; opacity:.35}
   .skin-card{color:inherit; font:inherit; text-align:left; cursor:pointer; appearance:none}
-  .skin-card.active{border-color:var(--orange); box-shadow:0 0 0 1px var(--orange) inset}
+  .skin-card.active{border-color:var(--ink); box-shadow:0 0 0 1px var(--ink) inset}
   .cat small i{font-style:normal; margin-left:4px; opacity:.55; transition:color .2s,opacity .2s}
-  .cat:hover small i{color:var(--orange); opacity:1}
+  .cat:hover small i{color:var(--ink); opacity:1}
   /* ---------- responsive ---------- */
   @media(max-width:1100px){
     .navlinks{display:none}
@@ -832,7 +832,7 @@
     border-color:rgba(11,12,11,.20)!important;
     box-shadow:0 10px 28px rgba(11,12,11,.10);
   }
-  .hotspot:hover,.hotspot:focus-visible{background:var(--orange)!important;color:#fff!important}
+  .hotspot:hover,.hotspot:focus-visible{background:var(--ink)!important;color:#fff!important}
   .mstage{background:#ffffff!important;border-color:rgba(11,12,11,.16)!important}
   .skin-card{
     background:#ffffff!important;color:var(--ink)!important;
@@ -850,7 +850,7 @@
     border-color:rgba(11,12,11,.20)!important;
   }
   .verify-box{background:#ffffff!important;border-color:rgba(11,12,11,.14)!important}
-  .progress{box-shadow:0 0 18px rgba(255,77,18,.25)}
+  .progress{box-shadow:0 0 18px rgba(11,12,11,.25)}
 </style>
 </head>
 <body data-theme="light">
@@ -998,7 +998,7 @@
           <h3>两个火柴人，<br>全用黑点。</h3>
         </div>
         <div class="dotarena-side">
-          <p class="dotarena-copy">头、肩、肘、拳、膝、脚，全部由黑点组成，没有一根实线。点擂台换一招，也可以直接叫停。</p>
+          <p class="dotarena-copy">头、肩、肘、拳、膝、脚，全部由黑点组成，没有一根实线。命中处会先散成点尘，再重新凝聚。点擂台换一招，也可以直接叫停。</p>
           <div class="dotarena-tools">
             <button type="button" id="duelSkip">换一招 →</button>
             <button type="button" id="duelToggle" class="solo">停手</button>
@@ -1006,7 +1006,7 @@
         </div>
       </div>
       <div class="dotarena-stage">
-        <canvas id="duelCanvas" aria-label="两个由黑点组成的火柴人正在对打，点击擂台换一招"></canvas>
+        <canvas id="duelCanvas" aria-label="两个由黑点组成的火柴人正在对打，被击中的部位会散成点尘再重新凝聚，点击擂台换一招"></canvas>
         <span class="dotarena-round" id="duelRound" aria-hidden="true">ROUND / 01</span>
         <span class="dotarena-hint" aria-hidden="true">CLICK / NEXT MOVE</span>
         <span class="dotarena-sig" aria-hidden="true">DOTS ONLY / NO LINES</span>
@@ -1177,7 +1177,7 @@
           <a class="cat" href="https://3top.top/tools/generator-tool/index.html" target="_blank" rel="noopener" data-track="tool_category" title="打开数据类示例工具：数据密码生成器"><span>数据 / DATA</span><small>08 <i>↗</i></small></a>
           <a class="cat" href="https://3top.top/tools/hardware-test/index.html" target="_blank" rel="noopener" data-track="tool_category" title="打开硬件类示例工具：外设与硬件测试"><span>硬件 / HARDWARE</span><small>04 <i>↗</i></small></a>
           <a class="cat" href="https://3top.top/tools/wheel/index.html" target="_blank" rel="noopener" data-track="tool_category" title="打开趣味类示例工具：幸运抽奖大转盘"><span>趣味 / FUN</span><small>06 <i>↗</i></small></a>
-          <a class="cat" href="https://3top.top/" target="_blank" rel="noopener" data-track="tool_category" style="background:#fff;color:var(--orange)" title="打开工具站首页"><span>全部 / ALL</span><small>88 <i>↗</i></small></a>
+          <a class="cat" href="https://3top.top/" target="_blank" rel="noopener" data-track="tool_category" style="background:#fff;color:var(--ink)" title="打开工具站首页"><span>全部 / ALL</span><small>88 <i>↗</i></small></a>
         </div>
         <div class="station-metrics">
           <div class="smetric"><b>30,895<em>条</em></b><span>成语词库 / LOCAL DICTIONARY</span></div>
@@ -1965,7 +1965,7 @@
         p.vx *= .93; p.vy *= .93;
         p.x += p.vx; p.y += p.vy;
       } else { p.x = p.tx; p.y = p.ty; }
-      ctx.fillStyle = p.o ? 'rgba(255,77,18,.78)' : 'rgba(11,12,11,.50)';
+      ctx.fillStyle = p.o ? 'rgba(11,12,11,.78)' : 'rgba(11,12,11,.50)';
       if(p.s > 1.5){
         ctx.beginPath(); ctx.arc(p.x,p.y,p.s,0,6.283); ctx.fill();
       } else {
@@ -2138,7 +2138,7 @@
             p.x = p.tx; p.y = p.ty; p.vx = 0; p.vy = 0;
           }
         } else { p.x = p.tx; p.y = p.ty; }
-        dctx.fillStyle = p.o ? 'rgba(255,77,18,.84)' : 'rgba(11,12,11,.68)';
+        dctx.fillStyle = p.o ? 'rgba(11,12,11,.84)' : 'rgba(11,12,11,.68)';
         if(p.s > 1.8){
           dctx.beginPath(); dctx.arc(p.x,p.y,p.s,0,6.283); dctx.fill();
         } else {
@@ -2263,11 +2263,11 @@
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const DURATION = 5.8;
     const HITS = [
-      {t:1.36, s:'L', high:1},
-      {t:1.98, s:'R', high:1},
-      {t:3.04, s:'L', high:0},
-      {t:4.45, s:'both', high:1},
-      {t:5.30, s:'R', high:0}
+      {t:1.36, s:'L', part:'head', power:1},
+      {t:1.98, s:'R', part:'head', power:1},
+      {t:3.04, s:'L', part:'legF', power:.85},
+      {t:4.45, s:'both', part:'head', power:1.25},
+      {t:5.30, s:'R', part:'legF', power:.85}
     ];
     const basePose = {
       lean:0, crouch:0, shift:0, tilt:0,
@@ -2305,6 +2305,35 @@
     let W=0, H=0, DPR=1, SCALE=1, GROUND=0;
     let t0=performance.now(), offset=reduce?1.4:0, playing=!reduce, visible=false, raf=0;
     let lastRound=0;
+    const REFORM=.78;
+    let curFx=null;
+
+    const easeOut = u => 1 - Math.pow(1 - u, 3);
+    const easeInOut = u => u < .5 ? 4*u*u*u : 1 - Math.pow(-2*u + 2, 3) / 2;
+    function targetsSide(hit, side){
+      const target = hit.s === 'L' ? 'R' : hit.s === 'R' ? 'L' : 'B';
+      return target === 'B' || target === side;
+    }
+    function hitAge(hit, time){
+      return time - hit.t;
+    }
+    function signedAge(hit, time){
+      let a = time - hit.t;
+      if(a > DURATION * .5) a -= DURATION;
+      if(a < -DURATION * .5) a += DURATION;
+      return a;
+    }
+    function beginPart(part, side, cx, cy, time){
+      curFx = null;
+      for(const hit of HITS){
+        if(hit.part !== part || !targetsSide(hit, side)) continue;
+        const age = hitAge(hit, time);
+        if(age < 0 || age >= REFORM) continue;
+        if(!curFx || age < curFx.age){
+          curFx = {age, seed: hit.t * 13 + 7, power: hit.power, cx, cy, part, side};
+        }
+      }
+    }
 
     function hash(i, s){
       const v = Math.sin((i + 1) * 127.1 + (s + 1) * 311.7) * 43758.5453;
@@ -2330,13 +2359,47 @@
       for(const k of KEYS) if(k.round && k.t <= time) r = k.round;
       return r;
     }
-    function dot(x, y, r, orange, alpha){
-      ctx.fillStyle = orange
-        ? 'rgba(255,77,18,' + (alpha * .9).toFixed(3) + ')'
+    function rawDot(x, y, r, strong, alpha){
+      if(alpha <= .004) return;
+      ctx.fillStyle = strong
+        ? 'rgba(11,12,11,' + (alpha * .95).toFixed(3) + ')'
         : 'rgba(11,12,11,' + (alpha * .84).toFixed(3) + ')';
       ctx.beginPath();
       ctx.arc(x, y, r, 0, 6.283);
       ctx.fill();
+    }
+    function dot(x, y, r, strong, alpha){
+      if(curFx){
+        const fx = curFx;
+        const d = Math.hypot(x - fx.cx, y - fx.cy);
+        const delay = Math.min(.14, d * .0011);
+        const a = fx.age - delay;
+        if(a > 0){
+          const total = Math.max(.2, REFORM - delay);
+          const span = Math.max(.14, total - .42);
+          const sc = 1 - Math.pow(1 - Math.min(a / .24, 1), 4);
+          const ret = a < .42 ? 1 : 1 - easeInOut(Math.min(1, (a - .42) / span));
+          const n1 = hash(Math.round(x * 9) + Math.round(y * 7), Math.round(fx.seed));
+          const n2 = hash(Math.round(y * 11) - Math.round(x * 5), Math.round(fx.seed) + 17);
+          const chunk = hash(Math.round(x * 3) - Math.round(y * 4), Math.round(fx.seed) + 31) > .87;
+          const amp = (8 + n1 * 21) * fx.power;
+          const swirl = a < .42 ? a * 1.45 : .7 - Math.min(1, (a - .42) / span) * 1.15;
+          const ang = Math.atan2(y - fx.cy, x - fx.cx) + (n2 - .5) * .95 + swirl;
+          const drift = amp * sc * ret;
+          x += Math.cos(ang) * drift - drift * .32;
+          y += Math.sin(ang) * drift - drift * .10;
+          const fade = a < .10
+            ? 1 - .28 * easeOut(a / .10)
+            : a < .30
+              ? .72 * (1 - easeInOut((a - .10) / .20))
+              : a < .42
+                ? 0
+                : easeOut(Math.min(1, (a - .42) / span));
+          alpha *= Math.max(0, fade);
+          r *= 1 + (chunk ? .78 : 0) * sc * ret + .30 * (1 - Math.min(1, a / .12)) - .22 * (a > .12 && a < .42 ? 1 : 0);
+        }
+      }
+      rawDot(x, y, r, strong, alpha);
     }
     function bone(a, b, seed, spacing, alpha){
       const dx = b[0] - a[0], dy = b[1] - a[1];
@@ -2371,7 +2434,7 @@
       if(pref === 'back' && px > 0){ px = -px; py = -py; }
       return [a[0] + dx * .5 + px * h, a[1] + dy * .5 + py * h];
     }
-    function figure(cx, dir, pose, seed){
+    function figure(cx, dir, pose, seed, side, time){
       ctx.save();
       ctx.translate(cx + dir * pose.shift * SCALE, GROUND - 80 * SCALE);
       ctx.scale(dir * SCALE, SCALE);
@@ -2390,19 +2453,34 @@
       const kneeF = joint(hipF, pose.footF, 46, 'forward');
       const kneeB = joint(hipB, pose.footB, 46, 'forward');
 
+      beginPart('torso', side, chest[0] * .5, chest[1] * .55, time);
       bone([0, 0], chest, seed, 1.85, 1);
       bone(shB, shF, seed + 1, 1.8, 1);
       bone(hipB, hipF, seed + 2, 1.8, 1);
       bone(neck, [head[0], head[1] + 13], seed + 3, 1.7, 1);
+
+      beginPart('armF', side, (shF[0] + pose.handF[0]) * .5, (shF[1] + pose.handF[1]) * .5, time);
       bone(shF, elbowF, seed + 4, 2.0, 1);
       bone(elbowF, pose.handF, seed + 5, 2.0, 1);
+      cluster(pose.handF, seed + 15, 1);
+
+      beginPart('armB', side, (shB[0] + pose.handB[0]) * .5, (shB[1] + pose.handB[1]) * .5, time);
       bone(shB, elbowB, seed + 6, 2.0, 1);
       bone(elbowB, pose.handB, seed + 7, 2.0, 1);
+      cluster(pose.handB, seed + 16, 1);
+
+      beginPart('legF', side, (hipF[0] + pose.footF[0]) * .5, (hipF[1] + pose.footF[1]) * .5, time);
       bone(hipF, kneeF, seed + 8, 2.0, 1);
       bone(kneeF, pose.footF, seed + 9, 2.0, 1);
+      cluster(pose.footF, seed + 17, 1);
+      if(pose.footF[1] < 70) cluster(kneeF, seed + 19, .9);
+
+      beginPart('legB', side, (hipB[0] + pose.footB[0]) * .5, (hipB[1] + pose.footB[1]) * .5, time);
       bone(hipB, kneeB, seed + 10, 2.0, 1);
       bone(kneeB, pose.footB, seed + 11, 2.0, 1);
+      cluster(pose.footB, seed + 18, 1);
 
+      beginPart('head', side, head[0], head[1], time);
       for(let i=0; i<48; i++){
         const ang = (i / 48) * 6.283;
         const r = 13 + (hash(i, seed + 12) - .5) * 1.4;
@@ -2416,25 +2494,98 @@
         }
       }
       dot(head[0], head[1], 1.1, false, .9);
-      cluster(pose.handF, seed + 15, 1);
-      cluster(pose.handB, seed + 16, 1);
-      cluster(pose.footF, seed + 17, 1);
-      cluster(pose.footB, seed + 18, 1);
-      if(pose.footF[1] < 70) cluster(kneeF, seed + 19, .9);
 
       ctx.restore();
+      curFx = null;
     }
-    function burst(tx, ty, alpha, seed){
-      for(let i=0; i<20; i++){
-        const ang = hash(i, seed) * 6.283;
-        const rad = (5 + hash(i, seed + 2) * 30) * (.7 + (1 - alpha) * .4);
-        const rr = 1.2 + hash(i, seed + 4) * 1.5;
-        dot(tx + Math.cos(ang) * rad, ty + Math.sin(ang) * rad, rr, true, alpha);
+    function limbWorld(side, time, limb){
+      const pose = poseAt(side, time);
+      const dir = side === 'L' ? 1 : -1;
+      const cx = W * .5 + (side === 'L' ? -1 : 1) * Math.max(120, 100 * SCALE) / 2;
+      const point = pose[limb];
+      return [cx + dir * (pose.shift + point[0]) * SCALE, GROUND - 80 * SCALE + point[1] * SCALE];
+    }
+    function hitPoint(hit, time, sep){
+      if(hit.s === 'both') return [W * .5, GROUND - 168 * SCALE];
+      const target = hit.s === 'L' ? 'R' : 'L';
+      const dir = target === 'L' ? 1 : -1;
+      const pose = poseAt(target, time);
+      const cx = W * .5 + (target === 'L' ? -1 : 1) * sep / 2;
+      const x = cx + dir * (pose.shift + Math.sin(pose.lean) * 22) * SCALE;
+      const y = GROUND - 80 * SCALE + (hit.part === 'head' ? -89 : 55) * SCALE;
+      return [x, y];
+    }
+    function trailFx(time, sep){
+      for(const hit of HITS){
+        const raw = signedAge(hit, time);
+        if(raw < -.20 || raw > .03) continue;
+        const fade = raw < 0 ? 1 + raw / .20 : 1 - raw / .03;
+        const attackers = hit.s === 'both' ? ['L', 'R'] : [hit.s];
+        for(const side of attackers){
+          const limb = hit.part === 'head' ? 'handF' : 'footF';
+          const p1 = limbWorld(side, time, limb);
+          const p0 = limbWorld(side, time - .11, limb);
+          for(let i=1; i<=10; i++){
+            const u = i / 10;
+            rawDot(p0[0] + (p1[0] - p0[0]) * u, p0[1] + (p1[1] - p0[1]) * u, .72 + u * .5, false, fade * .22 * u);
+          }
+          for(let i=0; i<5; i++){
+            const ang = hash(i, Math.round(hit.t * 10)) * 6.283;
+            rawDot(p0[0] + Math.cos(ang) * 4, p0[1] + Math.sin(ang) * 4, .75, false, fade * .14);
+          }
+        }
       }
+    }
+    function impactFx(time, sep){
+      for(const hit of HITS){
+        const age = hitAge(hit, time);
+        if(age < 0 || age > .56) continue;
+        const [tx, ty] = hitPoint(hit, time, sep);
+        const k = age / .56;
+        const a = Math.pow(1 - k, 2);
+        for(let i=0; i<10; i++){
+          const ang = hash(i, hit.t) * 6.283;
+          const rad = 3 + hash(i, hit.t + 1) * 7 * (1 + k * 2);
+          rawDot(tx + Math.cos(ang) * rad, ty + Math.sin(ang) * rad * .8, .9 + (1 - k) * 1.4, true, a * .9);
+        }
+        for(let ring=0; ring<2; ring++){
+          const rr = (7 + k * 48) * (1 + ring * .34);
+          const ga = a * (.64 - ring * .14);
+          const n = 28 + ring * 8;
+          for(let i=0; i<n; i++){
+            const ang = (i / n) * 6.283 + ring * .12;
+            rawDot(tx + Math.cos(ang) * rr * 1.22, ty + Math.sin(ang) * rr * .78, .78 + (1 - k) * .55, false, ga);
+          }
+        }
+        for(let i=0; i<14; i++){
+          const ang = hash(i, hit.t + 5) * 6.283;
+          const len = (10 + k * 44) * (.75 + hash(i, hit.t + 8) * .6);
+          for(let j=0; j<3; j++){
+            const q = .55 + j * .22;
+            rawDot(tx + Math.cos(ang) * len * q, ty + Math.sin(ang) * len * q * .82, .66 + (1 - k) * .4, false, a * (.55 - j * .12));
+          }
+        }
+      }
+    }
+    function hitEnergy(time){
+      let e = 0;
+      for(const hit of HITS){
+        const age = hitAge(hit, time);
+        if(age >= 0 && age < .30) e = Math.max(e, Math.pow(1 - age / .30, 2) * hit.power);
+      }
+      return e;
     }
     function drawFrame(time){
       if(!W || !H) return;
       ctx.clearRect(0, 0, W, H);
+      const energy = hitEnergy(time);
+      ctx.save();
+      if(energy > 0){
+        ctx.translate(W * .5, GROUND * .58);
+        ctx.scale(1 + energy * .014, 1 + energy * .014);
+        ctx.translate(-W * .5, -GROUND * .58);
+        ctx.translate(Math.sin(time * 137) * 1.8 * energy, Math.cos(time * 113) * 1.1 * energy);
+      }
       ctx.fillStyle = 'rgba(11,12,11,.13)';
       for(let x=14; x<W; x+=28){
         ctx.beginPath(); ctx.arc(x, GROUND + 6, .85, 0, 6.283); ctx.fill();
@@ -2447,18 +2598,13 @@
         ctx.fill();
       }
       const sep = Math.max(120, 100 * SCALE);
-      figure(W * .5 - sep / 2, 1, poseAt('L', time), 4);
-      figure(W * .5 + sep / 2, -1, poseAt('R', time), 9);
-
-      for(const hit of HITS){
-        let age = time - hit.t;
-        if(age < 0) age += DURATION;
-        if(age < 0 || age > .32) continue;
-        const alpha = 1 - age / .32;
-        const tx = W * .5 + (hit.s === 'L' ? 6 : hit.s === 'R' ? -6 : 0);
-        const ty = GROUND - (hit.high ? 168 : 116) * SCALE;
-        burst(tx, ty, alpha, hit.t);
-      }
+      const stop = HITS.find(h => { const a = hitAge(h, time); return a >= 0 && a < .06; });
+      const poseTime = stop ? stop.t : time;
+      trailFx(poseTime, sep);
+      figure(W * .5 - sep / 2, 1, poseAt('L', poseTime), 4, 'L', time);
+      figure(W * .5 + sep / 2, -1, poseAt('R', poseTime), 9, 'R', time);
+      impactFx(time, sep);
+      ctx.restore();
       const r = roundAt(time);
       if(roundEl && r !== lastRound){
         roundEl.textContent = 'ROUND / 0' + r;
@@ -2527,7 +2673,7 @@
     resize();
     if(reduce){
       if(toggleBtn){ toggleBtn.textContent = '静态'; toggleBtn.disabled = true; }
-      drawFrame(1.4);
+      drawFrame(2.5);
     } else {
       start();
     }
