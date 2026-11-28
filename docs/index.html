@@ -351,16 +351,47 @@
   .dotlab-canvas::after{right:10px; bottom:10px; border-width:0 1px 1px 0}
   .dotlab-hint{position:absolute; z-index:1; left:16px; bottom:12px; font-family:var(--mono); font-size:8px; letter-spacing:.1em; color:rgba(11,12,11,.34); pointer-events:none}
   .dotlab-count{position:absolute; z-index:1; right:16px; top:12px; font-family:var(--mono); font-size:8px; letter-spacing:.1em; color:rgba(11,12,11,.34); pointer-events:none}
+  .dotarena{margin-top:clamp(40px,5.4vw,70px); padding-top:clamp(28px,3.6vw,44px); border-top:1px solid var(--line); scroll-margin-top:86px}
+  .dotarena-head{display:grid; grid-template-columns:minmax(0,.9fr) minmax(250px,.85fr) auto; gap:clamp(20px,3vw,46px); align-items:end}
+  .dotarena-kicker{display:block; font-family:var(--mono); font-size:9px; letter-spacing:.14em; color:var(--orange); margin-bottom:10px}
+  .dotarena h3{margin:0; font-family:var(--disp); font-size:clamp(28px,3.2vw,46px); line-height:.98; font-weight:900; letter-spacing:-.03em}
+  .dotarena-copy{margin:0; font-family:var(--sans); font-size:13px; line-height:1.85; color:rgba(11,12,11,.58); max-width:30em}
+  .dotarena-tools{display:flex; flex-wrap:wrap; gap:6px; justify-content:flex-end}
+  .dotarena-tools button{
+    padding:8px 11px; border:1px solid rgba(11,12,11,.18); background:#fff; color:var(--ink);
+    font-family:var(--mono); font-size:8px; letter-spacing:.08em; cursor:pointer; transition:border-color .2s,color .2s,background .2s;
+  }
+  .dotarena-tools button:hover{border-color:var(--orange); color:var(--orange)}
+  .dotarena-tools button.solo{background:var(--ink); border-color:var(--ink); color:#fff}
+  .dotarena-stage{
+    position:relative; min-height:420px; margin-top:20px; border:1px solid rgba(11,12,11,.16); overflow:hidden; background:#fff;
+    background-image:radial-gradient(rgba(11,12,11,.05) .65px,transparent .7px); background-size:18px 18px;
+  }
+  .dotarena-stage canvas{position:absolute; inset:0; width:100%; height:100%; display:block; cursor:pointer; touch-action:pan-y}
+  .dotarena-stage::before,.dotarena-stage::after{
+    content:""; position:absolute; z-index:1; width:18px; height:18px; pointer-events:none; border-color:var(--orange); border-style:solid;
+  }
+  .dotarena-stage::before{left:10px; top:10px; border-width:1px 0 0 1px}
+  .dotarena-stage::after{right:10px; bottom:10px; border-width:0 1px 1px 0}
+  .dotarena-round,.dotarena-hint,.dotarena-sig{position:absolute; z-index:1; font-family:var(--mono); font-size:8px; letter-spacing:.1em; color:rgba(11,12,11,.34); pointer-events:none}
+  .dotarena-round{right:16px; top:12px}
+  .dotarena-hint{left:16px; bottom:12px}
+  .dotarena-sig{right:16px; bottom:12px}
   @media(max-width:900px){
     .dotlab-stage{grid-template-columns:1fr}
     .dotlab-panel{order:1}
     .dotlab-canvas{order:2; min-height:300px}
     .dotlab-actions{margin-top:0}
+    .dotarena-head{grid-template-columns:1fr}
+    .dotarena-tools{justify-content:flex-start}
+    .dotarena-stage{min-height:360px}
   }
   @media(max-width:600px){
     .dotlab-canvas{min-height:250px}
     .dotlab-row{flex-wrap:wrap}
     .dotlab-row button{min-height:42px; flex:0 0 88px}
+    .dotarena-stage{min-height:320px}
+    .dotarena h3{font-size:30px}
   }
   @keyframes wheel{0%,100%{transform:translateY(0);opacity:.25}50%{transform:translateY(7px);opacity:1}}
   /* ---------- system ---------- */
@@ -944,6 +975,26 @@
         <canvas id="dotCanvas" aria-label="黑点拼字画布，点击可抖散"></canvas>
         <span class="dotlab-hint" aria-hidden="true">CLICK / SCATTER</span>
         <span class="dotlab-count" id="dotLabCount" aria-hidden="true">DOT / 88</span>
+      </div>
+    </div>
+
+    <div class="dotarena reveal" id="duel">
+      <div class="dotarena-head">
+        <div>
+          <span class="dotarena-kicker">DOT SPARRING / TWO FIGHTERS</span>
+          <h3>两个火柴人，<br>全用黑点。</h3>
+        </div>
+        <p class="dotarena-copy">头、肩、肘、拳、膝、脚，全部由黑点组成，没有一根实线。点擂台换一招，也可以直接叫停。</p>
+        <div class="dotarena-tools">
+          <button type="button" id="duelSkip">换一招 →</button>
+          <button type="button" id="duelToggle" class="solo">停手</button>
+        </div>
+      </div>
+      <div class="dotarena-stage">
+        <canvas id="duelCanvas" aria-label="两个由黑点组成的火柴人正在对打，点击擂台换一招"></canvas>
+        <span class="dotarena-round" id="duelRound" aria-hidden="true">ROUND / 01</span>
+        <span class="dotarena-hint" aria-hidden="true">CLICK / NEXT MOVE</span>
+        <span class="dotarena-sig" aria-hidden="true">DOTS ONLY / NO LINES</span>
       </div>
     </div>
   </section>
@@ -1974,7 +2025,7 @@
       function layout(size){
         setFont(size);
         const widths = chars.map(ch => octx.measureText(ch).width);
-        const tracking = size * (cjk ? .18 : .04);
+        const tracking = size * (cjk ? .04 : .04);
         return {widths, tracking, total: widths.reduce((a,b) => a+b, 0) + tracking * (chars.length - 1)};
       }
       let metrics = layout(fontSize);
@@ -2005,23 +2056,32 @@
       }
       const pts = edge.length ? edge : fill;
       if(!pts.length){ parts=[]; return; }
-      const baseCount = Math.min(4200, Math.max(1200, Math.round(W*H/100)));
-      const count = Math.min(4600, Math.round(baseCount * (1 + Math.max(0, chars.length - 1) * .1)));
+      const natural = cjk ? W*H/105 : W*H/170;
+      const baseCount = cjk
+        ? Math.min(3000, Math.max(1500, Math.round(natural)))
+        : Math.min(2200, Math.max(800, Math.round(natural)));
+      const growth = cjk ? .28 : .16;
+      const count = Math.min(
+        cjk ? 4600 : 3800,
+        Math.round(baseCount * (1 + Math.max(0, chars.length - 1) * growth))
+      );
       const chosen = [];
-      let seed = 20261128;
-      const edgeN = Math.min(Math.round(count * (cjk ? .45 : .18)), edge.length);
-      for(let i=0; i<edgeN; i++){
-        seed = (seed * 1664525 + 1013904223) >>> 0;
-        chosen.push(edge[seed % edge.length]);
+      const edgeN = Math.min(Math.round(count * (cjk ? .48 : .30)), edge.length);
+      const fillN = Math.min(count - edgeN, fill.length);
+      function pickEven(list, n){
+        const out = [];
+        if(!list.length || n <= 0) return out;
+        const step = list.length / n;
+        for(let i=0; i<n; i++){
+          const idx = Math.min(list.length - 1, Math.floor((i + .12 + Math.random() * .76) * step));
+          out.push(list[idx]);
+        }
+        return out;
       }
-      const fillN = count - edgeN;
-      for(let i=0; i<fillN && fill.length; i++){
-        seed = (seed * 1664525 + 1013904223) >>> 0;
-        chosen.push(fill[seed % fill.length]);
-      }
+      chosen.push(...pickEven(edge, edgeN), ...pickEven(fill, fillN));
       if(chosen.length < count){
-        seed = (seed * 1664525 + 1013904223) >>> 0;
-        chosen.push(pts[seed % pts.length]);
+        const all = pickEven(pts, count - chosen.length);
+        chosen.push(...all);
       }
       const cx = W * .5, cy = H * .53;
       parts = chosen.map((p, i) => {
@@ -2029,12 +2089,12 @@
         return {
           x: prev ? prev.x : Math.random()*W,
           y: prev ? prev.y : Math.random()*H,
-          tx: cx - off.width/2 + p[0] + (Math.random()-.5)*(p[2] ? 1.0 : 1.8),
-          ty: cy - off.height/2 + p[1] + (Math.random()-.5)*(p[2] ? 1.0 : 1.8),
+          tx: cx - off.width/2 + p[0] + (Math.random()-.5)*(p[2] ? 1.2 : 2.2),
+          ty: cy - off.height/2 + p[1] + (Math.random()-.5)*(p[2] ? 1.2 : 2.2),
           vx: prev ? prev.vx : 0,
           vy: prev ? prev.vy : 0,
-          s: p[2] ? 1.6 : (Math.random() < .10 ? 2.9 : 2.05),
-          o: Math.random() < .06,
+          s: p[2] ? 2.0 : (Math.random() < .10 ? 3.0 : 2.3),
+          o: Math.random() < .04,
           d: Math.random()*Math.PI*2
         };
       });
@@ -2174,6 +2234,288 @@
       visible = true;
     }
     resize();
+  })();
+
+  // dot duel
+  (function initDotDuel(){
+    const dc = document.getElementById('duelCanvas');
+    if(!dc) return;
+    const ctx = dc.getContext('2d');
+    const stage = dc.parentElement;
+    const roundEl = document.getElementById('duelRound');
+    const skipBtn = document.getElementById('duelSkip');
+    const toggleBtn = document.getElementById('duelToggle');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const DURATION = 5.8;
+    const HITS = [
+      {t:1.36, s:'L', high:1},
+      {t:1.98, s:'R', high:1},
+      {t:3.04, s:'L', high:0},
+      {t:4.45, s:'both', high:1},
+      {t:5.30, s:'R', high:0}
+    ];
+    const basePose = {
+      lean:0, crouch:0, shift:0, tilt:0,
+      handF:[28,-88], handB:[8,-74], footF:[16,80], footB:[-22,80]
+    };
+    const mk = o => Object.assign({}, basePose, o);
+    const POSES = {
+      guard: mk({lean:.02, crouch:0, handF:[18,-94], handB:[2,-66]}),
+      block: mk({lean:-.08, crouch:.14, shift:-2, handF:[20,-102], handB:[12,-90], footF:[14,80], footB:[-18,80]}),
+      jab: mk({lean:.16, crouch:0, shift:16, tilt:.05, handF:[80,-92], handB:[8,-78], footF:[26,80], footB:[-16,80]}),
+      cross: mk({lean:.12, crouch:0, shift:14, tilt:.02, handF:[74,-98], handB:[20,-86], footF:[22,80], footB:[-14,80]}),
+      kick: mk({lean:-.2, crouch:0, shift:18, tilt:-.06, handF:[18,-96], handB:[0,-80], footF:[72,-42], footB:[-6,80]}),
+      duck: mk({lean:-.08, crouch:.75, shift:-4, tilt:.02, handF:[20,-86], handB:[8,-78], footF:[18,80], footB:[-20,80]}),
+      recoil: mk({lean:-.22, crouch:.08, shift:-10, tilt:-.04, handF:[14,-98], handB:[2,-84], footF:[8,80], footB:[-28,80]}),
+      clash: mk({lean:.10, crouch:0, shift:10, tilt:.03, handF:[72,-90], handB:[30,-84], footF:[24,80], footB:[-14,80]})
+    };
+    const KEYS = [
+      {t:0.00, L:'guard', R:'guard', round:1},
+      {t:0.75, L:'guard', R:'guard'},
+      {t:1.05, L:'jab',   R:'block'},
+      {t:1.36, L:'jab',   R:'block'},
+      {t:1.66, L:'guard', R:'cross'},
+      {t:1.98, L:'block', R:'cross'},
+      {t:2.30, L:'guard', R:'guard'},
+      {t:2.78, L:'kick',  R:'duck'},
+      {t:3.16, L:'kick',  R:'duck'},
+      {t:3.52, L:'guard', R:'recoil'},
+      {t:3.90, L:'guard', R:'guard', round:2},
+      {t:4.35, L:'clash', R:'clash'},
+      {t:4.78, L:'guard', R:'guard', round:3},
+      {t:5.05, L:'duck', R:'kick'},
+      {t:5.38, L:'duck', R:'kick'},
+      {t:5.80, L:'guard', R:'guard'}
+    ];
+    let W=0, H=0, DPR=1, SCALE=1, GROUND=0;
+    let t0=performance.now(), offset=reduce?1.4:0, playing=!reduce, visible=false, raf=0;
+    let lastRound=0;
+
+    function hash(i, s){
+      const v = Math.sin((i + 1) * 127.1 + (s + 1) * 311.7) * 43758.5453;
+      return v - Math.floor(v);
+    }
+    function mixPose(a, b, u){
+      const out = {};
+      for(const k of ['lean','crouch','shift','tilt']) out[k] = a[k] + (b[k] - a[k]) * u;
+      for(const k of ['handF','handB','footF','footB']){
+        out[k] = [a[k][0] + (b[k][0] - a[k][0]) * u, a[k][1] + (b[k][1] - a[k][1]) * u];
+      }
+      return out;
+    }
+    function poseAt(side, time){
+      let i = 0;
+      while(i < KEYS.length - 1 && KEYS[i+1].t <= time) i++;
+      const a = KEYS[i], b = KEYS[Math.min(i + 1, KEYS.length - 1)];
+      const u = b.t > a.t ? (time - a.t) / (b.t - a.t) : 0;
+      return mixPose(POSES[a[side]], POSES[b[side]], u * u * (3 - 2 * u));
+    }
+    function roundAt(time){
+      let r = 1;
+      for(const k of KEYS) if(k.round && k.t <= time) r = k.round;
+      return r;
+    }
+    function dot(x, y, r, orange, alpha){
+      ctx.fillStyle = orange
+        ? 'rgba(255,77,18,' + (alpha * .9).toFixed(3) + ')'
+        : 'rgba(11,12,11,' + (alpha * .84).toFixed(3) + ')';
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, 6.283);
+      ctx.fill();
+    }
+    function bone(a, b, seed, spacing, alpha){
+      const dx = b[0] - a[0], dy = b[1] - a[1];
+      const d = Math.hypot(dx, dy);
+      if(d < .01) return;
+      const n = Math.max(2, Math.round(d / spacing));
+      const nx = -dy / d, ny = dx / d;
+      for(let i=0; i<=n; i++){
+        const u = i / n;
+        const j = (hash(i, seed) - .5) * 1.5;
+        const ox = a[0] + dx * u + nx * j;
+        const oy = a[1] + dy * u + ny * j;
+        const rr = 1.14 + hash(i, seed + 3) * .92;
+        dot(ox, oy, rr, hash(i, seed + 7) > .965, alpha);
+      }
+    }
+    function cluster(p, seed, alpha){
+      for(let i=0; i<8; i++){
+        const ang = hash(i, seed) * 6.283;
+        const rad = hash(i, seed + 2) * 3.4;
+        dot(p[0] + Math.cos(ang) * rad, p[1] + Math.sin(ang) * rad, 1.12 + hash(i, seed + 5) * .82, hash(i, seed + 8) > .955, alpha);
+      }
+    }
+    function joint(a, b, len, pref){
+      const dx = b[0] - a[0], dy = b[1] - a[1];
+      const d = Math.max(.01, Math.hypot(dx, dy));
+      const half = d * .5;
+      const h = Math.sqrt(Math.max(0, len * len - half * half)) * .9;
+      let px = -dy / d, py = dx / d;
+      if(pref === 'down' && py < 0){ px = -px; py = -py; }
+      if(pref === 'forward' && px < 0){ px = -px; py = -py; }
+      if(pref === 'back' && px > 0){ px = -px; py = -py; }
+      return [a[0] + dx * .5 + px * h, a[1] + dy * .5 + py * h];
+    }
+    function figure(cx, dir, pose, seed){
+      ctx.save();
+      ctx.translate(cx + dir * pose.shift * SCALE, GROUND - 80 * SCALE);
+      ctx.scale(dir * SCALE, SCALE);
+
+      const torsoLen = 58 * (1 - pose.crouch * .26);
+      const chest = [Math.sin(pose.lean) * torsoLen, -Math.cos(pose.lean) * torsoLen + pose.crouch * 8];
+      const neck = [chest[0] + Math.sin(pose.lean) * 12, chest[1] - Math.cos(pose.lean) * 12];
+      const tilt = pose.lean + pose.tilt;
+      const head = [neck[0] + Math.sin(tilt) * 19, neck[1] - Math.cos(tilt) * 19];
+      const shF = [chest[0] + 3, chest[1] - 1];
+      const shB = [chest[0] - 3, chest[1]];
+      const hipF = [3, 0], hipB = [-3, 0];
+
+      const elbowF = joint(shF, pose.handF, 31, 'down');
+      const elbowB = joint(shB, pose.handB, 31, 'back');
+      const kneeF = joint(hipF, pose.footF, 46, 'forward');
+      const kneeB = joint(hipB, pose.footB, 46, 'forward');
+
+      bone([0, 0], chest, seed, 1.85, 1);
+      bone(shB, shF, seed + 1, 1.8, 1);
+      bone(hipB, hipF, seed + 2, 1.8, 1);
+      bone(neck, [head[0], head[1] + 13], seed + 3, 1.7, 1);
+      bone(shF, elbowF, seed + 4, 2.0, 1);
+      bone(elbowF, pose.handF, seed + 5, 2.0, 1);
+      bone(shB, elbowB, seed + 6, 2.0, 1);
+      bone(elbowB, pose.handB, seed + 7, 2.0, 1);
+      bone(hipF, kneeF, seed + 8, 2.0, 1);
+      bone(kneeF, pose.footF, seed + 9, 2.0, 1);
+      bone(hipB, kneeB, seed + 10, 2.0, 1);
+      bone(kneeB, pose.footB, seed + 11, 2.0, 1);
+
+      for(let i=0; i<48; i++){
+        const ang = (i / 48) * 6.283;
+        const r = 13 + (hash(i, seed + 12) - .5) * 1.4;
+        dot(head[0] + Math.cos(ang) * r, head[1] + Math.sin(ang) * r, 1.1 + hash(i, seed + 13) * .8, hash(i, seed + 14) > .97, 1);
+      }
+      for(let ring=1; ring<=2; ring++){
+        const rr = ring * 4.3, n = 6 + ring * 4;
+        for(let i=0; i<n; i++){
+          const ang = (i / n) * 6.283 + ring * .6;
+          dot(head[0] + Math.cos(ang) * rr, head[1] + Math.sin(ang) * rr, 1.0, false, .82);
+        }
+      }
+      dot(head[0], head[1], 1.1, false, .9);
+      cluster(pose.handF, seed + 15, 1);
+      cluster(pose.handB, seed + 16, 1);
+      cluster(pose.footF, seed + 17, 1);
+      cluster(pose.footB, seed + 18, 1);
+      if(pose.footF[1] < 70) cluster(kneeF, seed + 19, .9);
+
+      ctx.restore();
+    }
+    function burst(tx, ty, alpha, seed){
+      for(let i=0; i<20; i++){
+        const ang = hash(i, seed) * 6.283;
+        const rad = (5 + hash(i, seed + 2) * 30) * (.7 + (1 - alpha) * .4);
+        const rr = 1.2 + hash(i, seed + 4) * 1.5;
+        dot(tx + Math.cos(ang) * rad, ty + Math.sin(ang) * rad, rr, true, alpha);
+      }
+    }
+    function drawFrame(time){
+      if(!W || !H) return;
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = 'rgba(11,12,11,.13)';
+      for(let x=14; x<W; x+=28){
+        ctx.beginPath(); ctx.arc(x, GROUND + 6, .85, 0, 6.283); ctx.fill();
+      }
+      ctx.fillStyle = 'rgba(11,12,11,.14)';
+      for(let i=0; i<96; i++){
+        const ang = (i / 96) * 6.283;
+        ctx.beginPath();
+        ctx.arc(W * .5 + Math.cos(ang) * W * .27, GROUND + Math.sin(ang) * 26, 1.0, 0, 6.283);
+        ctx.fill();
+      }
+      const sep = Math.max(120, 100 * SCALE);
+      figure(W * .5 - sep / 2, 1, poseAt('L', time), 4);
+      figure(W * .5 + sep / 2, -1, poseAt('R', time), 9);
+
+      for(const hit of HITS){
+        let age = time - hit.t;
+        if(age < 0) age += DURATION;
+        if(age < 0 || age > .32) continue;
+        const alpha = 1 - age / .32;
+        const tx = W * .5 + (hit.s === 'L' ? 6 : hit.s === 'R' ? -6 : 0);
+        const ty = GROUND - (hit.high ? 168 : 116) * SCALE;
+        burst(tx, ty, alpha, hit.t);
+      }
+      const r = roundAt(time);
+      if(roundEl && r !== lastRound){
+        roundEl.textContent = 'ROUND / 0' + r;
+        lastRound = r;
+      }
+    }
+    function timeNow(now){ return ((now - t0) / 1000 + offset) % DURATION; }
+    function resize(){
+      const cw = stage.clientWidth, ch = stage.clientHeight;
+      if(!cw || !ch) return;
+      W = cw; H = ch;
+      DPR = Math.min(window.devicePixelRatio || 1, 2);
+      dc.width = Math.floor(W * DPR);
+      dc.height = Math.floor(H * DPR);
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      SCALE = Math.min(H * .66 / 190, W * .34 / 130);
+      GROUND = H * .82;
+      drawFrame(playing ? timeNow(performance.now()) : offset);
+    }
+    function loop(now){
+      if(!visible || !playing){ raf = 0; return; }
+      drawFrame(timeNow(now));
+      raf = requestAnimationFrame(loop);
+    }
+    function start(){
+      if(reduce || !playing || raf || !visible) return;
+      raf = requestAnimationFrame(loop);
+    }
+    function pause(){
+      if(reduce) return;
+      if(playing){
+        offset = timeNow(performance.now());
+        playing = false;
+        if(raf){ cancelAnimationFrame(raf); raf = 0; }
+        if(toggleBtn) toggleBtn.textContent = '开打';
+        drawFrame(offset);
+      } else {
+        t0 = performance.now();
+        playing = true;
+        if(toggleBtn) toggleBtn.textContent = '停手';
+        start();
+      }
+    }
+    function skip(){
+      offset = (timeNow(performance.now()) + 1.35) % DURATION;
+      t0 = performance.now();
+      drawFrame(offset);
+      start();
+    }
+    if(toggleBtn) toggleBtn.addEventListener('click', pause);
+    if(skipBtn) skipBtn.addEventListener('click', skip);
+    dc.addEventListener('click', skip);
+    if('ResizeObserver' in window){
+      new ResizeObserver(resize).observe(stage);
+    } else {
+      window.addEventListener('resize', resize);
+    }
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(entries => {
+        visible = entries.some(entry => entry.isIntersecting);
+        if(visible) start();
+      }, {rootMargin:'160px 0px'}).observe(stage);
+    } else {
+      visible = true;
+    }
+    resize();
+    if(reduce){
+      if(toggleBtn){ toggleBtn.textContent = '静态'; toggleBtn.disabled = true; }
+      drawFrame(1.4);
+    } else {
+      start();
+    }
   })();
 })();
 </script>
