@@ -27,7 +27,7 @@
 <meta name="twitter:title" content="小工具箱 · MiniToolbox — 一台电脑的小事，交给它" />
 <meta name="twitter:description" content="26+ 项 Windows 小工具 + 88 个网页工具按需加载，主程序 3.37 MB 免安装，五套皮肤，企业策略与审计就绪，源码公开。" />
 <meta name="twitter:image" content="https://wj5666619.github.io/MiniToolbox/assets/workbench_v1913.png" />
-<meta name="theme-color" content="#d9d6ce" />
+<meta name="theme-color" content="#ffffff" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230b0c0b'/%3E%3Crect x='10' y='10' width='44' height='44' fill='none' stroke='%23ff4d12' stroke-width='3'/%3E%3Crect x='24' y='24' width='16' height='16' fill='%23d9d6ce'/%3E%3C/svg%3E" />
 <script type="application/ld+json">
 {
@@ -669,6 +669,89 @@
     .station-number{font-size:120px}
     .topline .mono{display:none}
   }
+  /* ---------- white-only surface theme ---------- */
+  :root{
+    --bone:#ffffff;
+    --bone-2:#f4f4f1;
+    --paper:#ffffff;
+    --page:#ffffff;
+    --panel:#ffffff;
+    --panel-2:#f7f7f5;
+    --muted:#5f605b;
+    --hdr:#0b0c0b;
+    --hdr-bg:rgba(255,255,255,.97);
+    --rail:rgba(11,12,11,.55);
+    --rail-line:rgba(11,12,11,.18);
+  }
+  body[data-theme="dark"]{
+    --hdr:#0b0c0b;
+    --hdr-bg:rgba(255,255,255,.97);
+    --rail:rgba(11,12,11,.55);
+    --rail-line:rgba(11,12,11,.18);
+    --page:#ffffff;
+  }
+  body{background:#ffffff;color:var(--ink)}
+  .hero{
+    background:
+      radial-gradient(80% 60% at 72% 45%,rgba(255,255,255,.98),transparent 64%),
+      #ffffff!important;
+  }
+  .s-dark,#system,#matrix,#skins,#enterprise,#community,
+  section[style*="background:#0d0e0d"],section[style*="background:#111312"]{
+    background:#ffffff!important;color:var(--ink)!important;
+  }
+  .s-dark .muted,.s-dark .lead,.s-dark .tagline{opacity:.62}
+  .s-dark .sec-head{border-top-color:rgba(11,12,11,.24)}
+  .s-dark .mtab{border-bottom-color:rgba(11,12,11,.14)}
+  .s-dark .mstage{border-color:rgba(11,12,11,.16)}
+  .download{background:#ffffff!important}
+  .site-footer{
+    background:#ffffff!important;color:var(--ink)!important;
+    border-top-color:rgba(11,12,11,.16)!important;
+  }
+  .foot-brand .brand-mark{color:var(--ink)}
+  .foot-brand .brand-txt b{color:var(--ink)}
+  .foot-brand p{opacity:.55}
+  .foot-nav a{opacity:.62}
+  .foot-legal{border-top-color:rgba(11,12,11,.12)}
+  .mobile-nav{background:#ffffff!important;color:var(--ink)!important}
+  .mobile-nav a{border-bottom-color:rgba(11,12,11,.14)}
+  .mobile-dock{
+    background:rgba(255,255,255,.97)!important;
+    border-color:rgba(11,12,11,.18)!important;
+  }
+  .mobile-dock button{border-color:rgba(11,12,11,.20)!important;color:var(--ink)!important}
+  .figure,.hero-stage .figure{
+    background:#ffffff!important;
+    border-color:rgba(11,12,11,.16)!important;
+    box-shadow:0 22px 56px rgba(11,12,11,.10)!important;
+  }
+  .fig-bar{color:#66675f}
+  .callout,.zoom-hint,.hotspot{
+    background:#ffffff!important;
+    color:var(--ink)!important;
+    border-color:rgba(11,12,11,.20)!important;
+    box-shadow:0 10px 28px rgba(11,12,11,.10);
+  }
+  .hotspot:hover,.hotspot:focus-visible{background:var(--orange)!important;color:#fff!important}
+  .mstage{background:#ffffff!important;border-color:rgba(11,12,11,.16)!important}
+  .skin-card{
+    background:#ffffff!important;color:var(--ink)!important;
+    border-color:rgba(11,12,11,.18)!important;
+  }
+  .ent-panel{
+    background:#ffffff!important;
+    border-color:rgba(11,12,11,.16)!important;
+  }
+  .policy,.policy-doc{background:#ffffff!important;border-color:rgba(11,12,11,.16)!important}
+  pre{color:#34352f!important}
+  .policy-doc p{color:#5f605b!important}
+  .policy-actions .copy-btn{
+    background:#ffffff!important;color:var(--ink)!important;
+    border-color:rgba(11,12,11,.20)!important;
+  }
+  .verify-box{background:#ffffff!important;border-color:rgba(11,12,11,.14)!important}
+  .progress{box-shadow:0 0 18px rgba(255,77,18,.25)}
 </style>
 </head>
 <body data-theme="light">
