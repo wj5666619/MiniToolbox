@@ -9,6 +9,7 @@
 <meta name="author" content="wj5666619" />
 <meta name="robots" content="index,follow" />
 <link rel="canonical" href="https://wj5666619.github.io/MiniToolbox/" />
+<link rel="preload" as="image" href="assets/workbench_v1913.png" fetchpriority="high" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="小工具箱 · MiniToolbox" />
 <meta property="og:title" content="小工具箱 · MiniToolbox — 一台电脑的小事，交给它" />
@@ -81,6 +82,9 @@
   a{color:inherit; text-decoration:none}
   img{max-width:100%; display:block}
   button{font:inherit; color:inherit}
+  a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--orange); outline-offset:3px}
+  .skip-link{position:fixed; left:16px; top:-90px; z-index:100; background:var(--ink); color:#fff; padding:12px 18px; font-family:var(--mono); font-size:10px; letter-spacing:.1em; transition:top .2s}
+  .skip-link:focus{top:12px}
   .mono{font-family:var(--mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase}
   .noise{
     position:fixed; inset:0; z-index:90; pointer-events:none; opacity:.055; mix-blend-mode:multiply;
@@ -375,7 +379,11 @@
   .dl-row{display:grid; grid-template-columns:92px 1fr; gap:12px; border-bottom:1px solid var(--line); padding:9px 0; font-family:var(--mono); font-size:9px}
   .dl-row span{opacity:.48}
   .dl-row b{font-weight:400; overflow-wrap:anywhere}
-  .hash{font-size:8px; letter-spacing:.04em}
+  .hash{font-size:9px; letter-spacing:.04em}
+  .hash-wrap{display:flex; align-items:center; gap:10px; min-width:0}
+  .hash-wrap b{flex:1; min-width:0}
+  .copy-btn{flex:0 0 auto; min-width:48px; min-height:24px; display:inline-grid; place-items:center; border:1px solid var(--line); background:transparent; color:inherit; padding:3px 8px; font-family:var(--mono); font-size:9px; letter-spacing:.08em; cursor:pointer; transition:background .2s,color .2s,border-color .2s}
+  .copy-btn:hover,.copy-btn.ok{background:var(--orange); border-color:var(--orange); color:#fff}
   .download-bottom{display:grid; grid-template-columns:1fr 1fr; gap:clamp(30px,5vw,70px); margin-top:clamp(46px,7vw,88px); border-top:1px solid var(--line); padding-top:28px}
   details{border-bottom:1px solid var(--line)}
   details summary{list-style:none; cursor:pointer; padding:15px 0; display:flex; align-items:center; justify-content:space-between; gap:20px; font-size:13px; font-weight:700}
@@ -487,6 +495,7 @@
 </style>
 </head>
 <body data-theme="light">
+<a class="skip-link" href="#main">跳到主要内容</a>
 <div class="noise" aria-hidden="true"></div>
 <div class="progress" id="progress"></div>
 
@@ -499,6 +508,8 @@
     <a href="#system">02 系统</a>
     <a href="#matrix">03 能力</a>
     <a href="#station">04 工具站</a>
+    <a href="#skins">05 皮肤</a>
+    <a href="#enterprise">06 企业</a>
     <a href="#download">07 下载</a>
   </nav>
   <a class="hdr-cta" href="https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe">下载 v19.13</a>
@@ -524,7 +535,7 @@
   <a href="#download" data-target="download"><i>7</i><b>DEPLOY</b></a>
 </aside>
 
-<main>
+<main id="main">
   <!-- HERO -->
   <section class="hero" id="hero" data-theme="light">
     <canvas id="dust" aria-hidden="true"></canvas>
@@ -550,7 +561,7 @@
         <figure class="figure">
           <div class="fig-bar"><span>LIVE / WORKBENCH</span><span class="dots"><i></i><i></i><i></i></span><span>MT–19.13</span></div>
           <div class="scan" aria-hidden="true"></div>
-          <img src="assets/workbench_v1913.png" alt="小工具箱 v19.13 工作台实拍" width="1200" height="860" />
+          <img src="assets/workbench_v1913.png" alt="小工具箱 v19.13 工作台实拍" width="1200" height="860" fetchpriority="high" decoding="async" />
         </figure>
         <span class="stage-tag br">SINGLE FILE / <b>26 MB</b></span>
       </div>
@@ -606,7 +617,7 @@
         <figure class="figure">
           <div class="fig-bar"><span>MODULE / CLEAN</span><span class="dots"><i></i><i></i><i></i></span><span>SCAN COMPLETE</span></div>
           <div class="scan" aria-hidden="true"></div>
-          <img src="assets/clean_detail.png" alt="C 盘清理：磁盘占用、分类清理与文件列表" width="960" height="660" loading="lazy" />
+          <img src="assets/clean_detail.png" alt="C 盘清理：磁盘占用、分类清理与文件列表" width="960" height="660" loading="lazy" decoding="async" />
         </figure>
         <div class="caption"><span>磁盘热力图 · 分类勾选 · 回收站撤回</span><span>REAL CAPTURE / 2026</span></div>
       </div>
@@ -742,7 +753,7 @@
         <figure class="figure">
           <div class="fig-bar"><span>TOOL STATION / HOME</span><span class="dots"><i></i><i></i><i></i></span><span>88 ONLINE</span></div>
           <div class="scan" aria-hidden="true"></div>
-          <img src="assets/toolsite.png" alt="工具站首页：搜索、11 类分类与 88 个工具卡片" width="1170" height="880" loading="lazy" />
+          <img src="assets/toolsite.png" alt="工具站首页：搜索、11 类分类与 88 个工具卡片" width="1170" height="880" loading="lazy" decoding="async" />
         </figure>
         <div class="caption"><span>独立深色窗口 · 搜索 / 分类 · 离线可用</span><span>MIT / 3TOP.TOP</span></div>
       </div>
@@ -768,7 +779,7 @@
         <figure class="figure" data-zoom="assets/appearance.png" role="button" tabindex="0" aria-label="放大查看外观设置">
           <div class="fig-bar"><span>SETTINGS / APPEARANCE</span><span class="dots"><i></i><i></i><i></i></span><span>CLICK TO ZOOM</span></div>
           <div class="scan" aria-hidden="true"></div>
-          <img src="assets/appearance.png" alt="外观设置：五套皮肤缩略预览与界面缩放" width="648" height="496" loading="lazy" />
+          <img src="assets/appearance.png" alt="外观设置：五套皮肤缩略预览与界面缩放" width="648" height="496" loading="lazy" decoding="async" />
         </figure>
       </div>
     </div>
@@ -878,7 +889,7 @@
           <div class="dl-row"><span>VERSION</span><b>19.13</b></div>
           <div class="dl-row"><span>EXE SIZE</span><b>26,033,040 字节</b></div>
           <div class="dl-row"><span>7Z SIZE</span><b>23,863,359 字节</b></div>
-          <div class="dl-row"><span>SHA256</span><b class="hash">d0a9d5b59a7882febac67f395369838d39c0c751588b09b76c242f1f9c7f4f6f</b></div>
+          <div class="dl-row"><span>SHA256</span><div class="hash-wrap"><b class="hash">d0a9d5b59a7882febac67f395369838d39c0c751588b09b76c242f1f9c7f4f6f</b><button class="copy-btn" type="button" data-copy="d0a9d5b59a7882febac67f395369838d39c0c751588b09b76c242f1f9c7f4f6f" aria-label="复制 SHA256 校验值">复制</button></div></div>
           <div class="dl-row"><span>SIGNATURE</span><b>自签名证书 · 对照哈希确认</b></div>
         </div>
       </div>
@@ -979,13 +990,52 @@
   window.addEventListener('resize', onScroll);
   onScroll();
 
+  // copy to clipboard
+  document.querySelectorAll('[data-copy]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const text = btn.dataset.copy;
+      let done = false;
+      try { await navigator.clipboard.writeText(text); done = true; } catch(e) {}
+      if(!done){
+        const ta = document.createElement('textarea');
+        ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        try { done = document.execCommand('copy'); } catch(e) {}
+        ta.remove();
+      }
+      if(!done){
+        const hash = document.querySelector('.hash');
+        if(hash && window.getSelection){
+          const r = document.createRange(); r.selectNodeContents(hash);
+          const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+        }
+        if(!btn.__label) btn.__label = btn.textContent;
+        btn.textContent = 'Ctrl+C'; btn.classList.add('ok');
+        if(btn.__timer) clearTimeout(btn.__timer);
+        btn.__timer = setTimeout(() => { btn.textContent = btn.__label; btn.classList.remove('ok'); }, 1600);
+        return;
+      }
+      if(btn.__timer) clearTimeout(btn.__timer);
+      if(!btn.__label) btn.__label = btn.textContent;
+      btn.textContent = '已复制'; btn.classList.add('ok');
+      btn.__timer = setTimeout(() => { btn.textContent = btn.__label; btn.classList.remove('ok'); }, 1600);
+    });
+  });
+
   // tabs
   const tabs = Array.from(document.querySelectorAll('.mtab'));
   const panels = Array.from(document.querySelectorAll('.mpanel'));
-  tabs.forEach(btn => {
+  tabs.forEach((btn, i) => {
     btn.addEventListener('click', () => {
       tabs.forEach(b => { b.classList.toggle('active', b === btn); b.setAttribute('aria-selected', b === btn ? 'true' : 'false'); });
       panels.forEach(p => p.classList.toggle('active', p.dataset.panel === btn.dataset.tab));
+    });
+    btn.addEventListener('keydown', e => {
+      const dir = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;
+      if(!dir) return;
+      e.preventDefault();
+      const next = tabs[(i + dir + tabs.length) % tabs.length];
+      next.focus(); next.click();
     });
   });
 
@@ -993,10 +1043,13 @@
   const lightbox = document.getElementById('lightbox');
   const lbImg = document.getElementById('lbImg');
   const lbClose = document.getElementById('lbClose');
+  let lastFocus = null;
   function openLb(src, alt){
+    lastFocus = document.activeElement;
     lbImg.src = src; lbImg.alt = alt || ''; lightbox.classList.add('open'); document.body.style.overflow='hidden';
+    lbClose.focus();
   }
-  function closeLb(){ lightbox.classList.remove('open'); lbImg.src=''; document.body.style.overflow=''; }
+  function closeLb(){ lightbox.classList.remove('open'); lbImg.src=''; document.body.style.overflow=''; if(lastFocus) lastFocus.focus(); }
   document.querySelectorAll('[data-zoom]').forEach(el => {
     el.addEventListener('click', () => openLb(el.dataset.zoom, el.querySelector('img')?.alt));
     el.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openLb(el.dataset.zoom, el.querySelector('img')?.alt); }});
@@ -1054,7 +1107,7 @@
       return {
         x: Math.random()*W, y: Math.random()*H, tx, ty,
         vx: 0, vy: 0,
-        s: Math.random() < .07 ? 1.8 : 1,
+        s: Math.random() < .07 ? 2.1 : 1.35,
         o: Math.random() < .055,
         d: Math.random()*Math.PI*2
       };
