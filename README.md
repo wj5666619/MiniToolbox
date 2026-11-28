@@ -23,7 +23,7 @@
 | 最新版（推荐） | [MiniToolbox.exe](https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe) | 单文件主程序，3,370,896 字节 |
 | 压缩包 | [MiniToolbox_v19.15.7z](https://github.com/wj5666619/MiniToolbox/releases) | 1,235,477 字节，含 exe 与说明 |
 | 工具站离线包 | [ToolSite.zip](https://github.com/wj5666619/MiniToolbox/releases/latest/download/ToolSite.zip) | 22,709,509 字节；可选，放到程序目录可免首次下载 |
-| SHA256 清单 | [SHA256SUMS.txt](https://github.com/wj5666619/MiniToolbox/releases/latest/download/SHA256SUMS.txt) | 全部 Release 资产的 SHA256，一条命令校验 |
+| SHA256 清单 | [SHA256SUMS.txt](https://github.com/wj5666619/MiniToolbox/releases/latest/download/SHA256SUMS.txt) | 主程序、7z 包与 ToolSite.zip 的 SHA256；SBOM/清单本身在 Release 页面单独核对 |
 | SBOM | [sbom.cdx.json](https://github.com/wj5666619/MiniToolbox/releases/latest/download/sbom.cdx.json) | CycloneDX 1.5；主程序、内嵌 DLL 与可选组件 |
 | 全部版本 | [Releases](https://github.com/wj5666619/MiniToolbox/releases) | 全部 tag，可回退旧版 |
 
@@ -33,11 +33,15 @@
 SHA256  b8d2a498398677aa4d7e7e05cdc3d2c9c5c9e3a7ffcaee323833a1506e3bc38f
 ```
 
-批量校验可从 Release 下载 `SHA256SUMS.txt`：
+批量校验可从 Release 下载 `SHA256SUMS.txt`，在同一目录执行：
 
 ```powershell
-Get-Content .\SHA256SUMS.txt
-Get-FileHash .\MiniToolbox.exe -Algorithm SHA256
+Get-Content .\SHA256SUMS.txt | ForEach-Object {
+  $hash, $file = $_ -split '\s+', 2
+  $actual = (Get-FileHash -LiteralPath $file.Trim() -Algorithm SHA256).Hash.ToLower()
+  if ($actual -ne $hash.ToLower()) { throw "哈希不符：$file" }
+  "OK $file"
+}
 ```
 
 > 程序使用自签名证书，作者本机可信；他人电脑首次运行可能提示「未知发布者」，属正常现象，可对照上面的哈希确认文件未被改动。
