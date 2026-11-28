@@ -42,7 +42,7 @@
 ## 版本与发布
 
 - 版本号采用两段式 `主版本.迭代号`，例如 `v19.15`；标签必须与 `Src/UiKit.cs` 的 `VER` 一致。
-- 每个 Release 至少包含：`MiniToolbox.exe`、`SHA256SUMS.txt`、`sbom.cdx.json`、构建来源证明（新版本由 CI 生成）。
+- 新版本 Release 至少包含：`MiniToolbox.exe`、`SHA256SUMS.txt`、`sbom.cdx.json` 与 GitHub 构建来源证明；v19.15 旧资产已补 `SHA256SUMS.txt` 与 `sbom.cdx.json`，不追补来源证明。
 - 发布资产一旦公开不静默覆盖；需要修复时递增版本号。
 - 发布后 24 小时内完成官网、`update.json`、README 下载表和 Release 说明的一致性核对。
 
