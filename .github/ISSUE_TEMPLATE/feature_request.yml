@@ -1,7 +1,7 @@
 name: 功能建议
 description: 新工具、交互改进或企业能力建议
 title: "[Feature] "
-labels: []
+labels: [enhancement]
 body:
   - type: markdown
     attributes:
@@ -56,3 +56,4 @@ body:
           required: true
         - label: 愿意按项目约束提交 PR（可选）
           required: false
+
