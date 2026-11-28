@@ -1,7 +1,7 @@
 name: Bug 报告
 description: 崩溃、功能异常、界面或更新问题
 title: "[Bug] "
-labels: []
+labels: [bug]
 body:
   - type: markdown
     attributes:
@@ -77,3 +77,4 @@ body:
           required: true
         - label: 日志与截图已脱敏，不含账号、令牌或隐私
           required: true
+
