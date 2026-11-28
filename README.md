@@ -125,7 +125,7 @@ Get-Content .\SHA256SUMS.txt | ForEach-Object {
 
 - 审计日志 `日志\审计.log`：启动退出、系统清理、一键重装、安装更新、拒绝更新、导出诊断包，1MB 滚动两份。
 - 更新验签：`SHA256` 通过后还要比对证书指纹，和当前程序不是同一张证书直接拒绝。
-- 发布供应链：Release 附 `SHA256SUMS.txt`、`sbom.cdx.json`；新版本由 CI 生成构建来源证明；tag 必须与源码 `VER` 一致。
+- 发布供应链：当前 Release 附 `SHA256SUMS.txt`、`sbom.cdx.json`；新版本另由 CI 生成构建来源证明；tag 必须与源码 `VER` 一致。
 - 诊断包：关于页导出 zip（版本环境 + 最近日志 + 配置），不含聊天记录、密码库、剪贴板内容。
 - 明确边界：不声称 ISO 27001 / SOC 2 / 等保认证，不替代企业 EDR、DLP、网络准入或合同 SLA。
 

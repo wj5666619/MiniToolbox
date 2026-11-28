@@ -7,7 +7,7 @@
 本次不改变主程序二进制，提升的是仓库治理、发布链、文档与官网信任面。
 
 - 仓库：`main` 分支 ruleset（必需 `compile`、PR 与 CODEOWNERS 评审、线性历史、对话解决、禁强推/删除）；启用私密漏洞报告、依赖安全更新、secret scanning 与 push protection。非提供方模式与有效性检查依赖 GitHub Secret Protection，本仓库未启用，不在文档中声称。
-- CI：固定 Action 提交、按作业最小权限；`compile` 与 `release` 分离；发布附 `SHA256SUMS.txt`、CycloneDX SBOM 和 GitHub 构建来源证明。
+- CI：固定 Action 提交、按作业最小权限；`compile` 与 `release` 分离；新版本发布附 `SHA256SUMS.txt`、CycloneDX SBOM 和 GitHub 构建来源证明，v19.15 旧资产已补清单与 SBOM。
 - 社区：新增 GOVERNANCE、SUPPORT、PRIVACY、ARCHITECTURE、ENTERPRISE、CODEOWNERS、Dependabot 与 OpenSSF Scorecard。
 - 官网：新增企业信任中心 `trust.html`、`security.txt`、CSP/referrer 安全元标签、企业区段扩展与 sitemap/404 更新。
 - Release：为 v19.15 补齐 `SHA256SUMS.txt` 与 `sbom.cdx.json`；旧资产哈希不变。
