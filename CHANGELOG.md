@@ -2,6 +2,17 @@
 
 采用「版本号 + 变更类型」记录。完整功能说明见 [README](README.md)，发布资产见 [Releases](https://github.com/wj5666619/MiniToolbox/releases)。
 
+## 仓库与官网 · 企业级加固（2026-11-28）
+
+本次不改变主程序二进制，提升的是仓库治理、发布链、文档与官网信任面。
+
+- 仓库：`main` 分支保护、`compile` 必需检查、线性历史、对话解决；启用私密漏洞报告、依赖安全更新、secret scanning 非提供方模式与有效性检查。
+- CI：固定 Action 提交、按作业最小权限；`compile` 与 `release` 分离；发布附 `SHA256SUMS.txt`、CycloneDX SBOM 和 GitHub 构建来源证明。
+- 社区：新增 GOVERNANCE、SUPPORT、PRIVACY、ARCHITECTURE、ENTERPRISE、CODEOWNERS、Dependabot 与 OpenSSF Scorecard。
+- 官网：新增企业信任中心 `trust.html`、`security.txt`、CSP/referrer 安全元标签、企业区段扩展与 sitemap/404 更新。
+- Release：为 v19.15 补齐 `SHA256SUMS.txt` 与 `sbom.cdx.json`；旧资产哈希不变。
+- 明确边界：不声称 ISO / SOC 2 / 等保认证，不替代企业 EDR/DLP/网络准入，不承诺默认合同 SLA。
+
 ## v19.15
 
 **体积 / 加载**

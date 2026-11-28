@@ -1,0 +1,14 @@
+# 默认由维护者评审
+* @wj5666619
+
+# 构建、发布、安全与企业控制需要重点评审
+/.github/ @wj5666619
+/build.ps1 @wj5666619
+/Src/Policy.cs @wj5666619
+/Src/Audit.cs @wj5666619
+/Src/Diag.cs @wj5666619
+/Src/Sign.cs @wj5666619
+/Src/UpdateForm.cs @wj5666619
+/SECURITY.md @wj5666619
+/PRIVACY.md @wj5666619
+/GOVERNANCE.md @wj5666619

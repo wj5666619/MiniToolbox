@@ -4,10 +4,12 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>小工具箱 · MiniToolbox — Windows 单文件小工具集</title>
-<meta name="description" content="小工具箱 MiniToolbox：26+ 项 Windows 小工具 + 88 个网页工具（首次打开按需下载离线包），定时关机、C 盘清理、Steam 进阶、视频音乐下载、去水印、录屏、局域网互传、图片文档开发工具。单文件 3.37 MB 免安装，企业策略、审计日志、更新验签与一键部署齐备，源码公开。" />
-<meta name="keywords" content="小工具箱,MiniToolbox,Windows工具集,单文件,免安装,定时关机,C盘清理,Steam成就,视频下载,音乐下载,去水印,局域网剪贴板,企业部署,策略,审计日志,工具站" />
+<meta name="description" content="小工具箱 MiniToolbox：26+ 项 Windows 小工具 + 88 个网页工具（首次打开按需下载离线包），定时关机、C 盘清理、Steam 进阶、视频音乐下载、去水印、录屏、局域网互传、图片文档开发工具。单文件 3.37 MB 免安装，企业策略、审计日志、更新验签与一键部署齐备，源码公开。企业信任中心提供可核验的治理、供应链与数据说明。" />
+<meta name="keywords" content="小工具箱,MiniToolbox,Windows工具集,单文件,免安装,定时关机,C盘清理,Steam成就,视频下载,音乐下载,去水印,局域网剪贴板,企业部署,策略,审计日志,工具站,企业信任中心,SBOM" />
 <meta name="author" content="wj5666619" />
 <meta name="robots" content="index,follow" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; media-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />
 <link rel="canonical" href="https://wj5666619.github.io/MiniToolbox/" />
 <link rel="license" href="https://github.com/wj5666619/MiniToolbox/blob/main/LICENSE" />
 <link rel="preload" as="image" type="image/avif" href="assets/workbench_v1913-1200.avif" imagesrcset="assets/workbench_v1913-800.avif 800w, assets/workbench_v1913-1200.avif 1200w" imagesizes="(max-width:860px) 92vw, 560px" fetchpriority="high" />
@@ -37,14 +39,17 @@
   "softwareVersion": "19.15",
   "fileSize": "3370896",
   "inLanguage": "zh-CN",
+  "isAccessibleForFree": true,
+  "softwareRequirements": "Windows 10/11；.NET Framework 4.x；可选 WebView2",
   "url": "https://wj5666619.github.io/MiniToolbox/",
   "downloadUrl": "https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe",
   "codeRepository": "https://github.com/wj5666619/MiniToolbox",
-  "softwareHelp": "https://github.com/wj5666619/MiniToolbox/blob/main/企业管理指南.md",
+  "softwareHelp": "https://github.com/wj5666619/MiniToolbox/blob/main/ENTERPRISE.md",
   "license": "https://github.com/wj5666619/MiniToolbox/blob/main/LICENSE",
   "author": { "@type": "Person", "name": "wj5666619", "url": "https://github.com/wj5666619" },
   "screenshot": "https://wj5666619.github.io/MiniToolbox/assets/workbench_v1913.png",
   "releaseNotes": "https://github.com/wj5666619/MiniToolbox/releases/latest",
+  "subjectOf": { "@type": "WebPage", "name": "企业信任中心", "url": "https://wj5666619.github.io/MiniToolbox/trust.html" },
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" },
   "description": "26+ 项 Windows 小工具 + 88 个网页工具按需加载，主程序单文件 3.37 MB：定时关机、C 盘清理、Steam 进阶、视频音乐下载、去水印、录屏、局域网互传，以及图像、文档、开发、媒体工具；带诊断日志、企业策略、审计日志、更新验签与部署脚本。"
 }
@@ -73,6 +78,11 @@
       "@type": "Question",
       "name": "工具站需要 WebView2 吗？",
       "acceptedAnswer": { "@type": "Answer", "text": "绝大多数 Win 10 / 11 已带 Edge WebView2 运行时。纯精简系统若缺失会提示重试，也可点窗口右上角「↗」用系统浏览器打开在线版。" }
+    },
+    {
+      "@type": "Question",
+      "name": "企业级有哪些可核验的？",
+      "acceptedAnswer": { "@type": "Answer", "text": "分支保护、Windows CI、SHA256、SBOM、构建来源证明、MIT 许可证、私密漏洞披露、策略与审计说明都给出可点开的入口，详见企业信任中心 /trust.html。项目不声称 ISO、SOC 2 或等保认证。" }
     }
   ]
 }
@@ -1020,12 +1030,12 @@
   <!-- 06 ENTERPRISE -->
   <section class="sec s-dark" id="enterprise" data-theme="dark" style="background:#111312">
     <div class="sec-head reveal">
-      <span class="idx">05<br>CONTROL</span>
+      <span class="idx">06<br>CONTROL</span>
       <div>
-        <span class="kicker">ENTERPRISE / POLICY + AUDIT</span>
+        <span class="kicker">ENTERPRISE / POLICY + AUDIT + SUPPLY CHAIN</span>
         <h2>公司电脑，<br>也能放心铺开。</h2>
       </div>
-      <p class="lead">策略可下发、敏感动作留痕、更新包验签、安装卸载脚本化。个人用户不配置，就完全不受影响。</p>
+      <p class="lead">策略可下发、敏感动作留痕、更新包验签、发布链有 SBOM 与来源证明；每条企业级声明都在信任中心给出可核验入口。个人用户不配置，就完全不受影响。</p>
     </div>
     <div class="ent-grid reveal">
       <div class="ent-panel" data-no="CTL–01">
@@ -1052,6 +1062,18 @@
         <div class="kv"><span>命令</span><b>-Install / -Uninstall / -Status</b></div>
         <div class="kv"><span>入口</span><b>开始菜单 + 应用和功能</b></div>
       </div>
+      <div class="ent-panel" data-no="CTL–05">
+        <h3>发布可核验 / SUPPLY</h3>
+        <p>源码公开、Windows CI 每次编译；Release 附 <code>SHA256SUMS</code>、<code>SBOM</code> 与构建来源证明，tag 必须与源码版本一致。</p>
+        <div class="kv"><span>校验</span><b>SHA256 + Authenticode</b></div>
+        <div class="kv"><span>供应链</span><b>SBOM / Provenance</b></div>
+      </div>
+      <div class="ent-panel" data-no="CTL–06">
+        <h3>治理与支持 / GOVERNANCE</h3>
+        <p>分支保护、评审规则、私密漏洞披露、版本支持与回滚流程都有文档；不声称 ISO、SOC 2 或等保认证。</p>
+        <div class="kv"><span>治理</span><b>GOVERNANCE / SECURITY</b></div>
+        <div class="kv"><span>支持</span><b>社区尽力而为 · 无默认 SLA</b></div>
+      </div>
     </div>
     <div class="policy reveal">
       <div class="policy-bar"><span>策略示例 / POLICY.JSON</span><div class="policy-actions"><button class="copy-btn" type="button" data-copy-source="#policyJson" aria-label="复制策略 JSON">复制</button><button class="copy-btn" type="button" data-download-source="#policyJson" data-filename="MiniToolbox-策略示例.json" aria-label="下载策略 JSON 模板">下载 .json</button></div></div>
@@ -1074,6 +1096,8 @@
       <p><b>禁用在线更新</b> 关闭程序内更新检查；<b>禁用诊断导出</b> 阻止“关于”页导出诊断包；<b>详细日志</b> 记录更细的运行事件；<b>禁用功能</b> 按功能 ID 隐藏入口。策略只收紧权限，不会放宽默认行为。</p>
     </details>
     <div class="ent-actions reveal">
+      <a class="btn btn-primary" href="trust.html"><span>企业信任中心</span><span class="ar">↗</span></a>
+      <a class="btn btn-ghost" href="https://github.com/wj5666619/MiniToolbox/blob/main/ENTERPRISE.md" target="_blank" rel="noopener"><span>企业部署基线</span><span class="ar">↗</span></a>
       <a class="btn btn-ghost" href="https://github.com/wj5666619/MiniToolbox/blob/main/企业管理指南.md" target="_blank" rel="noopener"><span>企业管理指南</span><span class="ar">↗</span></a>
       <a class="btn btn-ghost" href="https://github.com/wj5666619/MiniToolbox/blob/main/部署.ps1" target="_blank" rel="noopener"><span>部署脚本</span><span class="ar">↗</span></a>
     </div>
@@ -1160,7 +1184,7 @@
           <div class="dl-row"><span>EXE SIZE</span><b data-size>3,370,896 字节</b></div>
           <div class="dl-row"><span>7Z SIZE</span><b>1,235,477 字节</b></div>
           <div class="dl-row"><span>SHA256</span><div class="hash-wrap"><b class="hash" data-sha>b8d2a498398677aa4d7e7e05cdc3d2c9c5c9e3a7ffcaee323833a1506e3bc38f</b><button class="copy-btn" type="button" data-copy="b8d2a498398677aa4d7e7e05cdc3d2c9c5c9e3a7ffcaee323833a1506e3bc38f" aria-label="复制 SHA256 校验值">复制</button></div></div>
-          <div class="dl-row"><span>SIGNATURE</span><b>自签名证书 · 对照哈希确认</b></div>
+          <div class="dl-row"><span>SIGNATURE</span><b>自签名 · CN=MiniToolbox (wj5666619)</b></div>
         </div>
         <div class="security-note">
           <span class="ico" aria-hidden="true">!</span>
@@ -1176,7 +1200,7 @@
             <code id="verifyCmd">Get-FileHash .\MiniToolbox.exe -Algorithm SHA256</code>
             <button class="copy-btn" type="button" data-copy="Get-FileHash .\MiniToolbox.exe -Algorithm SHA256" aria-label="复制校验命令">复制</button>
           </div>
-          <p>在下载目录打开 PowerShell 运行，输出应与上方 SHA256 完全一致；不一致就不要运行。哈希一致只能证明文件完整，不能替代杀毒扫描。</p>
+          <p>在下载目录打开 PowerShell 运行，输出应与上方 SHA256 完全一致；不一致就不要运行。哈希一致只能证明文件完整，不能替代杀毒扫描。Release 资产另附 <a href="https://github.com/wj5666619/MiniToolbox/releases/latest" target="_blank" rel="noopener">SHA256SUMS、SBOM 与构建来源证明</a>。</p>
         </div>
       </div>
     </div>
@@ -1188,6 +1212,7 @@
         <details><summary>为什么提示“未知发布者”？</summary><p>程序使用自签名证书，作者本机可信；他人电脑首次运行可能提示。可对照上面的 SHA256 确认文件未被改动。</p></details>
         <details><summary>GitHub 直链慢怎么办？</summary><p>先换 7z 包，体积更小；仍慢可换网络或 DNS，再去 Releases 页重试。无论走哪个入口，下载后都要对照同一个 SHA256。站点不放第三方镜像，避免镜像被替换后哈希对不上。</p></details>
         <details><summary>工具站需要 WebView2 吗？</summary><p>绝大多数 Win10 / 11 已带 Edge WebView2 运行时。纯精简系统若缺失会提示重试，也可点窗口右上角「↗」用系统浏览器打开在线版。</p></details>
+        <details><summary>企业级有哪些可核验的？</summary><p>分支保护、Windows CI、SHA256、SBOM、构建来源证明、MIT、私密漏洞披露、策略与审计都有可点开的入口；项目不声称 ISO、SOC 2 或等保认证。详见 <a href="trust.html">企业信任中心 ↗</a>。</p></details>
       </div>
       <div class="reveal" style="--d:.08s">
         <h4>CHANGELOG / 最近版本</h4>
@@ -1219,7 +1244,7 @@
       <p>一台电脑的小事，交给它就行。26+ 项原生工具，88 个网页工具按需加载，一个 3.4 MB 的 exe。</p>
     </div>
     <nav class="foot-nav" aria-label="页脚导航">
-      <a href="#system">系统</a><a href="#matrix">能力</a><a href="#station">工具站</a><a href="#skins">皮肤</a><a href="#enterprise">企业</a><a href="#community">开源</a><a href="#download">下载</a>
+      <a href="#system">系统</a><a href="#matrix">能力</a><a href="#station">工具站</a><a href="#skins">皮肤</a><a href="#enterprise">企业</a><a href="trust.html">信任中心</a><a href="#community">开源</a><a href="#download">下载</a>
     </nav>
   </div>
   <div class="foot-legal">

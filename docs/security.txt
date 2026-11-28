@@ -1,0 +1,6 @@
+Contact: mailto:m18371900557@163.com
+Expires: 2027-11-28T00:00:00.000Z
+Preferred-Languages: zh-CN, en
+Canonical: https://wj5666619.github.io/MiniToolbox/.well-known/security.txt
+Policy: https://github.com/wj5666619/MiniToolbox/blob/main/SECURITY.md
+Acknowledgments: https://github.com/wj5666619/MiniToolbox/blob/main/SECURITY.md

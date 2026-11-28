@@ -8,7 +8,7 @@
 [![License](https://img.shields.io/badge/license-MIT-2ea043)](LICENSE)
 [![Enterprise](https://img.shields.io/badge/enterprise-policy%20%2B%20audit%20%2B%20deploy-8957e5)](#企业部署)
 
-**官网 · 下载页**：<https://wj5666619.github.io/MiniToolbox/> ｜ **最新版**：v19.15 ｜ **免安装 · 单文件 · 源码公开 · 企业就绪**
+**官网 · 下载页**：<https://wj5666619.github.io/MiniToolbox/> ｜ **企业信任中心**：<https://wj5666619.github.io/MiniToolbox/trust.html> ｜ **最新版**：v19.15 ｜ **免安装 · 单文件 · 源码公开 · 企业部署基线可核验**
 
 一台电脑的小事，交给它就行：定时关机、C 盘清理、Steam 进阶、视频与音乐下载、去水印、局域网剪贴板、录屏、单文件加密……26+ 项日常工具，外加 88 个网页工具（首次打开按需下载离线包），主程序单文件 3.37 MB，双击就跑，不写注册表、不留后台服务，五套皮肤一键换。企业环境另有策略管控、审计日志、更新验签与部署脚本。
 
@@ -23,12 +23,21 @@
 | 最新版（推荐） | [MiniToolbox.exe](https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe) | 单文件主程序，3,370,896 字节 |
 | 压缩包 | [MiniToolbox_v19.15.7z](https://github.com/wj5666619/MiniToolbox/releases) | 1,235,477 字节，含 exe 与说明 |
 | 工具站离线包 | [ToolSite.zip](https://github.com/wj5666619/MiniToolbox/releases/latest/download/ToolSite.zip) | 22,709,509 字节；可选，放到程序目录可免首次下载 |
+| SHA256 清单 | [SHA256SUMS.txt](https://github.com/wj5666619/MiniToolbox/releases/latest/download/SHA256SUMS.txt) | 全部 Release 资产的 SHA256，一条命令校验 |
+| SBOM | [sbom.cdx.json](https://github.com/wj5666619/MiniToolbox/releases/latest/download/sbom.cdx.json) | CycloneDX 1.5；主程序、内嵌 DLL 与可选组件 |
 | 全部版本 | [Releases](https://github.com/wj5666619/MiniToolbox/releases) | 全部 tag，可回退旧版 |
 
 校验（v19.15）：
 
 ```
 SHA256  b8d2a498398677aa4d7e7e05cdc3d2c9c5c9e3a7ffcaee323833a1506e3bc38f
+```
+
+批量校验可从 Release 下载 `SHA256SUMS.txt`：
+
+```powershell
+Get-Content .\SHA256SUMS.txt
+Get-FileHash .\MiniToolbox.exe -Algorithm SHA256
 ```
 
 > 程序使用自签名证书，作者本机可信；他人电脑首次运行可能提示「未知发布者」，属正常现象，可对照上面的哈希确认文件未被改动。
@@ -65,7 +74,12 @@ SHA256  b8d2a498398677aa4d7e7e05cdc3d2c9c5c9e3a7ffcaee323833a1506e3bc38f
 | [官网源码](docs/index.html) | GitHub Pages 静态站，含下载、功能矩阵、皮肤演示、企业说明、校验与 FAQ |
 | [CHANGELOG.md](CHANGELOG.md) | 按版本记录功能、修复与破坏性变更 |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | 构建环境、代码风格、提交与 PR 流程 |
-| [SECURITY.md](SECURITY.md) | 漏洞披露渠道、响应时限与安全边界 |
+| [GOVERNANCE.md](GOVERNANCE.md) | 角色、评审规则、发布权限、紧急绕过与回滚 |
+| [ARCHITECTURE.md](ARCHITECTURE.md) | 组件、信任边界、数据流、更新链与威胁模型 |
+| [PRIVACY.md](PRIVACY.md) | 本地数据清单、联网场景、保留周期与删除方式 |
+| [SUPPORT.md](SUPPORT.md) | 支持渠道、响应目标、版本支持与企业支持边界 |
+| [SECURITY.md](SECURITY.md) | 漏洞披露渠道、响应时限、安全基线与安全边界 |
+| [企业信任中心](https://wj5666619.github.io/MiniToolbox/trust.html) | 治理、控制面、可核验入口、供应链与采购边界 |
 | [LICENSE](LICENSE) | MIT；第三方组件许可见 [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md) |
 | [Issues](https://github.com/wj5666619/MiniToolbox/issues) | Bug 报告与功能建议，附模板与日志要求 |
 | [Actions](https://github.com/wj5666619/MiniToolbox/actions/workflows/build.yml) | Windows CI：每次 push / tag 编译并留存构建产物 |
@@ -78,11 +92,17 @@ SHA256  b8d2a498398677aa4d7e7e05cdc3d2c9c5c9e3a7ffcaee323833a1506e3bc38f
 
 | 文件 | 用途 |
 | --- | --- |
+| [企业信任中心](https://wj5666619.github.io/MiniToolbox/trust.html) | 部署模型、六个控制面、可核验入口、供应链、采购边界 |
+| [ENTERPRISE.md](ENTERPRISE.md) | 采购核对清单、部署/回滚步骤、明确不提供的范围 |
 | [企业管理指南.md](企业管理指南.md) | 策略字段、审计动作、验签规则、排障路径 |
 | [部署.ps1](部署.ps1) | `-Install` / `-Uninstall` / `-Status` / `-MachinePolicy`，装到 `%LOCALAPPDATA%`，无需管理员 |
 | [策略示例.json](策略示例.json) | 可直接改用的策略模板 |
+| [GOVERNANCE.md](GOVERNANCE.md) | 角色、评审、发布权限、紧急绕过与回滚 |
+| [ARCHITECTURE.md](ARCHITECTURE.md) | 信任边界、数据流、更新链与威胁模型 |
+| [PRIVACY.md](PRIVACY.md) | 本地数据清单、联网场景、保留周期 |
+| [SUPPORT.md](SUPPORT.md) | 支持渠道、响应目标与版本支持 |
 
-策略读取顺序：`%ProgramData%\MiniToolbox\策略.json`（全员）→ 程序目录 `策略.json`（覆盖）。只收紧不放宽，删掉即恢复默认。
+策略读取顺序：`%ProgramData%\MiniToolbox\策略.json`（机器级）→ 程序目录 `策略.json`（程序级）。两者叠加且只收紧；程序级文件不能把机器级限制放宽。
 
 ```json
 {
@@ -101,7 +121,9 @@ SHA256  b8d2a498398677aa4d7e7e05cdc3d2c9c5c9e3a7ffcaee323833a1506e3bc38f
 
 - 审计日志 `日志\审计.log`：启动退出、系统清理、一键重装、安装更新、拒绝更新、导出诊断包，1MB 滚动两份。
 - 更新验签：`SHA256` 通过后还要比对证书指纹，和当前程序不是同一张证书直接拒绝。
+- 发布供应链：Release 附 `SHA256SUMS.txt`、`sbom.cdx.json`；新版本由 CI 生成构建来源证明；tag 必须与源码 `VER` 一致。
 - 诊断包：关于页导出 zip（版本环境 + 最近日志 + 配置），不含聊天记录、密码库、剪贴板内容。
+- 明确边界：不声称 ISO 27001 / SOC 2 / 等保认证，不替代企业 EDR、DLP、网络准入或合同 SLA。
 
 ## 本版改动（v19.15）
 
