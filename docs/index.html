@@ -228,7 +228,7 @@
   .s-dark .btn-ghost:hover{background:#ece8de; color:#0a0b0a}
   .btn .ar{font-size:14px; line-height:1}
   .tagline{font-family:var(--mono); font-size:9px; letter-spacing:.18em; opacity:.55}
-  .figure{position:relative; margin:0; background:#050606; border:1px solid rgba(255,255,255,.18); padding:8px; box-shadow:0 30px 70px rgba(0,0,0,.28)}
+  .figure{position:relative; margin:0 0 0 auto; width:100%; max-width:600px; background:#050606; border:1px solid rgba(255,255,255,.18); padding:8px; box-shadow:0 30px 70px rgba(0,0,0,.28)}
   .figure::before,.figure::after{content:""; position:absolute; width:20px; height:20px; border-color:var(--orange); border-style:solid; pointer-events:none}
   .figure::before{left:-1px; top:-1px; border-width:2px 0 0 2px}
   .figure::after{right:-1px; bottom:-1px; border-width:0 2px 2px 0}
@@ -309,8 +309,8 @@
   .hero-foot .right{text-align:right}
   .hero-foot a:hover{color:var(--orange)}
   /* ---------- dot lab ---------- */
-  .dotlab{position:relative; padding:clamp(62px,8vw,102px) var(--px) clamp(54px,7vw,86px); border-bottom:1px solid var(--line); background:#fff; overflow:hidden}
-  .dotlab-stage{display:grid; grid-template-columns:minmax(276px,.72fr) minmax(0,1.45fr); gap:clamp(28px,4vw,60px); align-items:stretch; margin-top:34px}
+  .dotlab{position:relative; padding:clamp(70px,9vw,132px) var(--px) clamp(70px,8vw,120px); background:#fff; overflow:hidden}
+  .dotlab-stage{display:grid; grid-template-columns:minmax(276px,.72fr) minmax(0,1.45fr); gap:clamp(28px,4vw,60px); align-items:stretch; margin-top:clamp(40px,6vw,78px)}
   .dotlab-panel{display:flex; flex-direction:column; gap:16px; border-top:2px solid var(--ink); padding-top:18px; min-width:0}
   .dotlab-kicker{font-family:var(--mono); font-size:9px; letter-spacing:.14em; color:var(--orange); text-transform:uppercase}
   .dotlab-form label{display:block; margin-bottom:8px; font-family:var(--mono); font-size:9px; letter-spacing:.12em; color:rgba(11,12,11,.56)}
@@ -340,7 +340,7 @@
   .dotlab-actions button:hover{border-color:var(--orange); color:var(--orange)}
   .dotlab-status{font-family:var(--mono); font-size:8px; letter-spacing:.08em; color:rgba(11,12,11,.42); margin-left:auto}
   .dotlab-canvas{
-    position:relative; min-height:390px; border:1px solid rgba(11,12,11,.16); overflow:hidden; background:#fff;
+    position:relative; min-height:420px; border:1px solid rgba(11,12,11,.16); overflow:hidden; background:#fff;
     background-image:radial-gradient(rgba(11,12,11,.055) .65px,transparent .7px); background-size:18px 18px;
   }
   .dotlab-canvas canvas{position:absolute; inset:0; width:100%; height:100%; display:block; cursor:crosshair; touch-action:pan-y}
@@ -351,11 +351,20 @@
   .dotlab-canvas::after{right:10px; bottom:10px; border-width:0 1px 1px 0}
   .dotlab-hint{position:absolute; z-index:1; left:16px; bottom:12px; font-family:var(--mono); font-size:8px; letter-spacing:.1em; color:rgba(11,12,11,.34); pointer-events:none}
   .dotlab-count{position:absolute; z-index:1; right:16px; top:12px; font-family:var(--mono); font-size:8px; letter-spacing:.1em; color:rgba(11,12,11,.34); pointer-events:none}
-  .dotarena{margin-top:clamp(40px,5.4vw,70px); padding-top:clamp(28px,3.6vw,44px); border-top:1px solid var(--line); scroll-margin-top:86px}
-  .dotarena-head{display:grid; grid-template-columns:minmax(0,.9fr) minmax(250px,.85fr) auto; gap:clamp(20px,3vw,46px); align-items:end}
+  .dotarena{margin-top:clamp(54px,6vw,88px); padding-top:0; scroll-margin-top:86px}
+  .dotarena-head{
+    display:grid;
+    grid-template-columns:70px minmax(0,1fr) minmax(260px,420px);
+    gap:clamp(22px,4vw,56px);
+    align-items:start;
+    padding:18px 64px 0 0;
+    border-top:1px solid rgba(11,12,11,.24);
+  }
+  .dotarena-head .idx{font-family:var(--mono); font-size:10px; letter-spacing:.14em; opacity:.6; padding-top:6px}
+  .dotarena-side{display:flex; flex-direction:column; gap:16px; align-items:stretch; padding-top:6px}
   .dotarena-kicker{display:block; font-family:var(--mono); font-size:9px; letter-spacing:.14em; color:var(--orange); margin-bottom:10px}
   .dotarena h3{margin:0; font-family:var(--disp); font-size:clamp(28px,3.2vw,46px); line-height:.98; font-weight:900; letter-spacing:-.03em}
-  .dotarena-copy{margin:0; font-family:var(--sans); font-size:13px; line-height:1.85; color:rgba(11,12,11,.58); max-width:30em}
+  .dotarena-copy{margin:0; font-family:var(--sans); font-size:13px; line-height:1.85; color:rgba(11,12,11,.58); max-width:none}
   .dotarena-tools{display:flex; flex-wrap:wrap; gap:6px; justify-content:flex-end}
   .dotarena-tools button{
     padding:8px 11px; border:1px solid rgba(11,12,11,.18); background:#fff; color:var(--ink);
@@ -380,22 +389,24 @@
   @media(max-width:900px){
     .dotlab-stage{grid-template-columns:1fr}
     .dotlab-panel{order:1}
-    .dotlab-canvas{order:2; min-height:300px}
+    .dotlab-canvas{order:2; min-height:340px}
     .dotlab-actions{margin-top:0}
-    .dotarena-head{grid-template-columns:1fr}
+    .dotarena-head{grid-template-columns:1fr; padding:14px 0 0}
+    .dotarena-side{padding-top:0}
     .dotarena-tools{justify-content:flex-start}
-    .dotarena-stage{min-height:360px}
+    .dotarena-stage{min-height:340px}
   }
   @media(max-width:600px){
-    .dotlab-canvas{min-height:250px}
+    .dotlab{padding-top:64px; padding-bottom:64px}
+    .dotlab-canvas{min-height:300px}
     .dotlab-row{flex-wrap:wrap}
     .dotlab-row button{min-height:42px; flex:0 0 88px}
-    .dotarena-stage{min-height:320px}
+    .dotarena-stage{min-height:300px}
     .dotarena h3{font-size:30px}
   }
   @keyframes wheel{0%,100%{transform:translateY(0);opacity:.25}50%{transform:translateY(7px);opacity:1}}
   /* ---------- system ---------- */
-  .system-layout{display:grid; grid-template-columns:minmax(0,1fr) minmax(380px,1.08fr); gap:clamp(36px,7vw,96px); align-items:start}
+  .system-layout{display:grid; grid-template-columns:minmax(0,1fr) minmax(380px,600px); gap:clamp(36px,7vw,96px); align-items:start}
   .spec-list{border-top:1px solid rgba(238,234,225,.2)}
   .spec{display:grid; grid-template-columns:44px 1fr; gap:18px; padding:24px 0 26px; border-bottom:1px solid rgba(238,234,225,.14); position:relative}
   .spec:hover .spec-num{color:var(--orange)}
@@ -451,7 +462,7 @@
   .station-copy{padding-bottom:8px}
   .station-copy h2{margin:0 0 14px; font-size:clamp(30px,3.4vw,46px); line-height:1.06; letter-spacing:-.04em}
   .station-copy p{max-width:36em; margin:0; font-size:13px; line-height:1.8; color:rgba(11,12,11,.62)}
-  .station-layout{position:relative; display:grid; grid-template-columns:minmax(0,.9fr) minmax(380px,1.1fr); gap:clamp(34px,6vw,84px); align-items:start}
+  .station-layout{position:relative; display:grid; grid-template-columns:minmax(0,1fr) minmax(380px,600px); gap:clamp(34px,6vw,84px); align-items:start}
   .cats{display:grid; grid-template-columns:1fr 1fr; border-top:1px solid var(--line); border-left:1px solid var(--line)}
   .cat{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:14px 12px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); font-size:12px; transition:background .2s}
   .cat:hover{background:rgba(255,77,18,.09)}
@@ -467,7 +478,7 @@
   .station .fig-bar{color:#9b978e}
   .station .btn-ghost:hover{background:#0b0c0b; color:var(--bone)}
   /* ---------- skins ---------- */
-  .skins-layout{display:grid; grid-template-columns:minmax(0,.9fr) minmax(380px,1.1fr); gap:clamp(36px,6vw,86px); align-items:center}
+  .skins-layout{display:grid; grid-template-columns:minmax(0,1fr) minmax(380px,600px); gap:clamp(36px,6vw,86px); align-items:center}
   .skins-copy h3{margin:0 0 14px; font-size:clamp(26px,3vw,40px); letter-spacing:-.035em; line-height:1.12}
   .skins-copy p{font-size:13px; line-height:1.85; opacity:.58; max-width:34em}
   .skin-deck{display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-top:clamp(34px,5vw,64px)}
@@ -500,7 +511,7 @@
   .ent-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:22px}
   /* ---------- download ---------- */
   .download{background:linear-gradient(180deg,#e1ddd4,var(--bone)); color:var(--ink)}
-  .download-grid{display:grid; grid-template-columns:minmax(0,.85fr) minmax(380px,1.15fr); gap:clamp(32px,6vw,90px); align-items:start}
+  .download-grid{display:grid; grid-template-columns:minmax(0,.9fr) minmax(380px,1.1fr); gap:clamp(32px,6vw,90px); align-items:start}
   .download-word{font-family:var(--disp); font-size:clamp(110px,18vw,260px); line-height:.75; letter-spacing:-.07em; font-weight:900; margin-top:20px}
   .download-word span{color:var(--orange)}
   .download-word small{display:block; font-family:var(--mono); font-size:9px; letter-spacing:.16em; font-weight:400; color:var(--ink); margin-top:22px; opacity:.55}
@@ -619,8 +630,8 @@
   .latest-notes ul{margin:0; padding:0 0 0 14px; color:rgba(11,12,11,.66); font-size:11px; line-height:1.75}
   .latest-notes li{margin:0 0 4px}
   .security-note{
-    display:flex; gap:12px; margin-top:18px; padding:12px 14px; border:1px solid var(--line);
-    background:rgba(255,77,18,.055);
+    display:flex; gap:12px; margin-top:18px; padding:12px 14px; border:1px solid var(--line); border-left:2px solid var(--orange);
+    background:#fff;
   }
   .security-note .ico{
     flex:0 0 20px; width:20px; height:20px; display:grid; place-items:center;
@@ -710,6 +721,7 @@
     .sec-head .idx{display:flex; justify-content:space-between}
     .sec-head .lead{grid-column:auto; max-width:100%}
     .system-layout,.skins-layout,.download-grid,.station-layout,.station-top{grid-template-columns:1fr}
+    .figure{margin:0 auto}
     .system-visual{position:relative; top:auto; order:-1}
     .callout.c1{left:6px; bottom:10px}
     .callout.c2{right:6px; top:10px}
@@ -758,20 +770,20 @@
   /* ---------- white-only surface theme ---------- */
   :root{
     --bone:#ffffff;
-    --bone-2:#f4f4f1;
+    --bone-2:#ffffff;
     --paper:#ffffff;
     --page:#ffffff;
     --panel:#ffffff;
-    --panel-2:#f7f7f5;
+    --panel-2:#ffffff;
     --muted:#5f605b;
     --hdr:#0b0c0b;
-    --hdr-bg:rgba(255,255,255,.97);
+    --hdr-bg:#ffffff;
     --rail:rgba(11,12,11,.55);
     --rail-line:rgba(11,12,11,.18);
   }
   body[data-theme="dark"]{
     --hdr:#0b0c0b;
-    --hdr-bg:rgba(255,255,255,.97);
+    --hdr-bg:#ffffff;
     --rail:rgba(11,12,11,.55);
     --rail-line:rgba(11,12,11,.18);
     --page:#ffffff;
@@ -804,7 +816,7 @@
   .mobile-nav{background:#ffffff!important;color:var(--ink)!important}
   .mobile-nav a{border-bottom-color:rgba(11,12,11,.14)}
   .mobile-dock{
-    background:rgba(255,255,255,.97)!important;
+    background:#ffffff!important;
     border-color:rgba(11,12,11,.18)!important;
   }
   .mobile-dock button{border-color:rgba(11,12,11,.20)!important;color:var(--ink)!important}
@@ -980,14 +992,17 @@
 
     <div class="dotarena reveal" id="duel">
       <div class="dotarena-head">
+        <span class="idx">LIVE<br>DUEL</span>
         <div>
           <span class="dotarena-kicker">DOT SPARRING / TWO FIGHTERS</span>
           <h3>两个火柴人，<br>全用黑点。</h3>
         </div>
-        <p class="dotarena-copy">头、肩、肘、拳、膝、脚，全部由黑点组成，没有一根实线。点擂台换一招，也可以直接叫停。</p>
-        <div class="dotarena-tools">
-          <button type="button" id="duelSkip">换一招 →</button>
-          <button type="button" id="duelToggle" class="solo">停手</button>
+        <div class="dotarena-side">
+          <p class="dotarena-copy">头、肩、肘、拳、膝、脚，全部由黑点组成，没有一根实线。点擂台换一招，也可以直接叫停。</p>
+          <div class="dotarena-tools">
+            <button type="button" id="duelSkip">换一招 →</button>
+            <button type="button" id="duelToggle" class="solo">停手</button>
+          </div>
         </div>
       </div>
       <div class="dotarena-stage">
@@ -1162,7 +1177,7 @@
           <a class="cat" href="https://3top.top/tools/generator-tool/index.html" target="_blank" rel="noopener" data-track="tool_category" title="打开数据类示例工具：数据密码生成器"><span>数据 / DATA</span><small>08 <i>↗</i></small></a>
           <a class="cat" href="https://3top.top/tools/hardware-test/index.html" target="_blank" rel="noopener" data-track="tool_category" title="打开硬件类示例工具：外设与硬件测试"><span>硬件 / HARDWARE</span><small>04 <i>↗</i></small></a>
           <a class="cat" href="https://3top.top/tools/wheel/index.html" target="_blank" rel="noopener" data-track="tool_category" title="打开趣味类示例工具：幸运抽奖大转盘"><span>趣味 / FUN</span><small>06 <i>↗</i></small></a>
-          <a class="cat" href="https://3top.top/" target="_blank" rel="noopener" data-track="tool_category" style="background:rgba(255,77,18,.1)" title="打开工具站首页"><span>全部 / ALL</span><small>88 <i>↗</i></small></a>
+          <a class="cat" href="https://3top.top/" target="_blank" rel="noopener" data-track="tool_category" style="background:#fff;color:var(--orange)" title="打开工具站首页"><span>全部 / ALL</span><small>88 <i>↗</i></small></a>
         </div>
         <div class="station-metrics">
           <div class="smetric"><b>30,895<em>条</em></b><span>成语词库 / LOCAL DICTIONARY</span></div>
@@ -1225,7 +1240,7 @@
           <picture>
             <source type="image/avif" srcset="assets/appearance_v1913-480.avif 480w, assets/appearance_v1913-648.avif 648w" sizes="(max-width:860px) 92vw, 620px" />
             <source type="image/webp" srcset="assets/appearance_v1913-480.webp 480w, assets/appearance_v1913-648.webp 648w" sizes="(max-width:860px) 92vw, 620px" />
-            <img src="assets/appearance.png" alt="外观设置：五套皮肤缩略预览与界面缩放" width="652" height="508" loading="lazy" decoding="async" />
+            <img src="assets/appearance.png" alt="外观设置：五套皮肤缩略预览与界面缩放" width="652" height="508" loading="eager" decoding="async" />
           </picture>
         </figure>
       </div>
@@ -1236,7 +1251,7 @@
         <span class="skin-swatch"><i></i><i></i><i></i></span>
         <span class="skin-name"><b>新粗野</b><small>DARK / ACID YELLOW</small></span>
       </button>
-      <button class="skin-card" type="button" aria-pressed="false" data-skin="cyber" data-name="赛博 HUD" data-code="02 / CYBER HUD" data-bg="#071018" data-fg="#dffbff" data-accent="#3ee6ff" data-ink="#001014" data-radius="0" style="--sw:linear-gradient(135deg,#071018,#0b2130 55%,#3ee6ff 55%)">
+      <button class="skin-card" type="button" aria-pressed="false" data-skin="cyber" data-name="赛博 HUD" data-code="02 / CYBER HUD" data-bg="#071018" data-fg="#dffbff" data-accent="#3ee6ff" data-ink="#001014" data-radius="0" style="--sw:linear-gradient(135deg,#071018,#0b2130 58%,#3ee6ff 58%)">
         <span class="skin-no">02 / CYBER HUD</span>
         <span class="skin-swatch"><i></i><i></i><i></i></span>
         <span class="skin-name"><b>赛博 HUD</b><small>GRID / CYAN OUTLINE</small></span>
@@ -1251,7 +1266,7 @@
         <span class="skin-swatch"><i></i><i></i><i></i></span>
         <span class="skin-name"><b>静谧便当</b><small>LOW SAT / MUTED GREEN</small></span>
       </button>
-      <button class="skin-card" type="button" aria-pressed="false" data-skin="paper" data-name="纸感手绘" data-code="05 / PAPER" data-bg="#f3efe2" data-fg="#14161a" data-accent="#14161a" data-ink="#f3efe2" data-radius="0" style="--sw:linear-gradient(135deg,#f3efe2,#faf7ec 55%,#14161a 55%,#e5ff3d 80%)">
+      <button class="skin-card" type="button" aria-pressed="false" data-skin="paper" data-name="纸感手绘" data-code="05 / PAPER" data-bg="#f3efe2" data-fg="#14161a" data-accent="#14161a" data-ink="#f3efe2" data-radius="0" style="--sw:linear-gradient(135deg,#f3efe2,#faf7ec 58%,#14161a 58%,#e5ff3d 80%)">
         <span class="skin-no">05 / PAPER</span>
         <span class="skin-swatch" style="color:#14161a"><i></i><i></i><i></i></span>
         <span class="skin-name"><b>纸感手绘</b><small>PAPER / INK BLACK</small></span>
