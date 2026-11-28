@@ -2483,6 +2483,37 @@
         dot(p[0] + Math.cos(ang) * rad, p[1] + Math.sin(ang) * rad, 1.12 + hash(i, seed + 5) * .82, hash(i, seed + 8) > .955, alpha);
       }
     }
+    function node(p, seed){
+      dot(p[0], p[1], 1.55, true, .96);
+      dot(p[0] + (hash(1, seed) - .5) * 1.8, p[1] + (hash(2, seed) - .5) * 1.8, 1.05, false, .82);
+    }
+    function fist(p, elbow, seed, alpha){
+      const dx = p[0] - elbow[0], dy = p[1] - elbow[1];
+      const d = Math.max(.01, Math.hypot(dx, dy));
+      const ux = dx / d, uy = dy / d;
+      const nx = -uy, ny = ux;
+      for(let i=0; i<5; i++){
+        const ang = (i / 5) * 6.283 + .6;
+        dot(p[0] + Math.cos(ang) * 2.2, p[1] + Math.sin(ang) * 2.2, 1.08 + hash(i, seed) * .44, false, alpha * .96);
+      }
+      for(let i=0; i<3; i++){
+        dot(p[0] + ux * 2.7 + nx * (i - 1) * 1.3, p[1] + uy * 2.7 + ny * (i - 1) * 1.3, 1.2, i === 1, alpha);
+      }
+      dot(p[0] - ux * 2.9, p[1] - uy * 2.9, 1.04, false, alpha * .78);
+    }
+    function foot(p, seed, alpha){
+      for(let i=0; i<4; i++){
+        const ang = (i / 4) * 6.283 + .9;
+        dot(p[0] + Math.cos(ang) * 2.1, p[1] + Math.sin(ang) * 1.9, 1.06 + hash(i, seed) * .36, false, alpha * .95);
+      }
+      for(let i=0; i<4; i++){
+        dot(p[0] + 2.2 + i * 1.15, p[1] + .75 + (hash(i, seed + 2) - .5) * .45, .98 + hash(i, seed + 3) * .34, false, alpha);
+      }
+      for(const oy of [-.9, .1, 1.0]){
+        dot(p[0] + 7.1, p[1] + oy, 1.05, false, alpha * .9);
+      }
+      dot(p[0] - 3.1, p[1] + .9, 1.0, false, alpha * .78);
+    }
     function joint(a, b, len, pref){
       const dx = b[0] - a[0], dy = b[1] - a[1];
       const d = Math.max(.01, Math.hypot(dx, dy));
@@ -2518,42 +2549,61 @@
       bone(shB, shF, seed + 1, 1.8, 1);
       bone(hipB, hipF, seed + 2, 1.8, 1);
       bone(neck, [head[0], head[1] + 13], seed + 3, 1.7, 1);
+      node(shF, seed + 20);
+      node(shB, seed + 24);
+      node(hipF, seed + 28);
+      node(hipB, seed + 32);
 
       beginPart('armF', side, (shF[0] + pose.handF[0]) * .5, (shF[1] + pose.handF[1]) * .5, time);
       bone(shF, elbowF, seed + 4, 2.0, 1);
       bone(elbowF, pose.handF, seed + 5, 2.0, 1);
-      cluster(pose.handF, seed + 15, 1);
+      fist(pose.handF, elbowF, seed + 15, 1);
 
       beginPart('armB', side, (shB[0] + pose.handB[0]) * .5, (shB[1] + pose.handB[1]) * .5, time);
       bone(shB, elbowB, seed + 6, 2.0, 1);
       bone(elbowB, pose.handB, seed + 7, 2.0, 1);
-      cluster(pose.handB, seed + 16, 1);
+      fist(pose.handB, elbowB, seed + 16, 1);
 
       beginPart('legF', side, (hipF[0] + pose.footF[0]) * .5, (hipF[1] + pose.footF[1]) * .5, time);
       bone(hipF, kneeF, seed + 8, 2.0, 1);
       bone(kneeF, pose.footF, seed + 9, 2.0, 1);
-      cluster(pose.footF, seed + 17, 1);
+      foot(pose.footF, seed + 17, 1);
+      node(kneeF, seed + 36);
       if(pose.footF[1] < 70) cluster(kneeF, seed + 19, .9);
 
       beginPart('legB', side, (hipB[0] + pose.footB[0]) * .5, (hipB[1] + pose.footB[1]) * .5, time);
       bone(hipB, kneeB, seed + 10, 2.0, 1);
       bone(kneeB, pose.footB, seed + 11, 2.0, 1);
-      cluster(pose.footB, seed + 18, 1);
+      foot(pose.footB, seed + 18, 1);
+      node(kneeB, seed + 40);
 
       beginPart('head', side, head[0], head[1], time);
-      for(let i=0; i<48; i++){
-        const ang = (i / 48) * 6.283;
-        const r = 13 + (hash(i, seed + 12) - .5) * 1.4;
-        dot(head[0] + Math.cos(ang) * r, head[1] + Math.sin(ang) * r, 1.1 + hash(i, seed + 13) * .8, hash(i, seed + 14) > .97, 1);
+      const hc = Math.cos(tilt), hs = Math.sin(tilt);
+      for(let i=0; i<40; i++){
+        const ang = (i / 40) * 6.283;
+        const ex = Math.cos(ang) * (12.1 + hash(i, seed + 12) * 1.1);
+        const ey = Math.sin(ang) * (13.7 + hash(i, seed + 12) * 1.1);
+        dot(head[0] + ex * hc - ey * hs, head[1] + ex * hs + ey * hc, 1.24 + hash(i, seed + 13) * .72, hash(i, seed + 14) > .97, 1);
       }
-      for(let ring=1; ring<=2; ring++){
-        const rr = ring * 4.3, n = 6 + ring * 4;
-        for(let i=0; i<n; i++){
-          const ang = (i / n) * 6.283 + ring * .6;
-          dot(head[0] + Math.cos(ang) * rr, head[1] + Math.sin(ang) * rr, 1.0, false, .82);
-        }
+      for(let i=0; i<13; i++){
+        const ang = (i / 13) * 6.283 + .35;
+        const ex = Math.cos(ang) * 8.2;
+        const ey = Math.sin(ang) * 8.9;
+        dot(head[0] + ex * hc - ey * hs, head[1] + ex * hs + ey * hc, 1.02, false, .66);
       }
-      dot(head[0], head[1], 1.1, false, .9);
+      for(let i=0; i<9; i++){
+        const ang = (i / 9) * 6.283 + .45;
+        const ex = Math.cos(ang) * 4.7;
+        const ey = Math.sin(ang) * 5.2;
+        dot(head[0] + ex * hc - ey * hs, head[1] + ex * hs + ey * hc, .98, false, .74);
+      }
+      for(let i=0; i<3; i++){
+        const ang = i * 2.094 - 1.2;
+        dot(head[0] + Math.cos(ang) * 2.2, head[1] + Math.sin(ang) * 2.0, .94, false, .78);
+      }
+      const eyeX = 6.6, eyeY = -2.8;
+      dot(head[0] + eyeX * hc - eyeY * hs, head[1] + eyeX * hs + eyeY * hc, 1.55, true, .98);
+      dot(head[0] + (eyeX - .15) * hc - (eyeY - 3.6) * hs, head[1] + (eyeX - .15) * hs + (eyeY - 3.6) * hc, 1.02, false, .72);
 
       ctx.restore();
       curFx = null;
