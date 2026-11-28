@@ -731,16 +731,16 @@
             <img src="assets/workbench_v1913.png" alt="小工具箱 v19.13 工作台实拍" width="1200" height="860" fetchpriority="high" decoding="async" />
           </picture>
         </figure>
-        <span class="stage-tag br">SINGLE FILE / <b data-size-mb>26 MB</b></span>
+        <span class="stage-tag br">SINGLE FILE / <b data-size-mb>3.4 MB</b></span>
         <button class="hotspot" type="button" style="--x:36%;--y:58%" data-jump="#system" data-sound="click" title="热点：C 盘清理" aria-label="跳到 C 盘清理章节"><span>C 盘清理</span>01</button>
         <button class="hotspot" type="button" style="--x:36%;--y:72%" data-jump="#matrix" data-jump-tab="media" data-sound="click" title="热点：视频下载" aria-label="跳到视频下载能力"><span>视频下载</span>02</button>
         <button class="hotspot spot-3" type="button" style="--x:86%;--y:14%" data-jump="#skins" data-sound="click" title="热点：皮肤" aria-label="跳到皮肤章节"><span>换皮肤</span>03</button>
       </div>
     </div>
     <div class="hero-stats">
-      <div class="hstat"><b>88<em>个</em></b><span>TOOL STATION / 离线工具</span></div>
+      <div class="hstat"><b>88<em>个</em></b><span>TOOL STATION / 按需工具包</span></div>
       <div class="hstat"><b>26<em>+</em></b><span>NATIVE MODULES / 原生功能</span></div>
-      <div class="hstat"><b>26<em>MB</em></b><span>SINGLE BINARY / 单文件</span></div>
+      <div class="hstat"><b><span data-size-mb>3.4</span><em>MB</em></b><span>SINGLE BINARY / 单文件</span></div>
       <div class="hstat"><b>0<em>步</em></b><span>INSTALL / 安装步骤</span></div>
     </div>
     <div class="hero-foot">
@@ -1087,25 +1087,27 @@
         <div class="download-word">EXE<span>.</span><small>WINDOWS 10 / 11 · X64 / X86</small></div>
       </div>
       <div class="download-card reveal" style="--d:.1s">
-        <h2>小工具箱 v<span data-ver>19.13</span></h2>
-        <p>单文件主程序，内置 26+ 项原生工具与 88 个离线网页工具。首次打开工具站会解压到本地，之后离线秒开。</p>
+        <h2>小工具箱 v<span data-ver>19.15</span></h2>
+        <p>单文件主程序 3.37 MB，内置 26+ 项原生工具；88 个网页工具改为首次打开按需下载离线包（22.7 MB），之后本地缓存秒开。</p>
         <div class="latest-notes">
           <h4>THIS UPDATE / 本次更新</h4>
           <ul id="latestNotes">
-            <li>工作台新增「工具站」入口：88 个开源工具离线内置，覆盖 11 类。</li>
-            <li>工具站自带搜索与分类，文件不上传；首次解压后离线秒开。</li>
-            <li>原生「实用工具集」六件保留，主程序因整站资源增至约 26 MB。</li>
+            <li>体积精简：exe 从 26.08 MB 降至 3.37 MB，7z 安装包仅 1.23 MB。</li>
+            <li>工具站离线包不再内嵌：优先读取程序目录 zip，缺失时首次打开自动下载并缓存。</li>
+            <li>清理旧版本包、测试程序、临时编译目录、调试截图与重复资源，项目目录释放约 279 MB。</li>
+            <li>原有控制中心、任务中心、皮肤与更新链路保持不变。</li>
           </ul>
         </div>
         <div class="download-actions">
           <a class="btn btn-primary" href="https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe" data-download-link data-track="download"><span>下载 EXE</span><span class="ar">↓</span></a>
           <a class="btn btn-ghost" href="https://github.com/wj5666619/MiniToolbox/releases" target="_blank" rel="noopener" data-track="release_history"><span>7z / 历史版本</span><span class="ar">↗</span></a>
         </div>
+        <p style="font-size:12px;opacity:.65;margin-top:10px;">离线环境可另下 Release 资产 <a href="https://github.com/wj5666619/MiniToolbox/releases/latest/download/ToolSite.zip" style="color:inherit;text-decoration:underline;">ToolSite.zip</a>，放到程序目录即可免下载。</p>
         <div class="dl-meta">
-          <div class="dl-row"><span>VERSION</span><b data-ver>19.13</b></div>
-          <div class="dl-row"><span>EXE SIZE</span><b data-size>26,033,040 字节</b></div>
-          <div class="dl-row"><span>7Z SIZE</span><b>23,863,359 字节</b></div>
-          <div class="dl-row"><span>SHA256</span><div class="hash-wrap"><b class="hash" data-sha>d0a9d5b59a7882febac67f395369838d39c0c751588b09b76c242f1f9c7f4f6f</b><button class="copy-btn" type="button" data-copy="d0a9d5b59a7882febac67f395369838d39c0c751588b09b76c242f1f9c7f4f6f" aria-label="复制 SHA256 校验值">复制</button></div></div>
+          <div class="dl-row"><span>VERSION</span><b data-ver>19.15</b></div>
+          <div class="dl-row"><span>EXE SIZE</span><b data-size>3,370,896 字节</b></div>
+          <div class="dl-row"><span>7Z SIZE</span><b>1,234,261 字节</b></div>
+          <div class="dl-row"><span>SHA256</span><div class="hash-wrap"><b class="hash" data-sha>ce82cef2676b17306bb128e26d25f41cf81e2e3fa061a7ec547b8dcea0767500</b><button class="copy-btn" type="button" data-copy="ce82cef2676b17306bb128e26d25f41cf81e2e3fa061a7ec547b8dcea0767500" aria-label="复制 SHA256 校验值">复制</button></div></div>
           <div class="dl-row"><span>SIGNATURE</span><b>自签名证书 · 对照哈希确认</b></div>
         </div>
         <div class="security-note">
