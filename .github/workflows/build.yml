@@ -154,7 +154,8 @@ jobs:
             & $seven a -t7z -mx=9 $pkg 'dist\MiniToolbox.exe' '皮肤.txt' | Out-Null
             if ($LASTEXITCODE -ne 0) { throw "7z 打包失败" }
           } else {
-            Compress-Archive -Path 'dist\MiniToolbox.exe','皮肤.txt' -DestinationPath "dist\MiniToolbox_v$ver.zip" -Force
+            $pkg = "dist\MiniToolbox_v$ver.zip"
+            Compress-Archive -Path 'dist\MiniToolbox.exe','皮肤.txt' -DestinationPath $pkg -Force
           }
 
           pwsh -NoProfile -ExecutionPolicy Bypass -File tools\New-Sbom.ps1 -Exe dist\MiniToolbox.exe -Version $ver -Output dist\sbom.cdx.json
