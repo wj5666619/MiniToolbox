@@ -2005,7 +2005,8 @@
       }
       const pts = edge.length ? edge : fill;
       if(!pts.length){ parts=[]; return; }
-      const count = Math.min(3600, Math.max(1100, Math.round(W*H/110)));
+      const baseCount = Math.min(4200, Math.max(1200, Math.round(W*H/100)));
+      const count = Math.min(4600, Math.round(baseCount * (1 + Math.max(0, chars.length - 1) * .1)));
       const chosen = [];
       let seed = 20261128;
       const edgeN = Math.min(Math.round(count * (cjk ? .45 : .18)), edge.length);
@@ -2047,8 +2048,8 @@
       for(const p of parts){
         if(active){
           const dx = p.x - p.tx, dy = p.y - p.ty;
-          p.vx += (-dx*.022) + Math.cos(t*.001 + p.d)*.008;
-          p.vy += (-dy*.022) + Math.sin(t*.0012 + p.d)*.008;
+          p.vx += (-dx*.045) + Math.cos(t*.001 + p.d)*.008;
+          p.vy += (-dy*.045) + Math.sin(t*.0012 + p.d)*.008;
           const mx = p.x - mouse.x, my = p.y - mouse.y;
           const md = mx*mx + my*my;
           if(md < radius*radius && md > 1){
@@ -2056,7 +2057,7 @@
             p.vx += (mx / Math.sqrt(md)) * f;
             p.vy += (my / Math.sqrt(md)) * f;
           }
-          p.vx *= .90; p.vy *= .90;
+          p.vx *= .88; p.vy *= .88;
           p.x += p.vx; p.y += p.vy;
           if(Math.abs(p.x-p.tx) + Math.abs(p.y-p.ty) < 1.2){
             p.x = p.tx; p.y = p.ty; p.vx = 0; p.vy = 0;
