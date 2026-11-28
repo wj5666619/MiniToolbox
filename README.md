@@ -3,12 +3,12 @@
 [![Release](https://img.shields.io/github/v/release/wj5666619/MiniToolbox?color=c8f751)](https://github.com/wj5666619/MiniToolbox/releases/latest)
 [![Downloads](https://img.shields.io/github/downloads/wj5666619/MiniToolbox/total?color=5ad2ff)](https://github.com/wj5666619/MiniToolbox/releases)
 [![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-0078d4)](#)
-[![Size](https://img.shields.io/badge/size-26%20MB-2ea043)](#)
+[![Size](https://img.shields.io/badge/size-3.4%20MB-2ea043)](#)
 [![Enterprise](https://img.shields.io/badge/enterprise-policy%20%2B%20audit%20%2B%20deploy-8957e5)](#企业部署)
 
-**官网 · 下载页**：<https://wj5666619.github.io/MiniToolbox/> ｜ **最新版**：v19.13 ｜ **免安装 · 单文件 · 源码公开 · 企业就绪**
+**官网 · 下载页**：<https://wj5666619.github.io/MiniToolbox/> ｜ **最新版**：v19.15 ｜ **免安装 · 单文件 · 源码公开 · 企业就绪**
 
-一台电脑的小事，交给它就行：定时关机、C 盘清理、Steam 进阶、视频与音乐下载、去水印、局域网剪贴板、录屏、单文件加密……26+ 项日常工具，外加整站 88 个离线网页工具，全部打包进一个 exe，双击就跑，不写注册表、不留后台服务，五套皮肤一键换。企业环境另有策略管控、审计日志、更新验签与部署脚本。
+一台电脑的小事，交给它就行：定时关机、C 盘清理、Steam 进阶、视频与音乐下载、去水印、局域网剪贴板、录屏、单文件加密……26+ 项日常工具，外加 88 个网页工具（首次打开按需下载离线包），主程序单文件 3.37 MB，双击就跑，不写注册表、不留后台服务，五套皮肤一键换。企业环境另有策略管控、审计日志、更新验签与部署脚本。
 
 ![小工具箱工作台](docs/assets/workbench.png)
 
@@ -16,14 +16,15 @@
 
 | 渠道 | 文件 | 说明 |
 | --- | --- | --- |
-| 最新版（推荐） | [MiniToolbox.exe](https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe) | 单文件主程序，26,033,040 字节 |
-| 压缩包 | [MiniToolbox_v19.13.7z](https://github.com/wj5666619/MiniToolbox/releases) | 23,863,359 字节，含 exe 与说明 |
+| 最新版（推荐） | [MiniToolbox.exe](https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe) | 单文件主程序，3,370,896 字节 |
+| 压缩包 | [MiniToolbox_v19.15.7z](https://github.com/wj5666619/MiniToolbox/releases) | 1,234,261 字节，含 exe 与说明 |
+| 工具站离线包 | [ToolSite.zip](https://github.com/wj5666619/MiniToolbox/releases/latest/download/ToolSite.zip) | 22,709,509 字节；可选，放到程序目录可免首次下载 |
 | 全部版本 | [Releases](https://github.com/wj5666619/MiniToolbox/releases) | 全部 tag，可回退旧版 |
 
-校验（v19.13）：
+校验（v19.15）：
 
 ```
-SHA256  d0a9d5b59a7882febac67f395369838d39c0c751588b09b76c242f1f9c7f4f6f
+SHA256  ce82cef2676b17306bb128e26d25f41cf81e2e3fa061a7ec547b8dcea0767500
 ```
 
 > 程序使用自签名证书，作者本机可信；他人电脑首次运行可能提示「未知发布者」，属正常现象，可对照上面的哈希确认文件未被改动。
@@ -38,7 +39,7 @@ SHA256  d0a9d5b59a7882febac67f395369838d39c0c751588b09b76c242f1f9c7f4f6f
 | 文件 | 批量重命名与格式转换、重复文件清理、单文件加密（.mtbx） |
 | 效率 | 全局热键中心、局域网剪贴板、剪贴板历史、指令舱（Ctrl+K）、手机互传 |
 | 实用 | 文件哈希校验、图片取色与主色板、电子印章、图片 Base64、时间戳转换、强随机密码 |
-| 工具站 | 整站 88 个开源工具离线内置：图像、文档、开发、媒体、办公、生活、设计、安全、数据、硬件、趣味 11 类，带搜索与分类 |
+| 工具站 | 88 个开源工具：图像、文档、开发、媒体、办公、生活、设计、安全、数据、硬件、趣味 11 类，带搜索与分类；离线包按需加载 |
 | 扩展 | 插件仓库（内置示例 + 远程源 + 离线缓存） |
 
 界面：五套皮肤（新粗野 / 赛博 HUD / 弹性色块 / 静谧便当 / 纸感手绘），外观设置里可预览、调 95–115% 缩放、跟随系统 DPI。
@@ -82,13 +83,20 @@ SHA256  d0a9d5b59a7882febac67f395369838d39c0c751588b09b76c242f1f9c7f4f6f
 - 更新验签：`SHA256` 通过后还要比对证书指纹，和当前程序不是同一张证书直接拒绝。
 - 诊断包：关于页导出 zip（版本环境 + 最近日志 + 配置），不含聊天记录、密码库、剪贴板内容。
 
-## 本版改动（v19.13）
+## 本版改动（v19.15）
 
-- 工作台「全部功能」新增「工具站」磁贴，独立深色窗口打开，整站 88 个开源工具离线内置。
+- 体积精简：主程序从 26.08 MB 降到 3.37 MB，7z 包 1.23 MB；88 个工具的 22.7 MB 离线包不再内嵌。
+- 工具站改为按需加载：优先读程序目录 `工具站.zip` / `ToolSite.zip` / `site.zip`，没有就从官网 Pages 下载并缓存，失败会提示手动放置。
+- 清理旧版本 7z、测试 exe、临时编译目录、调试截图、诊断包、重复封面与重复工具站包；移除可再生成的视频组件缓存，项目目录释放约 279 MB。
+- 原有控制中心、任务中心、皮肤、音效和更新链路保持不变。
+
+### v19.13 改动
+
+- 工作台「全部功能」新增「工具站」磁贴，独立深色窗口打开，整站 88 个开源工具离线可用。
 - 覆盖图像 / 文档 / 开发 / 媒体 / 办公 / 生活 / 设计 / 安全 / 数据 / 硬件 / 趣味 11 类，自带搜索与分类，首页点卡片即用。
 - 全部在本机 WebView2 内核运行，文件不上传服务器；首次打开解压约 45 MB，之后离线秒开，todo / habit 等本地数据保留。
 - 工具站源码为 MIT 许可（3top.top / e-CNY），离线包内保留 LICENSE 与来源说明，只把唯一外链预览图换成本地文件。
-- 主程序由 2.2 MB 增至 26 MB，因为 88 个工具的离线资源都进了单文件；原生六件小工具保持不变。
+- 该版曾因离线资源全部进单文件，主程序由 2.2 MB 增至 26 MB；v19.15 已将工具站外置并按需加载。
 
 ### v19.12 改动
 
