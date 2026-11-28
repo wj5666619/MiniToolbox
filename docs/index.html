@@ -9,13 +9,16 @@
 <meta name="author" content="wj5666619" />
 <meta name="robots" content="index,follow" />
 <link rel="canonical" href="https://wj5666619.github.io/MiniToolbox/" />
-<link rel="preload" as="image" href="assets/workbench_v1913.png" fetchpriority="high" />
+<link rel="preload" as="image" type="image/avif" href="assets/workbench_v1913-1200.avif" imagesrcset="assets/workbench_v1913-800.avif 800w, assets/workbench_v1913-1200.avif 1200w" imagesizes="(max-width:860px) 92vw, 560px" fetchpriority="high" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="小工具箱 · MiniToolbox" />
 <meta property="og:title" content="小工具箱 · MiniToolbox — 一台电脑的小事，交给它" />
 <meta property="og:description" content="26+ 项 Windows 小工具 + 整站 88 个离线网页工具打包成一个 exe。单文件、免安装、五套皮肤，企业策略与审计就绪。" />
 <meta property="og:url" content="https://wj5666619.github.io/MiniToolbox/" />
 <meta property="og:image" content="https://wj5666619.github.io/MiniToolbox/assets/workbench_v1913.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="860" />
+<meta property="og:image:alt" content="小工具箱 v19.13 工作台界面" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="小工具箱 · MiniToolbox — 一台电脑的小事，交给它" />
 <meta name="twitter:description" content="26+ 项 Windows 小工具 + 88 个离线网页工具打包成一个 exe，免安装、五套皮肤，企业策略与审计就绪，源码公开。" />
@@ -35,8 +38,39 @@
   "url": "https://wj5666619.github.io/MiniToolbox/",
   "downloadUrl": "https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe",
   "codeRepository": "https://github.com/wj5666619/MiniToolbox",
+  "softwareHelp": "https://github.com/wj5666619/MiniToolbox/blob/main/企业管理指南.md",
+  "screenshot": "https://wj5666619.github.io/MiniToolbox/assets/workbench_v1913.png",
+  "releaseNotes": "https://github.com/wj5666619/MiniToolbox/releases/latest",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" },
   "description": "26+ 项 Windows 小工具 + 整站 88 个离线网页工具打包成单文件 exe：定时关机、C 盘清理、Steam 进阶、视频音乐下载、去水印、录屏、局域网互传，以及图像、文档、开发、媒体工具；带诊断日志、企业策略、审计日志、更新验签与部署脚本。"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "需要安装吗？",
+      "acceptedAnswer": { "@type": "Answer", "text": "不需要。单个 exe 双击就跑，退出不写注册表、不留后台服务；想卸载直接删文件。" }
+    },
+    {
+      "@type": "Question",
+      "name": "会联网吗？",
+      "acceptedAnswer": { "@type": "Answer", "text": "只在检查更新、查 Steam 价格、下载你指定的内容时联网；工具站与剪贴板、清理记录、配置都只存本地。" }
+    },
+    {
+      "@type": "Question",
+      "name": "为什么提示未知发布者？",
+      "acceptedAnswer": { "@type": "Answer", "text": "程序使用自签名证书，作者本机可信；他人电脑首次运行可能提示。可对照官网 SHA256 确认文件未被改动，再决定是否运行。" }
+    },
+    {
+      "@type": "Question",
+      "name": "工具站需要 WebView2 吗？",
+      "acceptedAnswer": { "@type": "Answer", "text": "绝大多数 Win 10 / 11 已带 Edge WebView2 运行时。纯精简系统若缺失会提示重试，也可点窗口右上角「↗」用系统浏览器打开在线版。" }
+    }
+  ]
 }
 </script>
 <style>
@@ -97,7 +131,7 @@
   /* ---------- header ---------- */
   .site-header{
     position:fixed; top:0; left:0; right:0; z-index:60;
-    display:flex; align-items:center; gap:40px;
+    display:flex; align-items:center; gap:14px;
     padding:22px var(--px); color:var(--hdr);
     transition:background .35s, padding .35s, border-color .35s, color .35s;
     border-bottom:1px solid transparent;
@@ -117,7 +151,7 @@
   .brand-txt{display:flex; flex-direction:column; line-height:1}
   .brand-txt b{font-size:17px; letter-spacing:.02em; font-weight:800}
   .brand-txt small{font-family:var(--mono); font-size:8px; letter-spacing:.18em; opacity:.55; margin-top:5px}
-  .navlinks{display:flex; gap:26px; margin-left:auto; align-items:center}
+  .navlinks{display:flex; gap:clamp(14px,1.35vw,24px); margin-left:auto; align-items:center}
   .navlinks a{
     font-family:var(--mono); font-size:10px; letter-spacing:.1em; position:relative; padding:6px 0;
     opacity:.72; transition:opacity .2s;
@@ -128,7 +162,7 @@
   .navlinks a:hover,.navlinks a.active{opacity:1}
   .navlinks a:hover::after,.navlinks a.active::after{width:100%}
   .hdr-cta{
-    margin-left:6px; background:var(--orange); color:#0b0c0b; padding:11px 18px;
+    margin-left:0; background:var(--orange); color:#0b0c0b; padding:11px 18px;
     font-family:var(--mono); font-size:10px; font-weight:700; letter-spacing:.1em;
     clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));
     transition:background .2s, transform .2s;
@@ -420,11 +454,132 @@
     .mouse::after{animation:none}
     *{animation-duration:.001s!important; animation-iteration-count:1!important}
   }
+  /* ---------- enhancement layer ---------- */
+  .figure[data-zoom]{cursor:zoom-in}
+  .zoom-hint{
+    position:absolute; right:12px; bottom:12px; z-index:3; display:inline-flex; align-items:center; gap:5px;
+    padding:5px 7px; background:rgba(11,12,11,.84); border:1px solid rgba(255,255,255,.22);
+    color:#ece8de; font-family:var(--mono); font-size:8px; letter-spacing:.1em; pointer-events:none;
+  }
+  .zoom-hint b{color:var(--orange); font-size:12px; line-height:1; font-weight:400}
+  .hotspot{
+    position:absolute; z-index:4; left:var(--x); top:var(--y); width:25px; height:25px; padding:0;
+    transform:translate(-50%,-50%); border:1px dashed rgba(255,77,18,.9); border-radius:50%;
+    background:rgba(11,12,11,.46); color:#fff; display:grid; place-items:center; cursor:pointer;
+    font-family:var(--mono); font-size:8px; letter-spacing:.02em;
+    transition:background .2s,border-color .2s,transform .2s;
+  }
+  .hotspot::before{content:""; position:absolute; inset:-7px; border:1px solid rgba(255,77,18,.2); border-radius:50%; pointer-events:none}
+  .hotspot span{
+    position:absolute; left:50%; bottom:calc(100% + 9px); transform:translateX(-50%);
+    white-space:nowrap; padding:6px 8px; background:#080909; color:#ece8de;
+    border:1px solid rgba(255,255,255,.24); font-family:var(--mono); font-size:8px; letter-spacing:.08em;
+    opacity:0; pointer-events:none; transition:opacity .2s;
+  }
+  .hotspot:hover,.hotspot:focus-visible{background:var(--orange); border-color:var(--orange); transform:translate(-50%,-50%) scale(1.06)}
+  .hotspot:hover span,.hotspot:focus-visible span{opacity:1}
+  .hotspot.spot-3 span{bottom:auto; top:calc(100% + 9px)}
+  .chip-tip{
+    position:fixed; z-index:75; max-width:250px; padding:9px 11px; background:#070808;
+    border:1px solid rgba(255,77,18,.55); color:#ece8de; font-size:11px; line-height:1.65;
+    opacity:0; transform:translateY(5px); pointer-events:none; transition:opacity .18s,transform .18s;
+  }
+  .chip-tip.show{opacity:1; transform:none}
+  .chip-tip b{display:block; margin-bottom:3px; color:var(--orange); font-family:var(--mono); font-size:8px; letter-spacing:.12em; font-weight:500}
+  .chip-tip em{display:block; margin-top:5px; color:#8e8b83; font-family:var(--mono); font-size:8px; font-style:normal; letter-spacing:.06em}
+  .sfx-btn{
+    display:inline-flex; align-items:center; gap:6px; margin-left:0; padding:8px 9px;
+    border:1px solid currentColor; background:transparent; color:inherit; opacity:.5; cursor:pointer;
+    font-family:var(--mono); font-size:8px; letter-spacing:.1em; transition:opacity .2s,border-color .2s,color .2s;
+  }
+  .sfx-btn i{width:5px; height:5px; border-radius:50%; background:currentColor; display:block; opacity:.5}
+  .sfx-btn[aria-pressed="true"]{opacity:1; border-color:var(--orange); color:var(--orange)}
+  .sfx-btn[aria-pressed="true"] i{background:var(--orange); opacity:1}
+  .sfx-btn:hover{opacity:1}
+  .mobile-dock{
+    position:fixed; left:12px; right:12px; bottom:calc(12px + env(safe-area-inset-bottom)); z-index:58;
+    display:flex; align-items:stretch; gap:8px; padding:8px; background:rgba(8,9,9,.96);
+    border:1px solid rgba(255,255,255,.18); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    transform:translateY(150%); transition:transform .3s cubic-bezier(.2,.7,.2,1); visibility:hidden;
+  }
+  .mobile-dock.show{transform:none; visibility:visible}
+  .mobile-dock a{
+    flex:1; display:flex; align-items:center; justify-content:space-between; gap:10px;
+    padding:11px 14px; background:var(--orange); color:#0b0c0b;
+    font-family:var(--mono); font-size:10px; font-weight:700; letter-spacing:.08em;
+  }
+  .mobile-dock a small{font-weight:400; opacity:.7; font-size:8px}
+  .mobile-dock button{
+    flex:0 0 38px; border:1px solid rgba(255,255,255,.22); background:transparent; color:#ece8de;
+    font-size:16px; cursor:pointer; line-height:1;
+  }
+  @media(min-width:861px){.mobile-dock{display:none!important}}
+  .latest-notes{margin-top:20px; border-left:2px solid var(--orange); padding-left:13px}
+  .latest-notes h4{margin:0 0 7px; color:var(--orange); opacity:1}
+  .latest-notes ul{margin:0; padding:0 0 0 14px; color:rgba(11,12,11,.66); font-size:11px; line-height:1.75}
+  .latest-notes li{margin:0 0 4px}
+  .security-note{
+    display:flex; gap:12px; margin-top:18px; padding:12px 14px; border:1px solid var(--line);
+    background:rgba(255,77,18,.055);
+  }
+  .security-note .ico{
+    flex:0 0 20px; width:20px; height:20px; display:grid; place-items:center;
+    background:var(--orange); color:#fff; font-family:var(--mono); font-size:11px; font-weight:700;
+  }
+  .security-note b{display:block; font-size:12px; margin-bottom:3px}
+  .security-note p{margin:0; font-size:11px; line-height:1.65; color:rgba(11,12,11,.6); max-width:none}
+  .security-note a{display:inline-block; margin-top:6px; border-bottom:1px solid currentColor; font-family:var(--mono); font-size:8px; letter-spacing:.08em}
+  .security-note a:hover{color:var(--orange); border-color:var(--orange)}
+  .verify-box{margin-top:12px; padding:12px 14px; border:1px solid var(--line); background:rgba(11,12,11,.035); scroll-margin-top:90px}
+  .verify-box label{display:block; margin-bottom:8px; font-family:var(--mono); font-size:8px; letter-spacing:.1em; opacity:.55}
+  .verify-line{display:flex; align-items:center; gap:8px; min-width:0}
+  .verify-line code{
+    flex:1; min-width:0; overflow:auto; white-space:nowrap; padding:8px 0;
+    font-family:var(--mono); font-size:9px; color:var(--ink);
+  }
+  .verify-box p{margin:8px 0 0; font-size:10px; line-height:1.65; color:rgba(11,12,11,.55); max-width:none}
+  .policy-actions{display:flex; gap:6px; align-items:center}
+  .policy-actions .copy-btn{background:rgba(255,255,255,.04); color:#ece8de; border-color:rgba(255,255,255,.2); font-size:8px; min-width:auto; min-height:22px; padding:2px 7px}
+  .policy-actions .copy-btn:hover{background:var(--orange); border-color:var(--orange); color:#fff}
+  .policy-doc{margin-top:12px; border-color:rgba(238,234,225,.14)}
+  .policy-doc summary{font-size:11px; padding:11px 0; opacity:.65}
+  .policy-doc p{color:rgba(238,234,225,.62); font-size:11px; margin:0 0 12px; max-width:52em}
+  .skin-demo{
+    width:min(100%,300px); margin-top:24px; border:1px solid rgba(238,234,225,.2);
+    background:var(--demo-bg,#10131a); color:var(--demo-fg,#ece8de);
+    border-radius:var(--demo-radius,0); overflow:hidden; transition:background .3s,color .3s,border-radius .3s;
+  }
+  .skin-demo .demo-top{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    padding:7px 10px; border-bottom:1px solid rgba(255,255,255,.12);
+    font-family:var(--mono); font-size:7px; letter-spacing:.1em; opacity:.55;
+  }
+  .skin-demo .demo-top i{width:5px; height:5px; border-radius:50%; background:var(--demo-accent); display:block}
+  .skin-demo .demo-body{padding:15px 14px 16px}
+  .skin-demo .demo-kicker{font-family:var(--mono); font-size:7px; letter-spacing:.13em; color:var(--demo-accent); display:block; margin-bottom:5px}
+  .skin-demo .demo-title{font-size:23px; line-height:1.05; letter-spacing:-.04em; font-weight:900}
+  .skin-demo .demo-sub{font-size:10px; line-height:1.5; opacity:.55; margin-top:5px}
+  .skin-demo .demo-meter{height:5px; margin-top:13px; background:rgba(127,127,127,.18); overflow:hidden}
+  .skin-demo .demo-meter i{display:block; height:100%; width:68%; background:var(--demo-accent); transition:background .3s}
+  .skin-demo .demo-lines{display:flex; flex-direction:column; gap:5px; margin-top:11px}
+  .skin-demo .demo-lines i{display:block; height:3px; background:currentColor; opacity:.16}
+  .skin-demo .demo-btn{
+    display:inline-flex; align-items:center; gap:8px; margin-top:13px; padding:6px 9px;
+    background:var(--demo-accent); color:var(--demo-ink,#0b0c0b); border:0;
+    font-family:var(--mono); font-size:8px; letter-spacing:.08em; font-weight:700;
+    border-radius:calc(var(--demo-radius,0) / 2);
+  }
+  .demo-note{margin:8px 0 0; font-family:var(--mono); font-size:7px; letter-spacing:.08em; opacity:.35}
+  .skin-card{color:inherit; font:inherit; text-align:left; cursor:pointer; appearance:none}
+  .skin-card.active{border-color:var(--orange); box-shadow:0 0 0 1px var(--orange) inset}
+  .cat small i{font-style:normal; margin-left:4px; opacity:.55; transition:color .2s,opacity .2s}
+  .cat:hover small i{color:var(--orange); opacity:1}
   /* ---------- responsive ---------- */
   @media(max-width:1100px){
     .navlinks{display:none}
     .menu-btn{display:block}
     .hdr-cta{margin-left:0}
+    .sfx-btn{margin-left:auto}
     .hero-inner{grid-template-columns:1fr .82fr}
     .sec-head{grid-template-columns:54px 1fr; gap:18px}
     .sec-head .lead{grid-column:2; margin-top:0}
@@ -438,6 +593,8 @@
     .rail{display:none}
     .site-header{gap:18px}
     .hdr-cta{display:none}
+    .sfx-btn{margin-left:auto; padding:8px}
+    .menu-btn{margin-left:0}
     .hero{padding-top:92px; min-height:auto}
     .hero-inner{grid-template-columns:1fr; gap:38px}
     .hero h1{max-width:none}
@@ -456,6 +613,7 @@
     .system-visual{position:relative; top:auto; order:-1}
     .callout.c1{left:6px; bottom:10px}
     .callout.c2{right:6px; top:10px}
+    .system-visual .fig-bar span:last-child{display:none}
     .matrix-layout{grid-template-columns:1fr}
     .mtabs{flex-direction:row; overflow:auto; scrollbar-width:none; border-top:1px solid rgba(238,234,225,.18)}
     .mtabs::-webkit-scrollbar{display:none}
@@ -473,12 +631,17 @@
     .foot-grid{grid-template-columns:1fr}
     .foot-nav{justify-content:flex-start}
     .station .figure{transform:none}
+    .hotspot span{display:none}
+    .verify-line{flex-direction:column; align-items:stretch; gap:4px}
+    .verify-line code{white-space:normal; overflow-wrap:anywhere; font-size:9px}
+    .policy-actions{flex-wrap:wrap}
   }
   @media(max-width:700px){
     #dust{opacity:.55}
   }
   @media(max-width:520px){
     .hero h1{font-size:42px}
+    .hotspot{width:21px; height:21px; font-size:7px}
     .hero-actions .btn{width:100%; justify-content:space-between}
     .hero-meta{display:none}
     .brand-txt small{display:none}
@@ -512,7 +675,8 @@
     <a href="#enterprise">06 企业</a>
     <a href="#download">07 下载</a>
   </nav>
-  <a class="hdr-cta" href="https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe">下载 v19.13</a>
+  <button class="sfx-btn" id="sfxBtn" type="button" aria-pressed="false" aria-label="开启界面音效"><i aria-hidden="true"></i><span>SFX</span></button>
+  <a class="hdr-cta" href="https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe" data-download-link data-track="download">下载 v<span data-ver>19.13</span></a>
   <button class="menu-btn" id="menuBtn" aria-label="打开菜单" aria-expanded="false"><span></span><span></span><span></span></button>
 </header>
 
@@ -542,7 +706,7 @@
     <div class="hero-ghost" aria-hidden="true">TOOLBOX</div>
     <div class="hero-inner">
       <div class="hero-copy">
-        <div class="hero-kicker"><span>WINDOWS UTILITY SUITE / BUILD 19.13</span></div>
+        <div class="hero-kicker"><span>WINDOWS UTILITY SUITE / BUILD <b data-ver>19.13</b></span></div>
         <h1>一台电脑的<br>小事，交给它<span class="dot">。</span></h1>
         <p class="hero-manifesto">EVERY SMALL THING / BECOMES SPEED.</p>
         <p class="hero-lead">26+ 项原生工具，外加整站 88 个离线网页工具。定时关机、C 盘清理、Steam 进阶、视频下载、去水印、录屏、加密、局域网互传——全部装进一个 exe，双击就跑。</p>
@@ -552,18 +716,25 @@
         </div>
         <div class="hero-meta">
           <span><b>WIN 10 / 11</b> · x64 / x86</span>
-          <span><b>26,033,040 BYTES</b></span>
-          <span>SHA256 <b>d0a9d5b5…7f4f6f</b></span>
+          <span><b data-size-bytes>26,033,040 BYTES</b></span>
+          <span>SHA256 <b data-sha-short>d0a9d5b5…7f4f6f</b></span>
         </div>
       </div>
       <div class="hero-stage">
         <span class="stage-tag tl"><b>88</b> / OFFLINE TOOLS</span>
         <figure class="figure">
-          <div class="fig-bar"><span>LIVE / WORKBENCH</span><span class="dots"><i></i><i></i><i></i></span><span>MT–19.13</span></div>
+          <div class="fig-bar"><span>LIVE / WORKBENCH</span><span class="dots"><i></i><i></i><i></i></span><span>MT–<b data-ver>19.13</b></span></div>
           <div class="scan" aria-hidden="true"></div>
-          <img src="assets/workbench_v1913.png" alt="小工具箱 v19.13 工作台实拍" width="1200" height="860" fetchpriority="high" decoding="async" />
+          <picture>
+            <source type="image/avif" srcset="assets/workbench_v1913-800.avif 800w, assets/workbench_v1913-1200.avif 1200w" sizes="(max-width:860px) 92vw, 560px" />
+            <source type="image/webp" srcset="assets/workbench_v1913-800.webp 800w, assets/workbench_v1913-1200.webp 1200w" sizes="(max-width:860px) 92vw, 560px" />
+            <img src="assets/workbench_v1913.png" alt="小工具箱 v19.13 工作台实拍" width="1200" height="860" fetchpriority="high" decoding="async" />
+          </picture>
         </figure>
-        <span class="stage-tag br">SINGLE FILE / <b>26 MB</b></span>
+        <span class="stage-tag br">SINGLE FILE / <b data-size-mb>26 MB</b></span>
+        <button class="hotspot" type="button" style="--x:36%;--y:58%" data-jump="#system" data-sound="click" title="热点：C 盘清理" aria-label="跳到 C 盘清理章节"><span>C 盘清理</span>01</button>
+        <button class="hotspot" type="button" style="--x:36%;--y:72%" data-jump="#matrix" data-jump-tab="media" data-sound="click" title="热点：视频下载" aria-label="跳到视频下载能力"><span>视频下载</span>02</button>
+        <button class="hotspot spot-3" type="button" style="--x:86%;--y:14%" data-jump="#skins" data-sound="click" title="热点：皮肤" aria-label="跳到皮肤章节"><span>换皮肤</span>03</button>
       </div>
     </div>
     <div class="hero-stats">
@@ -575,7 +746,7 @@
     <div class="hero-foot">
       <span>“环门” / THE LAUNCHER</span>
       <span class="mid">向下 <span class="mouse" aria-hidden="true"></span> 滑动</span>
-      <span class="right"><a href="#download">最新版本 v19.13</a> / <a href="https://github.com/wj5666619/MiniToolbox">查看源码</a></span>
+      <span class="right"><a href="#download">最新版本 v<span data-ver>19.13</span></a> / <a href="https://github.com/wj5666619/MiniToolbox">查看源码</a></span>
     </div>
   </section>
 
@@ -614,10 +785,15 @@
       <div class="system-visual reveal" style="--d:.12s">
         <span class="callout c1">RECLAIMABLE / <b>17.8 GB</b></span>
         <span class="callout c2">INDEXED / <b>404,279 FILES</b></span>
-        <figure class="figure">
-          <div class="fig-bar"><span>MODULE / CLEAN</span><span class="dots"><i></i><i></i><i></i></span><span>SCAN COMPLETE</span></div>
+        <figure class="figure" data-zoom="assets/clean_detail.png" role="button" tabindex="0" aria-label="放大查看 C 盘清理截图">
+          <div class="fig-bar"><span>MODULE / CLEAN</span><span class="dots"><i></i><i></i><i></i></span><span>SCAN COMPLETE / ＋ ZOOM</span></div>
           <div class="scan" aria-hidden="true"></div>
-          <img src="assets/clean_detail.png" alt="C 盘清理：磁盘占用、分类清理与文件列表" width="960" height="660" loading="lazy" decoding="async" />
+          <span class="zoom-hint"><b>＋</b> 点击放大</span>
+          <picture>
+            <source type="image/avif" srcset="assets/clean_detail_v1913-640.avif 640w, assets/clean_detail_v1913-960.avif 960w" sizes="(max-width:860px) 92vw, 620px" />
+            <source type="image/webp" srcset="assets/clean_detail_v1913-640.webp 640w, assets/clean_detail_v1913-960.webp 960w" sizes="(max-width:860px) 92vw, 620px" />
+            <img src="assets/clean_detail.png" alt="C 盘清理：磁盘占用、分类清理与文件列表" width="960" height="660" loading="lazy" decoding="async" />
+          </picture>
         </figure>
         <div class="caption"><span>磁盘热力图 · 分类勾选 · 回收站撤回</span><span>REAL CAPTURE / 2026</span></div>
       </div>
@@ -648,12 +824,12 @@
           <h3>系统 / SYSTEM</h3>
           <p class="desc">把电脑的日常维护压成几个按钮：清理、关机、看清配置、必要时重装。没有后台常驻，也没有看不懂的进程树。</p>
           <div class="chips">
-            <div class="chip"><small>SYS–01</small><b>定时关机 / 撤销</b></div>
-            <div class="chip"><small>SYS–02</small><b>C 盘分类清理</b></div>
-            <div class="chip"><small>SYS–03</small><b>硬件配置总览</b></div>
-            <div class="chip"><small>SYS–04</small><b>一键重装系统</b></div>
-            <div class="chip"><small>SYS–05</small><b>磁盘占用分析</b></div>
-            <div class="chip"><small>SYS–06</small><b>开机自启管理</b></div>
+            <div class="chip" data-tip="定好时间自动关机，关机前 60 秒可撤销"><small>SYS–01</small><b>定时关机 / 撤销</b></div>
+            <div class="chip" data-tip="缓存、日志、缩略图、回收站分类扫描，按大小排序"><small>SYS–02</small><b>C 盘分类清理</b></div>
+            <div class="chip" data-tip="CPU、内存、磁盘、显卡、系统版本一屏读全"><small>SYS–03</small><b>硬件配置总览</b></div>
+            <div class="chip" data-tip="从桌面直接重装，保留驱动与常用设置"><small>SYS–04</small><b>一键重装系统</b></div>
+            <div class="chip" data-tip="按文件夹找出最占空间的东西，不靠猜"><small>SYS–05</small><b>磁盘占用分析</b></div>
+            <div class="chip" data-tip="看清开机启动项，关掉不必要的常驻"><small>SYS–06</small><b>开机自启管理</b></div>
           </div>
         </div>
         <div class="mpanel" data-panel="media">
@@ -661,12 +837,12 @@
           <h3>媒体 / MEDIA</h3>
           <p class="desc">从链接到本地文件，下载、去水印、录屏、转 GIF、压图片，一条链路走完。支持队列，不用守在电脑前。</p>
           <div class="chips">
-            <div class="chip"><small>MED–01</small><b>视频下载 / 队列</b></div>
-            <div class="chip"><small>MED–02</small><b>音乐下载</b></div>
-            <div class="chip"><small>MED–03</small><b>视频 / 图片去水印</b></div>
-            <div class="chip"><small>MED–04</small><b>高清录屏</b></div>
-            <div class="chip"><small>MED–05</small><b>GIF 工坊</b></div>
-            <div class="chip"><small>MED–06</small><b>图片批量压缩</b></div>
+            <div class="chip" data-tip="粘贴链接，批量排队下载，不用守在电脑前"><small>MED–01</small><b>视频下载 / 队列</b></div>
+            <div class="chip" data-tip="搜索或粘贴链接，把音轨保存到本地"><small>MED–02</small><b>音乐下载</b></div>
+            <div class="chip" data-tip="框选水印区域，视频和图片都能处理"><small>MED–03</small><b>视频 / 图片去水印</b></div>
+            <div class="chip" data-tip="窗口或全屏录制，可同时收麦克风"><small>MED–04</small><b>高清录屏</b></div>
+            <div class="chip" data-tip="从视频截一段转 GIF，帧率和尺寸可调"><small>MED–05</small><b>GIF 工坊</b></div>
+            <div class="chip" data-tip="整文件夹压缩，尽量保住观感"><small>MED–06</small><b>图片批量压缩</b></div>
           </div>
         </div>
         <div class="mpanel" data-panel="file">
@@ -674,12 +850,12 @@
           <h3>文件 / FILE</h3>
           <p class="desc">改名、转换、查重、加密、算哈希。处理一整文件夹，不是一个个点。敏感文件只在本地加密，密钥不离开这台机器。</p>
           <div class="chips">
-            <div class="chip"><small>FIL–01</small><b>批量重命名</b></div>
-            <div class="chip"><small>FIL–02</small><b>格式转换</b></div>
-            <div class="chip"><small>FIL–03</small><b>重复文件清理</b></div>
-            <div class="chip"><small>FIL–04</small><b>单文件加密 .mtbx</b></div>
-            <div class="chip"><small>FIL–05</small><b>文件哈希校验</b></div>
-            <div class="chip"><small>FIL–06</small><b>批量处理队列</b></div>
+            <div class="chip" data-tip="按规则批量改名，先预览再执行"><small>FIL–01</small><b>批量重命名</b></div>
+            <div class="chip" data-tip="图片、文档常用格式互转，不丢结构"><small>FIL–02</small><b>格式转换</b></div>
+            <div class="chip" data-tip="按内容哈希找重复，不靠文件名误判"><small>FIL–03</small><b>重复文件清理</b></div>
+            <div class="chip" data-tip="本地 AES 加密，密钥不离开这台机器"><small>FIL–04</small><b>单文件加密 .mtbx</b></div>
+            <div class="chip" data-tip="SHA256 / MD5 计算与比对，校验下载包"><small>FIL–05</small><b>文件哈希校验</b></div>
+            <div class="chip" data-tip="多个文件任务排队处理，进度可见"><small>FIL–06</small><b>批量处理队列</b></div>
           </div>
         </div>
         <div class="mpanel" data-panel="flow">
@@ -687,12 +863,12 @@
           <h3>效率 / FLOW</h3>
           <p class="desc">用热键、指令舱和局域网剪贴板，把重复动作压到一次按键。手机和电脑在同一 Wi-Fi 下，复制粘贴不用发微信。</p>
           <div class="chips">
-            <div class="chip"><small>FLW–01</small><b>全局热键中心</b></div>
-            <div class="chip"><small>FLW–02</small><b>局域网剪贴板</b></div>
-            <div class="chip"><small>FLW–03</small><b>剪贴板历史</b></div>
-            <div class="chip"><small>FLW–04</small><b>指令舱 Ctrl+K</b></div>
-            <div class="chip"><small>FLW–05</small><b>手机互传</b></div>
-            <div class="chip"><small>FLW–06</small><b>插件仓库</b></div>
+            <div class="chip" data-tip="一个面板管所有全局快捷键，冲突会提示"><small>FLW–01</small><b>全局热键中心</b></div>
+            <div class="chip" data-tip="同一 Wi-Fi 下，手机和电脑直接互贴文字"><small>FLW–02</small><b>局域网剪贴板</b></div>
+            <div class="chip" data-tip="最近复制过的内容可回找，支持固定"><small>FLW–03</small><b>剪贴板历史</b></div>
+            <div class="chip" data-tip="键盘呼出，搜索功能、命令和设置" data-key="Ctrl+K"><small>FLW–04</small><b>指令舱 Ctrl+K</b></div>
+            <div class="chip" data-tip="扫码传文件，走局域网，不经过外网"><small>FLW–05</small><b>手机互传</b></div>
+            <div class="chip" data-tip="按需安装扩展能力，不用等主程序重编译"><small>FLW–06</small><b>插件仓库</b></div>
           </div>
         </div>
         <div class="mpanel" data-panel="util">
@@ -700,12 +876,12 @@
           <h3>实用 / UTILITY</h3>
           <p class="desc">六件不常点、但一用就急的小工具，集中在一个独立小窗里。全部本机内存完成，不联网、不上传。</p>
           <div class="chips">
-            <div class="chip"><small>UTL–01</small><b>图片取色 / 主色板</b></div>
-            <div class="chip"><small>UTL–02</small><b>电子印章</b></div>
-            <div class="chip"><small>UTL–03</small><b>图片 Base64</b></div>
-            <div class="chip"><small>UTL–04</small><b>时间戳转换</b></div>
-            <div class="chip"><small>UTL–05</small><b>强随机密码</b></div>
-            <div class="chip"><small>UTL–06</small><b>工具站 88 入口</b></div>
+            <div class="chip" data-tip="吸管取色，顺手生成一组可直接用的主色板"><small>UTL–01</small><b>图片取色 / 主色板</b></div>
+            <div class="chip" data-tip="本地生成透明底印章，不上传到任何服务器"><small>UTL–02</small><b>电子印章</b></div>
+            <div class="chip" data-tip="图片转 Base64，直接嵌进代码或配置"><small>UTL–03</small><b>图片 Base64</b></div>
+            <div class="chip" data-tip="Unix 时间戳和本地时间互转，带时区"><small>UTL–04</small><b>时间戳转换</b></div>
+            <div class="chip" data-tip="本地随机生成高强度密码，可批量"><small>UTL–05</small><b>强随机密码</b></div>
+            <div class="chip" data-tip="一键打开 88 个离线网页工具的工具站"><small>UTL–06</small><b>工具站 88 入口</b></div>
           </div>
         </div>
         <div class="matrix-note"><span>SELECTED LOADOUT / LIVE</span><span>05 MODULES / 26+ TOOLS</span></div>
@@ -726,18 +902,18 @@
     <div class="station-layout">
       <div class="reveal">
         <div class="cats">
-          <div class="cat"><span>图像 / IMAGE</span><small>12</small></div>
-          <div class="cat"><span>文档 / DOC</span><small>09</small></div>
-          <div class="cat"><span>开发 / DEV</span><small>14</small></div>
-          <div class="cat"><span>媒体 / MEDIA</span><small>08</small></div>
-          <div class="cat"><span>办公 / OFFICE</span><small>07</small></div>
-          <div class="cat"><span>生活 / LIFE</span><small>06</small></div>
-          <div class="cat"><span>设计 / DESIGN</span><small>09</small></div>
-          <div class="cat"><span>安全 / SECURITY</span><small>05</small></div>
-          <div class="cat"><span>数据 / DATA</span><small>08</small></div>
-          <div class="cat"><span>硬件 / HARDWARE</span><small>04</small></div>
-          <div class="cat"><span>趣味 / FUN</span><small>06</small></div>
-          <div class="cat" style="background:rgba(255,77,18,.1)"><span>全部 / ALL</span><small>88</small></div>
+          <a class="cat" href="https://3top.top/tools/image-filter/index.html" target="_blank" rel="noopener" data-track="tool_category" title="打开图像类示例工具：图片调色与滤镜"><span>图像 / IMAGE</span><small>12 <i>↗</i></small></a>
+          <a class="cat" href="https://3top.top/tools/pdf/index.html" target="_blank" rel="noopener" data-track="tool_category" title="打开文档类示例工具：PDF 处理转换器"><span>文档 / DOC</span><small>09 <i>↗</i></small></a>
+          <a class="cat" href="https://3top.top/tools/regex-tool/index.html" target="_blank" rel="noopener" data-track="tool_category" title="打开开发类示例工具：正则与选择测试"><span>开发 / DEV</span><small>14 <i>↗</i></small></a>
+          <a class="cat" href="https://3top.top/tools/video-to-gif/index.html" target="_blank" rel="noopener" data-track="tool_category" title="打开媒体类示例工具：视频转动态图片"><span>媒体 / MEDIA</span><small>08 <i>↗</i></small></a>
+          <a class="cat" href="https://3top.top/tools/table-tool/index.html" target="_blank" rel="noopener" data-track="tool_category" title="打开办公类示例工具：表格解析与处理"><span>办公 / OFFICE</span><small>07 <i>↗</i></small></a>
+          <a class="cat" href="https://3top.top/tools/todo/index.html" target="_blank" rel="noopener" data-track="tool_category" title="打开生活类示例工具：待办清单"><span>生活 / LIFE</span><small>06 <i>↗</i></small></a>
+          <a class="cat" href="https://3top.top/tools/color-tool/index.html" target="_blank" rel="noopener" data-track="tool_category" title="打开设计类示例工具：颜色处理工具箱"><span>设计 / DESIGN</span><small>09 <i>↗</i></small></a>
+          <a class="cat" href="https://3top.top/tools/file-hash/index.html" target="_blank" rel="noopener" data-track="tool_category" title="打开安全类示例工具：文件哈希校验器"><span>安全 / SECURITY</span><small>05 <i>↗</i></small></a>
+          <a class="cat" href="https://3top.top/tools/generator-tool/index.html" target="_blank" rel="noopener" data-track="tool_category" title="打开数据类示例工具：数据密码生成器"><span>数据 / DATA</span><small>08 <i>↗</i></small></a>
+          <a class="cat" href="https://3top.top/tools/hardware-test/index.html" target="_blank" rel="noopener" data-track="tool_category" title="打开硬件类示例工具：外设与硬件测试"><span>硬件 / HARDWARE</span><small>04 <i>↗</i></small></a>
+          <a class="cat" href="https://3top.top/tools/wheel/index.html" target="_blank" rel="noopener" data-track="tool_category" title="打开趣味类示例工具：幸运抽奖大转盘"><span>趣味 / FUN</span><small>06 <i>↗</i></small></a>
+          <a class="cat" href="https://3top.top/" target="_blank" rel="noopener" data-track="tool_category" style="background:rgba(255,77,18,.1)" title="打开工具站首页"><span>全部 / ALL</span><small>88 <i>↗</i></small></a>
         </div>
         <div class="station-metrics">
           <div class="smetric"><b>30,895<em>条</em></b><span>成语词库 / LOCAL DICTIONARY</span></div>
@@ -750,10 +926,15 @@
         </div>
       </div>
       <div class="reveal" style="--d:.12s">
-        <figure class="figure">
-          <div class="fig-bar"><span>TOOL STATION / HOME</span><span class="dots"><i></i><i></i><i></i></span><span>88 ONLINE</span></div>
+        <figure class="figure" data-zoom="assets/toolsite.png" role="button" tabindex="0" aria-label="放大查看工具站截图">
+          <div class="fig-bar"><span>TOOL STATION / HOME</span><span class="dots"><i></i><i></i><i></i></span><span>88 ONLINE / ＋ ZOOM</span></div>
           <div class="scan" aria-hidden="true"></div>
-          <img src="assets/toolsite.png" alt="工具站首页：搜索、11 类分类与 88 个工具卡片" width="1170" height="880" loading="lazy" decoding="async" />
+          <span class="zoom-hint"><b>＋</b> 点击放大</span>
+          <picture>
+            <source type="image/avif" srcset="assets/toolsite_v1913-640.avif 640w, assets/toolsite_v1913-1170.avif 1170w" sizes="(max-width:860px) 92vw, 620px" />
+            <source type="image/webp" srcset="assets/toolsite_v1913-640.webp 640w, assets/toolsite_v1913-1170.webp 1170w" sizes="(max-width:860px) 92vw, 620px" />
+            <img src="assets/toolsite.png" alt="工具站首页：搜索、11 类分类与 88 个工具卡片" width="1170" height="880" loading="lazy" decoding="async" />
+          </picture>
         </figure>
         <div class="caption"><span>独立深色窗口 · 搜索 / 分类 · 离线可用</span><span>MIT / 3TOP.TOP</span></div>
       </div>
@@ -774,41 +955,58 @@
       <div class="skins-copy reveal">
         <h3>换个皮肤，<br>换一种工作状态。</h3>
         <p>白天用纸感手绘，夜里切赛博 HUD；开会投屏用静谧便当，自己折腾用新粗野。皮肤、音色、缩放都在外观设置里，改完自动重启生效。</p>
+        <div class="skin-demo" id="skinDemo" aria-label="皮肤示意预览" style="--demo-bg:#10131a;--demo-fg:#f4f1e8;--demo-accent:#ffd429;--demo-ink:#0b0c0b;--demo-radius:0px">
+          <div class="demo-top"><span>PREVIEW / <b id="demoName">新粗野</b></span><span><i></i> LIVE</span></div>
+          <div class="demo-body">
+            <span class="demo-kicker">SYSTEM / CLEAN</span>
+            <div class="demo-title">系统清理</div>
+            <div class="demo-sub">缓存 6.8 GB · 日志 2.4 GB · 缩略图 1.1 GB</div>
+            <div class="demo-meter"><i></i></div>
+            <div class="demo-lines"><i style="width:72%"></i><i style="width:54%"></i><i style="width:63%"></i></div>
+            <span class="demo-btn">开始扫描 <span>→</span></span>
+          </div>
+        </div>
+        <p class="demo-note">示意预览 / 实际皮肤以程序内为准</p>
       </div>
       <div class="skins-figure reveal" style="--d:.12s">
         <figure class="figure" data-zoom="assets/appearance.png" role="button" tabindex="0" aria-label="放大查看外观设置">
           <div class="fig-bar"><span>SETTINGS / APPEARANCE</span><span class="dots"><i></i><i></i><i></i></span><span>CLICK TO ZOOM</span></div>
           <div class="scan" aria-hidden="true"></div>
-          <img src="assets/appearance.png" alt="外观设置：五套皮肤缩略预览与界面缩放" width="648" height="496" loading="lazy" decoding="async" />
+          <span class="zoom-hint"><b>＋</b> 点击放大</span>
+          <picture>
+            <source type="image/avif" srcset="assets/appearance_v1913-480.avif 480w, assets/appearance_v1913-648.avif 648w" sizes="(max-width:860px) 92vw, 620px" />
+            <source type="image/webp" srcset="assets/appearance_v1913-480.webp 480w, assets/appearance_v1913-648.webp 648w" sizes="(max-width:860px) 92vw, 620px" />
+            <img src="assets/appearance.png" alt="外观设置：五套皮肤缩略预览与界面缩放" width="652" height="508" loading="lazy" decoding="async" />
+          </picture>
         </figure>
       </div>
     </div>
-    <div class="skin-deck reveal">
-      <div class="skin-card" style="--sw:linear-gradient(135deg,#10131a,#1b2029 58%,#ffd429 58%)">
+    <div class="skin-deck reveal" aria-label="皮肤预览">
+      <button class="skin-card active" type="button" aria-pressed="true" data-skin="brutal" data-name="新粗野" data-code="01 / BRUTAL" data-bg="#10131a" data-fg="#f4f1e8" data-accent="#ffd429" data-ink="#0b0c0b" data-radius="0" style="--sw:linear-gradient(135deg,#10131a,#1b2029 58%,#ffd429 58%)">
         <span class="skin-no">01 / BRUTAL</span>
         <span class="skin-swatch"><i></i><i></i><i></i></span>
         <span class="skin-name"><b>新粗野</b><small>DARK / ACID YELLOW</small></span>
-      </div>
-      <div class="skin-card" style="--sw:linear-gradient(135deg,#071018,#0b2130 55%,#3ee6ff 55%)">
+      </button>
+      <button class="skin-card" type="button" aria-pressed="false" data-skin="cyber" data-name="赛博 HUD" data-code="02 / CYBER HUD" data-bg="#071018" data-fg="#dffbff" data-accent="#3ee6ff" data-ink="#001014" data-radius="0" style="--sw:linear-gradient(135deg,#071018,#0b2130 55%,#3ee6ff 55%)">
         <span class="skin-no">02 / CYBER HUD</span>
         <span class="skin-swatch"><i></i><i></i><i></i></span>
         <span class="skin-name"><b>赛博 HUD</b><small>GRID / CYAN OUTLINE</small></span>
-      </div>
-      <div class="skin-card" style="--sw:linear-gradient(135deg,#2a2440,#4b3d72 58%,#ffa9c6 58%)">
+      </button>
+      <button class="skin-card" type="button" aria-pressed="false" data-skin="elastic" data-name="弹性色块" data-code="03 / ELASTIC" data-bg="#2a2440" data-fg="#fff2f7" data-accent="#ffa9c6" data-ink="#2a1220" data-radius="18" style="--sw:linear-gradient(135deg,#2a2440,#4b3d72 58%,#ffa9c6 58%)">
         <span class="skin-no">03 / ELASTIC</span>
         <span class="skin-swatch"><i></i><i></i><i></i></span>
         <span class="skin-name"><b>弹性色块</b><small>SOFT / LARGE RADIUS</small></span>
-      </div>
-      <div class="skin-card" style="--sw:linear-gradient(135deg,#12211d,#1d3a30 58%,#8fd7bf 58%)">
+      </button>
+      <button class="skin-card" type="button" aria-pressed="false" data-skin="bento" data-name="静谧便当" data-code="04 / BENTO" data-bg="#12211d" data-fg="#e8f3ed" data-accent="#8fd7bf" data-ink="#10221b" data-radius="10" style="--sw:linear-gradient(135deg,#12211d,#1d3a30 58%,#8fd7bf 58%)">
         <span class="skin-no">04 / BENTO</span>
         <span class="skin-swatch"><i></i><i></i><i></i></span>
         <span class="skin-name"><b>静谧便当</b><small>LOW SAT / MUTED GREEN</small></span>
-      </div>
-      <div class="skin-card" style="--sw:linear-gradient(135deg,#f3efe2,#faf7ec 55%,#14161a 55%,#e5ff3d 80%)">
+      </button>
+      <button class="skin-card" type="button" aria-pressed="false" data-skin="paper" data-name="纸感手绘" data-code="05 / PAPER" data-bg="#f3efe2" data-fg="#14161a" data-accent="#14161a" data-ink="#f3efe2" data-radius="0" style="--sw:linear-gradient(135deg,#f3efe2,#faf7ec 55%,#14161a 55%,#e5ff3d 80%)">
         <span class="skin-no">05 / PAPER</span>
         <span class="skin-swatch" style="color:#14161a"><i></i><i></i><i></i></span>
         <span class="skin-name"><b>纸感手绘</b><small>PAPER / INK BLACK</small></span>
-      </div>
+      </button>
     </div>
   </section>
 
@@ -849,15 +1047,25 @@
       </div>
     </div>
     <div class="policy reveal">
-      <div class="policy-bar"><span>策略示例 / POLICY.JSON</span><span>READ–ONLY TEMPLATE</span></div>
-<pre><span class="c">// 只收紧，不放宽；删掉文件即恢复默认</span>
+      <div class="policy-bar"><span>策略示例 / POLICY.JSON</span><div class="policy-actions"><button class="copy-btn" type="button" data-copy-source="#policyJson" aria-label="复制策略 JSON">复制</button><button class="copy-btn" type="button" data-download-source="#policyJson" data-filename="MiniToolbox-策略示例.json" aria-label="下载策略 JSON 模板">下载 .json</button></div></div>
+<pre id="policyCode"><span class="c">// 只收紧，不放宽；删掉文件即恢复默认</span>
 {
   <span class="o">"禁用在线更新"</span>: true,
   <span class="o">"禁用诊断导出"</span>: false,
   <span class="o">"详细日志"</span>: false,
   <span class="o">"禁用功能"</span>: [<span class="o">"video"</span>, <span class="o">"music"</span>]
 }</pre>
+      <script type="application/json" id="policyJson">{
+  "禁用在线更新": true,
+  "禁用诊断导出": false,
+  "详细日志": false,
+  "禁用功能": ["video", "music"]
+}</script>
     </div>
+    <details class="policy-doc reveal">
+      <summary>策略字段说明 / FIELD NOTES</summary>
+      <p><b>禁用在线更新</b> 关闭程序内更新检查；<b>禁用诊断导出</b> 阻止“关于”页导出诊断包；<b>详细日志</b> 记录更细的运行事件；<b>禁用功能</b> 按功能 ID 隐藏入口。策略只收紧权限，不会放宽默认行为。</p>
+    </details>
     <div class="ent-actions reveal">
       <a class="btn btn-ghost" href="https://github.com/wj5666619/MiniToolbox/blob/main/企业管理指南.md" target="_blank" rel="noopener"><span>企业管理指南</span><span class="ar">↗</span></a>
       <a class="btn btn-ghost" href="https://github.com/wj5666619/MiniToolbox/blob/main/部署.ps1" target="_blank" rel="noopener"><span>部署脚本</span><span class="ar">↗</span></a>
@@ -879,18 +1087,42 @@
         <div class="download-word">EXE<span>.</span><small>WINDOWS 10 / 11 · X64 / X86</small></div>
       </div>
       <div class="download-card reveal" style="--d:.1s">
-        <h2>小工具箱 v19.13</h2>
+        <h2>小工具箱 v<span data-ver>19.13</span></h2>
         <p>单文件主程序，内置 26+ 项原生工具与 88 个离线网页工具。首次打开工具站会解压到本地，之后离线秒开。</p>
+        <div class="latest-notes">
+          <h4>THIS UPDATE / 本次更新</h4>
+          <ul id="latestNotes">
+            <li>工作台新增「工具站」入口：88 个开源工具离线内置，覆盖 11 类。</li>
+            <li>工具站自带搜索与分类，文件不上传；首次解压后离线秒开。</li>
+            <li>原生「实用工具集」六件保留，主程序因整站资源增至约 26 MB。</li>
+          </ul>
+        </div>
         <div class="download-actions">
-          <a class="btn btn-primary" href="https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe"><span>下载 EXE</span><span class="ar">↓</span></a>
-          <a class="btn btn-ghost" href="https://github.com/wj5666619/MiniToolbox/releases" target="_blank" rel="noopener"><span>7z / 历史版本</span><span class="ar">↗</span></a>
+          <a class="btn btn-primary" href="https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe" data-download-link data-track="download"><span>下载 EXE</span><span class="ar">↓</span></a>
+          <a class="btn btn-ghost" href="https://github.com/wj5666619/MiniToolbox/releases" target="_blank" rel="noopener" data-track="release_history"><span>7z / 历史版本</span><span class="ar">↗</span></a>
         </div>
         <div class="dl-meta">
-          <div class="dl-row"><span>VERSION</span><b>19.13</b></div>
-          <div class="dl-row"><span>EXE SIZE</span><b>26,033,040 字节</b></div>
+          <div class="dl-row"><span>VERSION</span><b data-ver>19.13</b></div>
+          <div class="dl-row"><span>EXE SIZE</span><b data-size>26,033,040 字节</b></div>
           <div class="dl-row"><span>7Z SIZE</span><b>23,863,359 字节</b></div>
-          <div class="dl-row"><span>SHA256</span><div class="hash-wrap"><b class="hash">d0a9d5b59a7882febac67f395369838d39c0c751588b09b76c242f1f9c7f4f6f</b><button class="copy-btn" type="button" data-copy="d0a9d5b59a7882febac67f395369838d39c0c751588b09b76c242f1f9c7f4f6f" aria-label="复制 SHA256 校验值">复制</button></div></div>
+          <div class="dl-row"><span>SHA256</span><div class="hash-wrap"><b class="hash" data-sha>d0a9d5b59a7882febac67f395369838d39c0c751588b09b76c242f1f9c7f4f6f</b><button class="copy-btn" type="button" data-copy="d0a9d5b59a7882febac67f395369838d39c0c751588b09b76c242f1f9c7f4f6f" aria-label="复制 SHA256 校验值">复制</button></div></div>
           <div class="dl-row"><span>SIGNATURE</span><b>自签名证书 · 对照哈希确认</b></div>
+        </div>
+        <div class="security-note">
+          <span class="ico" aria-hidden="true">!</span>
+          <div>
+            <b>首次运行提示“未知发布者”？</b>
+            <p>程序使用自签名证书，没有公共 CA 信誉链，Windows SmartScreen 可能先拦一下。不是查毒结论，也不代表文件被改动；先核对哈希，再决定是否运行。</p>
+            <a href="#verify">查看 3 步校验 ↓</a>
+          </div>
+        </div>
+        <div class="verify-box" id="verify">
+          <label>POWERSHELL / VERIFY SHA256</label>
+          <div class="verify-line">
+            <code id="verifyCmd">Get-FileHash .\MiniToolbox.exe -Algorithm SHA256</code>
+            <button class="copy-btn" type="button" data-copy="Get-FileHash .\MiniToolbox.exe -Algorithm SHA256" aria-label="复制校验命令">复制</button>
+          </div>
+          <p>在下载目录打开 PowerShell 运行，输出应与上方 SHA256 完全一致；不一致就不要运行。哈希一致只能证明文件完整，不能替代杀毒扫描。</p>
         </div>
       </div>
     </div>
@@ -900,6 +1132,7 @@
         <details open><summary>需要安装吗？</summary><p>不需要。单个 exe 双击就跑，退出不写注册表、不留后台服务；想卸载直接删文件。</p></details>
         <details><summary>会联网吗？</summary><p>只在检查更新、查 Steam 价格、下载你指定的内容时联网；工具站与剪贴板、清理记录、配置都只存本地。</p></details>
         <details><summary>为什么提示“未知发布者”？</summary><p>程序使用自签名证书，作者本机可信；他人电脑首次运行可能提示。可对照上面的 SHA256 确认文件未被改动。</p></details>
+        <details><summary>GitHub 直链慢怎么办？</summary><p>先换 7z 包，体积更小；仍慢可换网络或 DNS，再去 Releases 页重试。无论走哪个入口，下载后都要对照同一个 SHA256。站点不放第三方镜像，避免镜像被替换后哈希对不上。</p></details>
         <details><summary>工具站需要 WebView2 吗？</summary><p>绝大多数 Win10 / 11 已带 Edge WebView2 运行时。纯精简系统若缺失会提示重试，也可点窗口右上角「↗」用系统浏览器打开在线版。</p></details>
       </div>
       <div class="reveal" style="--d:.08s">
@@ -932,10 +1165,16 @@
     </nav>
   </div>
   <div class="foot-legal">
-    <span>© 2026 MINI TOOLBOX / WINDOWS 10–11 / V19.13</span>
+    <span>© 2026 MINI TOOLBOX / WINDOWS 10–11 / V<span data-ver>19.13</span></span>
     <span>独立作品 · 与腾讯无关 · 视觉语言参考工业游戏站点，未使用其素材</span>
   </div>
 </footer>
+
+<div class="mobile-dock" id="mobileDock" aria-label="快速下载">
+  <a href="https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe" data-download-link data-track="download"><span>下载 EXE</span><small>v<span data-ver>19.13</span> · <span data-size-mb>26 MB</span></small></a>
+  <button id="dockClose" type="button" aria-label="关闭快速下载">×</button>
+</div>
+<div class="chip-tip" id="chipTip" role="tooltip"></div>
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="查看截图">
   <button class="lb-close" id="lbClose" aria-label="关闭">×</button>
@@ -946,16 +1185,133 @@
 (function(){
   document.documentElement.classList.add('js');
 
-  // mobile nav
+  // Optional privacy endpoint. Leave blank: events stay in window.__mtEvents only.
+  const MT_ANALYTICS_ENDPOINT = '';
+  window.__mtEvents = window.__mtEvents || [];
+  function track(name, detail){
+    const ev = Object.assign({event:name, ts:Date.now()}, detail || {});
+    window.__mtEvents.push(ev);
+    if(!MT_ANALYTICS_ENDPOINT) return;
+    try{
+      const body = JSON.stringify(ev);
+      if(navigator.sendBeacon){
+        navigator.sendBeacon(MT_ANALYTICS_ENDPOINT, new Blob([body], {type:'application/json'}));
+      } else {
+        fetch(MT_ANALYTICS_ENDPOINT, {method:'POST', keepalive:true, headers:{'Content-Type':'application/json'}, body:body});
+      }
+    }catch(e){}
+  }
+
+  // ---------- optional interface sound ----------
+  let sfxOn = false;
+  try{ sfxOn = localStorage.getItem('mt-sfx') === '1'; }catch(e){}
+  let audioCtx = null;
+  function ensureAudio(){
+    const C = window.AudioContext || window.webkitAudioContext;
+    if(!C) return null;
+    if(!audioCtx) audioCtx = new C();
+    if(audioCtx.state === 'suspended') audioCtx.resume();
+    return audioCtx;
+  }
+  function sound(kind){
+    if(!sfxOn) return;
+    const c = ensureAudio(); if(!c) return;
+    const cfg = kind === 'whoosh'
+      ? {type:'sawtooth', f0:230, f1:64, dur:.17, gain:.022}
+      : kind === 'tick'
+        ? {type:'sine', f0:940, f1:760, dur:.045, gain:.013}
+        : {type:'square', f0:1180, f1:1180, dur:.024, gain:.007};
+    try{
+      const t = c.currentTime + .001;
+      const o = c.createOscillator(), g = c.createGain();
+      o.type = cfg.type;
+      o.frequency.setValueAtTime(cfg.f0, t);
+      if(cfg.f1 !== cfg.f0) o.frequency.exponentialRampToValueAtTime(cfg.f1, t + cfg.dur);
+      g.gain.setValueAtTime(.0001, t);
+      g.gain.linearRampToValueAtTime(cfg.gain, t + .006);
+      g.gain.exponentialRampToValueAtTime(.0001, t + cfg.dur);
+      o.connect(g); g.connect(c.destination);
+      o.start(t); o.stop(t + cfg.dur + .012);
+    }catch(e){}
+  }
+  function haptic(){
+    if(!sfxOn || !navigator.vibrate) return;
+    try{ navigator.vibrate(8); }catch(e){}
+  }
+  const sfxBtn = document.getElementById('sfxBtn');
+  function syncSfx(){
+    if(!sfxBtn) return;
+    sfxBtn.setAttribute('aria-pressed', sfxOn ? 'true' : 'false');
+    sfxBtn.setAttribute('aria-label', sfxOn ? '关闭界面音效' : '开启界面音效');
+  }
+  if(sfxBtn){
+    syncSfx();
+    sfxBtn.addEventListener('click', function(){
+      sfxOn = !sfxOn;
+      try{ localStorage.setItem('mt-sfx', sfxOn ? '1' : '0'); }catch(e){}
+      syncSfx();
+      if(sfxOn) sound('tick');
+      track('sfx_toggle', {on:sfxOn});
+    });
+  }
+
+  // one delegated layer for outbound links and small UI sounds
+  document.addEventListener('click', function(e){
+    const el = e.target && e.target.closest ? e.target.closest('[data-track]') : null;
+    if(el){
+      track(el.dataset.track, {href:el.href || ''});
+      if(el.dataset.track === 'download'){ sound('whoosh'); haptic(); }
+      else sound('click');
+      return;
+    }
+    const snd = e.target && e.target.closest ? e.target.closest('[data-sound]') : null;
+    if(snd){ sound(snd.dataset.sound || 'click'); return; }
+    const anchor = e.target && e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if(anchor && !anchor.classList.contains('skip-link')){
+      sound('click');
+      track('nav', {target:anchor.getAttribute('href')});
+    }
+  }, true);
+
+  // ---------- mobile nav + sticky download ----------
   const menuBtn = document.getElementById('menuBtn');
   const mobileNav = document.getElementById('mobileNav');
-  function closeMenu(){ mobileNav.classList.remove('open'); menuBtn.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
+  const dock = document.getElementById('mobileDock');
+  const dockClose = document.getElementById('dockClose');
+  const downloadSec = document.getElementById('download');
+  let dockDismissed = false;
+  try{ dockDismissed = sessionStorage.getItem('mt-dock-dismissed') === '1'; }catch(e){}
+  function updateDock(){
+    if(!dock) return;
+    const navOpen = document.body.classList.contains('menu-open');
+    const lbOpen = document.getElementById('lightbox') && document.getElementById('lightbox').classList.contains('open');
+    const nearDownload = downloadSec ? downloadSec.getBoundingClientRect().top < window.innerHeight * .9 : false;
+    const show = window.innerWidth <= 860 && !dockDismissed && !navOpen && !lbOpen && !nearDownload && (window.scrollY || 0) > window.innerHeight * .8;
+    dock.classList.toggle('show', show);
+  }
+  function closeMenu(){
+    mobileNav.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded','false');
+    document.body.style.overflow='';
+    document.body.classList.remove('menu-open');
+    updateDock();
+  }
   menuBtn.addEventListener('click', function(){
     const open = mobileNav.classList.toggle('open');
     menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
     document.body.style.overflow = open ? 'hidden' : '';
+    document.body.classList.toggle('menu-open', open);
+    if(open && dock) dock.classList.remove('show');
   });
   mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  if(dockClose){
+    dockClose.addEventListener('click', function(){
+      dockDismissed = true;
+      try{ sessionStorage.setItem('mt-dock-dismissed','1'); }catch(e){}
+      updateDock();
+      track('dock_dismiss');
+    });
+  }
   window.addEventListener('keydown', e => { if(e.key === 'Escape') closeMenu(); });
 
   // reveal
@@ -985,50 +1341,86 @@
     navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
     const max = document.documentElement.scrollHeight - window.innerHeight;
     progress.style.width = (max > 0 ? (y / max * 100) : 0) + '%';
+    updateDock();
   }
   window.addEventListener('scroll', onScroll, {passive:true});
   window.addEventListener('resize', onScroll);
   onScroll();
 
-  // copy to clipboard
-  document.querySelectorAll('[data-copy]').forEach(btn => {
-    btn.addEventListener('click', async () => {
-      const text = btn.dataset.copy;
+  // ---------- copy + policy download ----------
+  function flashLabel(btn, label){
+    if(!btn.__label) btn.__label = btn.textContent.trim();
+    if(btn.__timer) clearTimeout(btn.__timer);
+    btn.textContent = label;
+    btn.classList.add('ok');
+    btn.__timer = setTimeout(function(){ btn.textContent = btn.__label; btn.classList.remove('ok'); }, 1600);
+  }
+  function selectText(node){
+    if(!node || !window.getSelection) return;
+    const r = document.createRange(); r.selectNodeContents(node);
+    const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+  }
+  document.querySelectorAll('[data-copy],[data-copy-source]').forEach(function(btn){
+    btn.__label = btn.textContent.trim();
+    btn.addEventListener('click', async function(){
+      const source = btn.dataset.copySource;
+      const node = source ? document.querySelector(source) : null;
+      const text = (btn.dataset.copy || (node ? node.textContent : '') || '').trim();
+      if(!text) return;
       let done = false;
-      try { await navigator.clipboard.writeText(text); done = true; } catch(e) {}
+      try{ await navigator.clipboard.writeText(text); done = true; }catch(e){}
       if(!done){
         const ta = document.createElement('textarea');
         ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
         document.body.appendChild(ta); ta.select();
-        try { done = document.execCommand('copy'); } catch(e) {}
+        try{ done = document.execCommand('copy'); }catch(e){}
         ta.remove();
       }
       if(!done){
-        const hash = document.querySelector('.hash');
-        if(hash && window.getSelection){
-          const r = document.createRange(); r.selectNodeContents(hash);
-          const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
-        }
-        if(!btn.__label) btn.__label = btn.textContent;
-        btn.textContent = 'Ctrl+C'; btn.classList.add('ok');
-        if(btn.__timer) clearTimeout(btn.__timer);
-        btn.__timer = setTimeout(() => { btn.textContent = btn.__label; btn.classList.remove('ok'); }, 1600);
+        const visible = btn.closest('.hash-wrap') ? btn.closest('.hash-wrap').querySelector('.hash') : (source ? btn.closest('.policy') && document.getElementById('policyCode') : null);
+        selectText(visible);
+        flashLabel(btn, 'Ctrl+C');
         return;
       }
-      if(btn.__timer) clearTimeout(btn.__timer);
-      if(!btn.__label) btn.__label = btn.textContent;
-      btn.textContent = '已复制'; btn.classList.add('ok');
-      btn.__timer = setTimeout(() => { btn.textContent = btn.__label; btn.classList.remove('ok'); }, 1600);
+      flashLabel(btn, '已复制');
+      sound('tick'); haptic();
+      track('copy', {kind: source ? 'policy' : (btn.closest('.verify-box') ? 'command' : 'sha')});
+    });
+  });
+  document.querySelectorAll('[data-download-source]').forEach(function(btn){
+    btn.__label = btn.textContent.trim();
+    btn.addEventListener('click', function(){
+      const source = btn.dataset.downloadSource;
+      const node = source ? document.querySelector(source) : null;
+      const text = node ? node.textContent.trim() : '';
+      if(!text) return;
+      const blob = new Blob([text], {type:'application/json;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = btn.dataset.filename || 'MiniToolbox-policy.json';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function(){ URL.revokeObjectURL(url); }, 500);
+      flashLabel(btn, '已下载');
+      sound('whoosh'); haptic();
+      track('policy_download');
     });
   });
 
   // tabs
   const tabs = Array.from(document.querySelectorAll('.mtab'));
   const panels = Array.from(document.querySelectorAll('.mpanel'));
+  function activateTab(name, focus){
+    const btn = tabs.find(b => b.dataset.tab === name);
+    if(!btn) return;
+    tabs.forEach(b => { b.classList.toggle('active', b === btn); b.setAttribute('aria-selected', b === btn ? 'true' : 'false'); });
+    panels.forEach(p => p.classList.toggle('active', p.dataset.panel === name));
+    if(focus) btn.focus();
+  }
   tabs.forEach((btn, i) => {
     btn.addEventListener('click', () => {
-      tabs.forEach(b => { b.classList.toggle('active', b === btn); b.setAttribute('aria-selected', b === btn ? 'true' : 'false'); });
-      panels.forEach(p => p.classList.toggle('active', p.dataset.panel === btn.dataset.tab));
+      activateTab(btn.dataset.tab, false);
+      sound('click');
+      track('tab', {tab:btn.dataset.tab});
     });
     btn.addEventListener('keydown', e => {
       const dir = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;
@@ -1036,6 +1428,65 @@
       e.preventDefault();
       const next = tabs[(i + dir + tabs.length) % tabs.length];
       next.focus(); next.click();
+    });
+  });
+
+  // hero hotspots
+  document.querySelectorAll('.hotspot').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      if(btn.dataset.jumpTab) activateTab(btn.dataset.jumpTab, false);
+      const target = document.querySelector(btn.dataset.jump);
+      if(target) target.scrollIntoView({behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'start'});
+      track('hotspot', {target:btn.dataset.jump, tab:btn.dataset.jumpTab || ''});
+    });
+  });
+
+  // matrix chip tooltip
+  const chipTip = document.getElementById('chipTip');
+  function showChipTip(chip){
+    if(!chipTip || !chip.dataset.tip) return;
+    chipTip.replaceChildren();
+    const label = document.createElement('b'); label.textContent = 'TIP / 作用';
+    const body = document.createElement('div'); body.textContent = chip.dataset.tip;
+    chipTip.appendChild(label); chipTip.appendChild(body);
+    if(chip.dataset.key){
+      const key = document.createElement('em'); key.textContent = '快捷键 ' + chip.dataset.key;
+      chipTip.appendChild(key);
+    }
+    chipTip.classList.add('show');
+    chipTip.style.left = '0px'; chipTip.style.top = '0px';
+    const r = chip.getBoundingClientRect();
+    const tw = chipTip.offsetWidth, th = chipTip.offsetHeight;
+    let left = Math.min(Math.max(12, r.left + r.width / 2 - tw / 2), window.innerWidth - tw - 12);
+    let top = r.top - th - 9;
+    if(top < 82) top = r.bottom + 9;
+    chipTip.style.left = left + 'px'; chipTip.style.top = top + 'px';
+  }
+  document.querySelectorAll('.chip').forEach(function(chip){
+    chip.addEventListener('mouseenter', () => showChipTip(chip));
+    chip.addEventListener('mouseleave', () => { if(chipTip) chipTip.classList.remove('show'); });
+  });
+  window.addEventListener('scroll', () => { if(chipTip) chipTip.classList.remove('show'); }, {passive:true});
+
+  // skin demo
+  const skinDemo = document.getElementById('skinDemo');
+  const demoName = document.getElementById('demoName');
+  const skinCards = Array.from(document.querySelectorAll('.skin-card'));
+  function applySkin(card){
+    if(!skinDemo || !card) return;
+    skinDemo.style.setProperty('--demo-bg', card.dataset.bg);
+    skinDemo.style.setProperty('--demo-fg', card.dataset.fg);
+    skinDemo.style.setProperty('--demo-accent', card.dataset.accent);
+    skinDemo.style.setProperty('--demo-ink', card.dataset.ink);
+    skinDemo.style.setProperty('--demo-radius', card.dataset.radius + 'px');
+    if(demoName) demoName.textContent = card.dataset.name;
+    skinCards.forEach(c => { c.classList.toggle('active', c === card); c.setAttribute('aria-pressed', c === card ? 'true' : 'false'); });
+  }
+  skinCards.forEach(function(card){
+    card.addEventListener('click', function(){
+      applySkin(card);
+      sound('click');
+      track('skin_preview', {skin:card.dataset.name});
     });
   });
 
@@ -1047,9 +1498,11 @@
   function openLb(src, alt){
     lastFocus = document.activeElement;
     lbImg.src = src; lbImg.alt = alt || ''; lightbox.classList.add('open'); document.body.style.overflow='hidden';
+    updateDock();
     lbClose.focus();
+    sound('click');
   }
-  function closeLb(){ lightbox.classList.remove('open'); lbImg.src=''; document.body.style.overflow=''; if(lastFocus) lastFocus.focus(); }
+  function closeLb(){ lightbox.classList.remove('open'); lbImg.src=''; document.body.style.overflow=''; if(lastFocus) lastFocus.focus(); updateDock(); }
   document.querySelectorAll('[data-zoom]').forEach(el => {
     el.addEventListener('click', () => openLb(el.dataset.zoom, el.querySelector('img')?.alt));
     el.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openLb(el.dataset.zoom, el.querySelector('img')?.alt); }});
@@ -1057,6 +1510,46 @@
   lbClose.addEventListener('click', closeLb);
   lightbox.addEventListener('click', e => { if(e.target === lightbox) closeLb(); });
   window.addEventListener('keydown', e => { if(e.key === 'Escape' && lightbox.classList.contains('open')) closeLb(); });
+
+  // ---------- version / hash sync from update.json ----------
+  function nfmt(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+  function shortSha(sha){ return sha ? sha.slice(0, 8) + '…' + sha.slice(-6) : ''; }
+  async function syncUpdate(){
+    try{
+      const res = await fetch('update.json', {cache:'no-store'});
+      if(!res.ok) return;
+      const u = await res.json();
+      if(!u || !u.version) return;
+      const ver = String(u.version).replace(/^v/i, '');
+      const size = Number(u.size) || 0;
+      const sha = String(u.sha256 || '');
+      document.querySelectorAll('[data-ver]').forEach(el => { el.textContent = ver; });
+      if(size){
+        document.querySelectorAll('[data-size]').forEach(el => { el.textContent = nfmt(size) + ' 字节'; });
+        document.querySelectorAll('[data-size-bytes]').forEach(el => { el.textContent = nfmt(size) + ' BYTES'; });
+        document.querySelectorAll('[data-size-mb]').forEach(el => { el.textContent = Math.round(size / 1000000) + ' MB'; });
+      }
+      if(sha){
+        document.querySelectorAll('[data-sha]').forEach(el => { el.textContent = sha; });
+        document.querySelectorAll('[data-sha-short]').forEach(el => { el.textContent = shortSha(sha); });
+        document.querySelectorAll('[data-copy]').forEach(btn => {
+          if(/^[0-9a-f]{64}$/i.test(btn.dataset.copy || '')) btn.dataset.copy = sha;
+        });
+      }
+      if(u.url){
+        document.querySelectorAll('[data-download-link]').forEach(a => { a.href = u.url; });
+      }
+      const notes = document.getElementById('latestNotes');
+      if(notes && Array.isArray(u.notes) && u.notes.length){
+        notes.replaceChildren();
+        u.notes.slice(0, 3).forEach(function(text){
+          const li = document.createElement('li'); li.textContent = text; notes.appendChild(li);
+        });
+      }
+      track('version_sync', {version:ver});
+    }catch(e){}
+  }
+  syncUpdate();
 
   // particle 88
   const canvas = document.getElementById('dust');
@@ -1170,3 +1663,7 @@
 </script>
 </body>
 </html>
+
+
+
+
