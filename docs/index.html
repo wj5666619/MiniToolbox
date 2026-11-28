@@ -2093,7 +2093,7 @@
           ty: cy - off.height/2 + p[1] + (Math.random()-.5)*(p[2] ? 1.2 : 2.2),
           vx: prev ? prev.vx : 0,
           vy: prev ? prev.vy : 0,
-          s: p[2] ? 2.0 : (Math.random() < .10 ? 3.0 : 2.3),
+          s: p[2] ? (cjk ? 3.0 : 2.0) : (Math.random() < .10 ? (cjk ? 4.8 : 3.0) : (cjk ? 3.8 : 2.3)),
           o: Math.random() < .04,
           d: Math.random()*Math.PI*2
         };
