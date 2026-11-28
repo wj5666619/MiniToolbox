@@ -204,7 +204,7 @@ SHA256  b8d2a498398677aa4d7e7e05cdc3d2c9c5c9e3a7ffcaee323833a1506e3bc38f
 
 ## 从源码构建
 
-需要 .NET Framework 4.x 自带的 `csc.exe`，无需 Visual Studio、无需 NuGet。构建前确认根目录存在 `定时关机.ico`、`皮肤.txt`、`sam_tool.zip`、`clean_tool.zip`，以及 `refs\WV2Core.dll`、`WV2WinForms.dll`、`WV2Loader32.dll`、`WV2Loader64.dll`；输出为 `小工具箱.exe`，并把版本、大小、SHA256 写入 `发布\update.json`（不会自动发 Release）。
+需要 .NET Framework 4.x 自带的 `csc.exe`，无需 Visual Studio、无需 NuGet。构建前确认根目录存在 `定时关机.ico`、`皮肤.txt`、`sam_tool.zip`、`clean_tool.zip`，以及 `refs\WV2Core.dll`、`WV2WinForms.dll`、`WV2Loader32.dll`、`WV2Loader64.dll`；输出为 `小工具箱.exe`，并把版本、大小、SHA256 写入 `发布\update.json`（克隆仓库无 `发布\` 时写入根目录 `update.json`，不会自动发 Release）。
 
 ```powershell
 .\build.ps1          # 编译 → 签名 → 算 SHA256 写 update.json → 7z 打包
@@ -227,7 +227,7 @@ csc.exe /nologo /target:winexe /optimize+ /codepage:65001 `
 Src\               144 个源文件（各功能页、皮肤、音效、配置、诊断、策略、审计、验签）
 docs\              官方网站静态页（GitHub Pages 发布目录）
 refs\              WebView2 托管 DLL（编译引用 + 内嵌资源）
-发布\              update 清单、README、签名与上传脚本
+发布\              本地发版工作区（不上传；根目录 update.json 才是线上清单）
 .github\           Actions 构建与 Issue / PR 模板
 部署.ps1           企业安装 / 卸载 / 状态 / 机器级策略模板
 策略示例.json       企业策略模板
