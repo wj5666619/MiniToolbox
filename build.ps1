@@ -66,6 +66,7 @@ if (-not $NoSign) {
 $exe = Get-Item "$root\小工具箱.exe"
 $hash = (Get-FileHash $exe.FullName -Algorithm SHA256).Hash.ToLower()
 $jsonPath = Join-Path $root '发布\update.json'
+if (-not (Test-Path -LiteralPath $jsonPath)) { $jsonPath = Join-Path $root 'update.json' }
 $old = Get-Content $jsonPath -Raw | ConvertFrom-Json
 $o = [ordered]@{
     version = $ver
