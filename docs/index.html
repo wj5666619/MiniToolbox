@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://wj5666619.github.io/MiniToolbox/assets/workbench_v1913.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="860" />
-<meta property="og:image:alt" content="小工具箱 v19.15 工作台界面" />
+<meta property="og:image:alt" content="小工具箱工作台界面示意" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="小工具箱 · MiniToolbox — 一台电脑的小事，交给它" />
 <meta name="twitter:description" content="26+ 项 Windows 小工具 + 88 个网页工具按需加载，主程序 3.37 MB 免安装，五套皮肤，企业策略与审计就绪，源码公开。" />
@@ -735,7 +735,7 @@
           <picture>
             <source type="image/avif" srcset="assets/workbench_v1913-800.avif 800w, assets/workbench_v1913-1200.avif 1200w" sizes="(max-width:860px) 92vw, 560px" />
             <source type="image/webp" srcset="assets/workbench_v1913-800.webp 800w, assets/workbench_v1913-1200.webp 1200w" sizes="(max-width:860px) 92vw, 560px" />
-            <img src="assets/workbench_v1913.png" alt="小工具箱 v19.15 工作台实拍" width="1200" height="860" fetchpriority="high" decoding="async" />
+            <img src="assets/workbench_v1913.png" alt="小工具箱工作台界面示意" width="1200" height="860" fetchpriority="high" decoding="async" />
           </picture>
         </figure>
         <span class="stage-tag br">SINGLE FILE / <b data-size-mb>3.4 MB</b></span>
@@ -1585,7 +1585,7 @@
       if(size){
         document.querySelectorAll('[data-size]').forEach(el => { el.textContent = nfmt(size) + ' 字节'; });
         document.querySelectorAll('[data-size-bytes]').forEach(el => { el.textContent = nfmt(size) + ' BYTES'; });
-        document.querySelectorAll('[data-size-mb]').forEach(el => { el.textContent = Math.round(size / 1000000) + ' MB'; });
+        document.querySelectorAll('[data-size-mb]').forEach(el => { el.textContent = (size / 1000000).toFixed(1) + ' MB'; });
       }
       if(sha){
         document.querySelectorAll('[data-sha]').forEach(el => { el.textContent = sha; });
