@@ -192,7 +192,7 @@ footer{padding:50px 0 38px;color:var(--sub)}
         <div class="step"><b>02 / CI</b><span>Windows runner 编译，权限按作业最小化。</span></div>
         <div class="step"><b>03 / SIGN</b><span>可选 Authenticode；记录签名者与指纹。</span></div>
         <div class="step"><b>04 / HASH</b><span>SHA256SUMS + SBOM + update.json。</span></div>
-        <div class="step"><b>05 / RELEASE</b><span>tag 与 VER 一致；来源证明随资产发布。</span></div>
+        <div class="step"><b>05 / RELEASE</b><span>新版本 tag 与 VER 一致；来源证明随资产发布，旧版补齐清单。</span></div>
       </div>
       <p class="note">自签名证书只证明“同一发布链”，不等于公共 CA 信任。企业分发前应把 SHA256、签名者指纹和内部软件白名单一起核对。</p>
     </div>
