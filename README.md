@@ -8,9 +8,9 @@
 [![License](https://img.shields.io/badge/license-MIT-2ea043)](LICENSE)
 [![Enterprise](https://img.shields.io/badge/enterprise-policy%20%2B%20audit%20%2B%20deploy-8957e5)](#企业部署)
 
-**官网 · 下载页**：<https://wj5666619.github.io/MiniToolbox/> ｜ **企业信任中心**：<https://wj5666619.github.io/MiniToolbox/trust.html> ｜ **最新版**：v19.15 ｜ **免安装 · 单文件 · 源码公开 · 企业部署基线可核验**
+**官网 · 下载页**：<https://wj5666619.github.io/MiniToolbox/> ｜ **企业信任中心**：<https://wj5666619.github.io/MiniToolbox/trust.html> ｜ **最新版**：v19.16 ｜ **免安装 · 单文件 · 源码公开 · 企业部署基线可核验**
 
-一台电脑的小事，交给它就行：定时关机、C 盘清理、Steam 进阶、视频与音乐下载、去水印、局域网剪贴板、录屏、单文件加密……26+ 项日常工具，外加 88 个网页工具（首次打开按需下载离线包），主程序单文件 3.37 MB，双击就跑，不写注册表、不留后台服务，五套皮肤一键换。企业环境另有策略管控、审计日志、更新验签与部署脚本。
+一台电脑的小事，交给它就行：定时关机、C 盘清理、Steam 进阶、视频与音乐下载、去水印、局域网剪贴板、录屏、单文件加密……20+ 项日常工具，外加 88 个网页工具（首次打开按需下载离线包），主程序单文件 3.38 MB，双击就跑，不写注册表、不留后台服务，五套皮肤一键换。企业环境另有策略管控、审计日志、更新验签与部署脚本。
 
 > 仓库已包含完整可编译源码（入口 `定时关机.cs` + `Src/` 144 个 C# 文件）、构建脚本、部署脚本、GitHub Actions、官网与社区文档。下载二进制请以 [Releases](https://github.com/wj5666619/MiniToolbox/releases) 为准。
 
@@ -20,17 +20,17 @@
 
 | 渠道 | 文件 | 说明 |
 | --- | --- | --- |
-| 最新版（推荐） | [MiniToolbox.exe](https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe) | 单文件主程序，3,370,896 字节 |
-| 压缩包 | [MiniToolbox_v19.15.7z](https://github.com/wj5666619/MiniToolbox/releases) | 1,235,477 字节，含 exe 与说明 |
+| 最新版（推荐） | [MiniToolbox.exe](https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe) | 单文件主程序，3,377,552 字节 |
+| 压缩包 | [MiniToolbox_v19.16.7z](https://github.com/wj5666619/MiniToolbox/releases) | 1,236,862 字节，含 exe、皮肤与说明 |
 | 工具站离线包 | [ToolSite.zip](https://github.com/wj5666619/MiniToolbox/releases/latest/download/ToolSite.zip) | 22,709,509 字节；可选，放到程序目录可免首次下载 |
 | SHA256 清单 | [SHA256SUMS.txt](https://github.com/wj5666619/MiniToolbox/releases/latest/download/SHA256SUMS.txt) | 主程序、7z 包与 ToolSite.zip 的 SHA256；SBOM/清单本身在 Release 页面单独核对 |
 | SBOM | [sbom.cdx.json](https://github.com/wj5666619/MiniToolbox/releases/latest/download/sbom.cdx.json) | CycloneDX 1.5；主程序、内嵌 DLL 与可选组件 |
 | 全部版本 | [Releases](https://github.com/wj5666619/MiniToolbox/releases) | 全部 tag，可回退旧版 |
 
-校验（v19.15）：
+校验（v19.16）：
 
 ```
-SHA256  b8d2a498398677aa4d7e7e05cdc3d2c9c5c9e3a7ffcaee323833a1506e3bc38f
+SHA256  99631970a36f0b5138263b5b930ada2028d15fb118c95602ff33cb6ea569e5ea
 ```
 
 批量校验可从 Release 下载 `SHA256SUMS.txt`，在同一目录执行：
@@ -129,7 +129,14 @@ Get-Content .\SHA256SUMS.txt | ForEach-Object {
 - 诊断包：关于页导出 zip（版本环境 + 最近日志 + 配置），不含聊天记录、密码库、剪贴板内容。
 - 明确边界：不声称 ISO 27001 / SOC 2 / 等保认证，不替代企业 EDR、DLP、网络准入或合同 SLA。
 
-## 本版改动（v19.15）
+## 本版改动（v19.16）
+
+- 工作台移除「实用工具」磁贴与独立小窗，托盘移除「主题色」菜单；`主题色.txt` 的读取、保存与同步一并删除。
+- 工具站磁贴改为首页整行，避免左侧空洞；五套皮肤与皮肤色相联动保持原样。
+- 官网同步改为 20+ 项原生工具、系统 / 媒体 / 文件 / 效率四类能力；移除旧的「05 实用」入口。
+- 主程序 3,377,552 字节，7z 包 1,236,862 字节；更新清单、SHA256 与 SBOM 已同步。
+
+### v19.15 改动
 
 - 体积精简：主程序从 26.08 MB 降到 3.37 MB，7z 包 1.23 MB；88 个工具的 22.7 MB 离线包不再内嵌。
 - 工具站改为按需加载：优先读程序目录 `工具站.zip` / `ToolSite.zip` / `site.zip`，没有就从官网 Pages 下载并缓存，失败会提示手动放置。
@@ -237,7 +244,7 @@ Get-Content .\SHA256SUMS.txt | ForEach-Object {
 .\build.ps1 -NoSign  # 跳过签名，适合本地验证
 ```
 
-> 仓库源码对应开发中的 v19.15 维护版；Release 里的二进制是已发布构建。自行构建的 exe 版本号与哈希可能不同，请以自己的 `update.json` 为准，不要覆盖官方发布资产。
+> 仓库源码对应开发中的 v19.16 维护版；Release 里的二进制是已发布构建。自行构建的 exe 版本号与哈希可能不同，请以自己的 `update.json` 为准，不要覆盖官方发布资产。
 
 只编 `定时关机.cs` 会缺类型，必须带 `Src\*.cs`：
 
