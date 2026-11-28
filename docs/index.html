@@ -2605,6 +2605,10 @@
       figure(W * .5 + sep / 2, -1, poseAt('R', poseTime), 9, 'R', time);
       impactFx(time, sep);
       ctx.restore();
+      if(time < .12){
+        ctx.fillStyle = 'rgba(255,255,255,' + (1 - time / .12).toFixed(3) + ')';
+        ctx.fillRect(0, 0, W, H);
+      }
       const r = roundAt(time);
       if(roundEl && r !== lastRound){
         roundEl.textContent = 'ROUND / 0' + r;
