@@ -1,7 +1,7 @@
 {
   "version": "19.15",
   "size": 3370896,
-  "sha256": "4b5672e40492c22cffe3db54a98c0ba0bee7ccd664a1ea622b491f0b088eefcf",
+  "sha256": "ce82cef2676b17306bb128e26d25f41cf81e2e3fa061a7ec547b8dcea0767500",
   "url": "https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe",
   "notes": [
     "体积精简：exe 从 26.08 MB 降至 3.37 MB，7z 安装包仅 1.23 MB",
