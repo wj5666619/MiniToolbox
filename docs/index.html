@@ -235,8 +235,9 @@
           <h3>两个火柴人，<br>全用黑点。</h3>
         </div>
         <div class="dotarena-side">
-          <p class="dotarena-copy">三回合、八次命中，拳、腿、头轮番上场，全部由黑点组成，没有一根实线。命中处会先散成点尘，再重新凝聚。点擂台换一招，也可以直接叫停。</p>
+          <p class="dotarena-copy">三回合、八次命中，拳、腿、头轮番上场，全部由黑点组成，没有一根实线。命中处会先散成点尘，再重新凝聚。点擂台补一拳，也可以换招、开声音或直接叫停。</p>
           <div class="dotarena-tools">
+            <button type="button" id="duelSound">声音 OFF</button>
             <button type="button" id="duelSkip">换一招 →</button>
             <button type="button" id="duelToggle" class="solo">停手</button>
           </div>
@@ -249,10 +250,13 @@
         <span><b>04</b> 三回合 / 八次命中</span>
       </div>
       <div class="dotarena-stage">
-        <canvas id="duelCanvas" aria-label="两个由黑点组成的火柴人正在对打，被击中的部位会散成点尘再重新凝聚，点击擂台换一招"></canvas>
+        <canvas id="duelCanvas" aria-label="两个由黑点组成的火柴人正在对打，被击中的部位会散成点尘再重新凝聚；点击擂台可以补一拳，按钮可暂停或换招"></canvas>
         <span class="dotarena-round" id="duelRound" aria-hidden="true">ROUND / 01</span>
         <span class="dotarena-move" id="duelMove" aria-hidden="true">GUARD / 对峙</span>
-        <span class="dotarena-hint" aria-hidden="true">CLICK / NEXT MOVE</span>
+        <span class="dotarena-big" id="duelBig" aria-hidden="true"></span>
+        <span class="dotarena-big-zh" id="duelBigZh" aria-hidden="true"></span>
+        <span class="dotarena-combo" id="duelCombo" aria-hidden="true">COMBO / 00</span>
+        <span class="dotarena-hint" aria-hidden="true">CLICK / 补一拳</span>
         <span class="dotarena-sig" aria-hidden="true">DOTS ONLY / NO LINES</span>
       </div>
     </div>
