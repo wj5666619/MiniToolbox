@@ -17,14 +17,14 @@
 | 渠道 | 文件 | 说明 |
 | --- | --- | --- |
 | 最新版（推荐） | [MiniToolbox.exe](https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe) | 单文件主程序，3,370,896 字节 |
-| 压缩包 | [MiniToolbox_v19.15.7z](https://github.com/wj5666619/MiniToolbox/releases) | 1,234,261 字节，含 exe 与说明 |
+| 压缩包 | [MiniToolbox_v19.15.7z](https://github.com/wj5666619/MiniToolbox/releases) | 1,235,477 字节，含 exe 与说明 |
 | 工具站离线包 | [ToolSite.zip](https://github.com/wj5666619/MiniToolbox/releases/latest/download/ToolSite.zip) | 22,709,509 字节；可选，放到程序目录可免首次下载 |
 | 全部版本 | [Releases](https://github.com/wj5666619/MiniToolbox/releases) | 全部 tag，可回退旧版 |
 
 校验（v19.15）：
 
 ```
-SHA256  ce82cef2676b17306bb128e26d25f41cf81e2e3fa061a7ec547b8dcea0767500
+SHA256  b8d2a498398677aa4d7e7e05cdc3d2c9c5c9e3a7ffcaee323833a1506e3bc38f
 ```
 
 > 程序使用自签名证书，作者本机可信；他人电脑首次运行可能提示「未知发布者」，属正常现象，可对照上面的哈希确认文件未被改动。
@@ -87,7 +87,8 @@ SHA256  ce82cef2676b17306bb128e26d25f41cf81e2e3fa061a7ec547b8dcea0767500
 
 - 体积精简：主程序从 26.08 MB 降到 3.37 MB，7z 包 1.23 MB；88 个工具的 22.7 MB 离线包不再内嵌。
 - 工具站改为按需加载：优先读程序目录 `工具站.zip` / `ToolSite.zip` / `site.zip`，没有就从官网 Pages 下载并缓存，失败会提示手动放置。
-- 清理旧版本 7z、测试 exe、临时编译目录、调试截图、诊断包、重复封面与重复工具站包；移除可再生成的视频组件缓存，项目目录释放约 279 MB。
+- 清理旧版本 7z、测试 exe、临时编译目录、调试截图、诊断包、重复封面、重复工具站包与可再生成的组件缓存，项目目录从 386.9 MB 降至 64.4 MB。
+- FFmpeg / 视频组件包改为官网 Pages 按需下载，首次使用视频功能时自动部署，之后本地复用。
 - 原有控制中心、任务中心、皮肤、音效和更新链路保持不变。
 
 ### v19.13 改动
