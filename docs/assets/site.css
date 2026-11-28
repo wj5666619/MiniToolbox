@@ -587,7 +587,7 @@
   .latest-notes{margin-top:20px; border-left:2px solid var(--ink); padding-left:13px}
   .latest-notes h4{margin:0 0 7px; color:var(--ink); opacity:1}
   .latest-notes ul{margin:0; padding:0 0 0 14px; color:rgba(11,12,11,.66); font-size:11px; line-height:1.75}
-  .latest-notes li{margin:0 0 4px}
+  .latest-notes li{margin:0 0 4px; overflow-wrap:anywhere; word-break:break-word}
   .security-note{
     display:flex; gap:12px; margin-top:18px; padding:12px 14px; border:1px solid var(--line); border-left:2px solid var(--ink);
     background:#fff;
@@ -702,9 +702,8 @@
     .callout.c2{right:6px; top:10px}
     .system-visual .fig-bar span:last-child{display:none}
     .matrix-layout{grid-template-columns:1fr}
-    .mtabs{display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); overflow:visible; border-top:1px solid rgba(238,234,225,.18)}
-    .mtab{grid-column:span 2; min-width:0; min-height:54px; grid-template-columns:24px 1fr; gap:6px; padding:12px 8px; border-bottom:1px solid rgba(238,234,225,.12); border-right:1px solid rgba(238,234,225,.12)}
-    .mtab:nth-child(n+4){grid-column:span 3}
+    .mtabs{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); overflow:visible; border-top:1px solid rgba(238,234,225,.18)}
+    .mtab{grid-column:span 1; min-width:0; min-height:54px; grid-template-columns:24px 1fr; gap:6px; padding:12px 8px; border-bottom:1px solid rgba(238,234,225,.12); border-right:1px solid rgba(238,234,225,.12)}
     .mtab .en{display:none}
     .mtab::before{left:0; top:auto; bottom:0; width:100%; height:2px; transform:scaleX(0)}
     .mtab.active::before{transform:scaleX(1)}
