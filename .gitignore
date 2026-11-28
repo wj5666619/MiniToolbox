@@ -1,0 +1,40 @@
+# Build output
+bin/
+obj/
+*.exe
+*.pdb
+*.ilk
+*.obj
+*.7z
+*.zip
+!sam_tool.zip
+!clean_tool.zip
+!docs/ToolSite.zip
+!docs/ffmpeg_tool.zip
+!docs/video_tool.zip
+
+# Signing / credentials
+*.pfx
+*.pvk
+*.cer
+*.key
+发布/.gh_token.txt
+
+# Logs / diagnostics
+日志/
+*.log
+诊断*.zip
+~$*
+
+# Editor / OS
+.vs/
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+
+# Local scratch
+测试/
+temp/
+*.tmp
+*.bak

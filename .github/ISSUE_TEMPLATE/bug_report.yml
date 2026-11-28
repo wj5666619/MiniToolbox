@@ -1,0 +1,79 @@
+name: Bug 报告
+description: 崩溃、功能异常、界面或更新问题
+title: "[Bug] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢反馈。请先确认用的是最新 Release，并搜索已有 Issue。**安全漏洞不要在这里公开**，请按 SECURITY.md 私密披露。
+  - type: input
+    id: version
+    attributes:
+      label: 版本
+      description: 关于页显示的版本号，或 exe 文件版本
+      placeholder: "例如 19.15"
+    validations:
+      required: true
+  - type: input
+    id: sha
+    attributes:
+      label: SHA256（可选）
+      description: 若怀疑下载包损坏，贴官网 / Release 公布的哈希对比结果
+      placeholder: "b8d2a498..."
+    validations:
+      required: false
+  - type: dropdown
+    id: windows
+    attributes:
+      label: Windows 版本
+      options:
+        - Windows 11
+        - Windows 10
+        - Windows 8.1
+        - 其他 / 不确定
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      description: 从启动开始，按顺序写清点了哪里、输入了什么
+      placeholder: |
+        1. 打开...
+        2. 点击...
+        3. 出现...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期结果
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际结果
+      description: 有截图更好；界面问题请注明皮肤与缩放比例
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: 日志 / 诊断包
+      description: 关于页「导出诊断包」或 `日志\小工具箱.log` 末尾 50 行；请先脱敏路径、用户名、令牌
+      render: text
+    validations:
+      required: false
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 提交前确认
+      options:
+        - label: 已使用最新 Release 复现
+          required: true
+        - label: 已搜索过相似 Issue
+          required: true
+        - label: 日志与截图已脱敏，不含账号、令牌或隐私
+          required: true

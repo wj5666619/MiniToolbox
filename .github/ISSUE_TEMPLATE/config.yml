@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 官网 / 下载 / 校验
+    url: https://wj5666619.github.io/MiniToolbox/
+    about: 先看下载页、SHA256 校验与常见问题
+  - name: 私密报告安全漏洞
+    url: https://github.com/wj5666619/MiniToolbox/security/advisories/new
+    about: 不要公开可被利用的漏洞细节
+  - name: 企业部署与策略
+    url: https://github.com/wj5666619/MiniToolbox/blob/main/企业管理指南.md
+    about: 策略字段、审计动作、验签与排障

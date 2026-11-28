@@ -9,8 +9,10 @@
 <meta name="author" content="wj5666619" />
 <meta name="robots" content="index,follow" />
 <link rel="canonical" href="https://wj5666619.github.io/MiniToolbox/" />
+<link rel="license" href="https://github.com/wj5666619/MiniToolbox/blob/main/LICENSE" />
 <link rel="preload" as="image" type="image/avif" href="assets/workbench_v1913-1200.avif" imagesrcset="assets/workbench_v1913-800.avif 800w, assets/workbench_v1913-1200.avif 1200w" imagesizes="(max-width:860px) 92vw, 560px" fetchpriority="high" />
 <meta property="og:type" content="website" />
+<meta property="og:locale" content="zh_CN" />
 <meta property="og:site_name" content="小工具箱 · MiniToolbox" />
 <meta property="og:title" content="小工具箱 · MiniToolbox — 一台电脑的小事，交给它" />
 <meta property="og:description" content="26+ 项 Windows 小工具 + 88 个网页工具按需加载，主程序单文件 3.37 MB。免安装、五套皮肤，企业策略与审计就绪。" />
@@ -18,7 +20,7 @@
 <meta property="og:image" content="https://wj5666619.github.io/MiniToolbox/assets/workbench_v1913.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="860" />
-<meta property="og:image:alt" content="小工具箱 v19.13 工作台界面" />
+<meta property="og:image:alt" content="小工具箱 v19.15 工作台界面" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="小工具箱 · MiniToolbox — 一台电脑的小事，交给它" />
 <meta name="twitter:description" content="26+ 项 Windows 小工具 + 88 个网页工具按需加载，主程序 3.37 MB 免安装，五套皮肤，企业策略与审计就绪，源码公开。" />
@@ -32,13 +34,15 @@
   "name": "小工具箱 MiniToolbox",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Windows 10, Windows 11",
-  "softwareVersion": "19.13",
-  "fileSize": "26033040",
+  "softwareVersion": "19.15",
+  "fileSize": "3370896",
   "inLanguage": "zh-CN",
   "url": "https://wj5666619.github.io/MiniToolbox/",
   "downloadUrl": "https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe",
   "codeRepository": "https://github.com/wj5666619/MiniToolbox",
   "softwareHelp": "https://github.com/wj5666619/MiniToolbox/blob/main/企业管理指南.md",
+  "license": "https://github.com/wj5666619/MiniToolbox/blob/main/LICENSE",
+  "author": { "@type": "Person", "name": "wj5666619", "url": "https://github.com/wj5666619" },
   "screenshot": "https://wj5666619.github.io/MiniToolbox/assets/workbench_v1913.png",
   "releaseNotes": "https://github.com/wj5666619/MiniToolbox/releases/latest",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" },
@@ -673,10 +677,11 @@
     <a href="#station">04 工具站</a>
     <a href="#skins">05 皮肤</a>
     <a href="#enterprise">06 企业</a>
-    <a href="#download">07 下载</a>
+    <a href="#community">07 开源</a>
+    <a href="#download">08 下载</a>
   </nav>
   <button class="sfx-btn" id="sfxBtn" type="button" aria-pressed="false" aria-label="开启界面音效"><i aria-hidden="true"></i><span>SFX</span></button>
-  <a class="hdr-cta" href="https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe" data-download-link data-track="download">下载 v<span data-ver>19.13</span></a>
+  <a class="hdr-cta" href="https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe" data-download-link data-track="download">下载 v<span data-ver>19.15</span></a>
   <button class="menu-btn" id="menuBtn" aria-label="打开菜单" aria-expanded="false"><span></span><span></span><span></span></button>
 </header>
 
@@ -686,7 +691,8 @@
   <a href="#station"><small>04</small>工具站 88</a>
   <a href="#skins"><small>05</small>五套皮肤</a>
   <a href="#enterprise"><small>06</small>企业管控</a>
-  <a href="#download"><small>07</small>下载与部署</a>
+  <a href="#community"><small>07</small>开源与安全</a>
+  <a href="#download"><small>08</small>下载与部署</a>
 </div>
 
 <aside class="rail" aria-label="章节导航">
@@ -696,7 +702,8 @@
   <a href="#station" data-target="station"><i>4</i><b>STATION</b></a>
   <a href="#skins" data-target="skins"><i>5</i><b>SKINS</b></a>
   <a href="#enterprise" data-target="enterprise"><i>6</i><b>CONTROL</b></a>
-  <a href="#download" data-target="download"><i>7</i><b>DEPLOY</b></a>
+  <a href="#community" data-target="community"><i>7</i><b>OPEN</b></a>
+  <a href="#download" data-target="download"><i>8</i><b>DEPLOY</b></a>
 </aside>
 
 <main id="main">
@@ -706,7 +713,7 @@
     <div class="hero-ghost" aria-hidden="true">TOOLBOX</div>
     <div class="hero-inner">
       <div class="hero-copy">
-        <div class="hero-kicker"><span>WINDOWS UTILITY SUITE / BUILD <b data-ver>19.13</b></span></div>
+        <div class="hero-kicker"><span>WINDOWS UTILITY SUITE / BUILD <b data-ver>19.15</b></span></div>
         <h1>一台电脑的<br>小事，交给它<span class="dot">。</span></h1>
         <p class="hero-manifesto">EVERY SMALL THING / BECOMES SPEED.</p>
         <p class="hero-lead">26+ 项原生工具，外加 88 个网页工具（首次打开按需下载离线包）。定时关机、C 盘清理、Steam 进阶、视频下载、去水印、录屏、加密、局域网互传——全部装进一个 exe，双击就跑。</p>
@@ -723,12 +730,12 @@
       <div class="hero-stage">
         <span class="stage-tag tl"><b>88</b> / OFFLINE TOOLS</span>
         <figure class="figure">
-          <div class="fig-bar"><span>LIVE / WORKBENCH</span><span class="dots"><i></i><i></i><i></i></span><span>MT–<b data-ver>19.13</b></span></div>
+          <div class="fig-bar"><span>LIVE / WORKBENCH</span><span class="dots"><i></i><i></i><i></i></span><span>MT–<b data-ver>19.15</b></span></div>
           <div class="scan" aria-hidden="true"></div>
           <picture>
             <source type="image/avif" srcset="assets/workbench_v1913-800.avif 800w, assets/workbench_v1913-1200.avif 1200w" sizes="(max-width:860px) 92vw, 560px" />
             <source type="image/webp" srcset="assets/workbench_v1913-800.webp 800w, assets/workbench_v1913-1200.webp 1200w" sizes="(max-width:860px) 92vw, 560px" />
-            <img src="assets/workbench_v1913.png" alt="小工具箱 v19.13 工作台实拍" width="1200" height="860" fetchpriority="high" decoding="async" />
+            <img src="assets/workbench_v1913.png" alt="小工具箱 v19.15 工作台实拍" width="1200" height="860" fetchpriority="high" decoding="async" />
           </picture>
         </figure>
         <span class="stage-tag br">SINGLE FILE / <b data-size-mb>3.4 MB</b></span>
@@ -746,7 +753,7 @@
     <div class="hero-foot">
       <span>“环门” / THE LAUNCHER</span>
       <span class="mid">向下 <span class="mouse" aria-hidden="true"></span> 滑动</span>
-      <span class="right"><a href="#download">最新版本 v<span data-ver>19.13</span></a> / <a href="https://github.com/wj5666619/MiniToolbox">查看源码</a></span>
+      <span class="right"><a href="#download">最新版本 v<span data-ver>19.15</span></a> / <a href="https://github.com/wj5666619/MiniToolbox">查看源码</a></span>
     </div>
   </section>
 
@@ -1072,10 +1079,54 @@
     </div>
   </section>
 
-  <!-- 07 DOWNLOAD -->
+  <!-- 07 COMMUNITY -->
+  <section class="sec s-dark" id="community" data-theme="dark">
+    <div class="sec-head reveal">
+      <span class="idx">07<br>OPEN SOURCE</span>
+      <div>
+        <span class="kicker">SOURCE / LICENSE / SECURITY</span>
+        <h2>代码公开，<br>问题有人接。</h2>
+      </div>
+      <p class="lead">完整 C# 源码、构建脚本、GitHub Actions、许可证与安全披露流程都在仓库里。不是只放一个 exe 的下载页。</p>
+    </div>
+    <div class="ent-grid">
+      <div class="ent-panel reveal" data-no="SRC–01">
+        <h3>源码可构建 / SOURCE</h3>
+        <p><code>定时关机.cs</code> + <code>Src/</code> 144 个 C# 文件，入口、功能页、皮肤、诊断、策略与验签分层；<code>build.ps1</code> 一键编译、签名、算哈希、打包。</p>
+        <div class="kv"><span>依赖</span><b>.NET Framework 4.x · 无 NuGet</b></div>
+        <div class="kv"><span>CI</span><b>GitHub Actions / Windows</b></div>
+      </div>
+      <div class="ent-panel reveal" data-no="LIC–02">
+        <h3>许可证 / LICENSE</h3>
+        <p>原始代码采用 MIT，允许读、改、二次分发；FFmpeg、7-Zip、工具站等第三方组件保留各自许可证，单独列明。</p>
+        <div class="kv"><span>原始代码</span><b>MIT</b></div>
+        <div class="kv"><span>第三方</span><b>THIRD-PARTY-NOTICES</b></div>
+      </div>
+      <div class="ent-panel reveal" data-no="SEC–03">
+        <h3>安全披露 / SECURITY</h3>
+        <p>可被利用的漏洞请不要开公开 Issue。走 GitHub 私密安全公告或备用邮箱，附版本、SHA256、复现步骤与影响范围。</p>
+        <div class="kv"><span>响应</span><b>7 天内确认</b></div>
+        <div class="kv"><span>细节</span><b>与报告者协商公开</b></div>
+      </div>
+      <div class="ent-panel reveal" data-no="COM–04">
+        <h3>贡献与反馈 / CONTRIBUTE</h3>
+        <p>Issue 模板要求版本、复现与脱敏日志；PR 模板要求构建结果、体积变化与许可证检查。版本变更统一记在 CHANGELOG。</p>
+        <div class="kv"><span>Issue</span><b>Bug / Feature 模板</b></div>
+        <div class="kv"><span>PR</span><b>构建 + 体积 + 许可</b></div>
+      </div>
+    </div>
+    <div class="ent-actions reveal">
+      <a class="btn btn-ghost" href="https://github.com/wj5666619/MiniToolbox/tree/main/Src" target="_blank" rel="noopener"><span>浏览源码</span><span class="ar">↗</span></a>
+      <a class="btn btn-ghost" href="https://github.com/wj5666619/MiniToolbox/blob/main/build.ps1" target="_blank" rel="noopener"><span>构建脚本</span><span class="ar">↗</span></a>
+      <a class="btn btn-ghost" href="https://github.com/wj5666619/MiniToolbox/blob/main/CHANGELOG.md" target="_blank" rel="noopener"><span>更新日志</span><span class="ar">↗</span></a>
+      <a class="btn btn-ghost" href="https://github.com/wj5666619/MiniToolbox/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener"><span>贡献指南</span><span class="ar">↗</span></a>
+    </div>
+  </section>
+
+  <!-- 08 DOWNLOAD -->
   <section class="sec download" id="download" data-theme="light">
     <div class="sec-head reveal">
-      <span class="idx">07<br>DEPLOY</span>
+      <span class="idx">08<br>DEPLOY</span>
       <div>
         <span class="kicker">ONE BINARY / ZERO INSTALL</span>
         <h2>下下来，<br>直接开跑。</h2>
@@ -1116,7 +1167,7 @@
           <div>
             <b>首次运行提示“未知发布者”？</b>
             <p>程序使用自签名证书，没有公共 CA 信誉链，Windows SmartScreen 可能先拦一下。不是查毒结论，也不代表文件被改动；先核对哈希，再决定是否运行。</p>
-            <a href="#verify">查看 3 步校验 ↓</a>
+            <a href="#verify">查看 3 步校验 ↓</a> · <a href="https://github.com/wj5666619/MiniToolbox/blob/main/SECURITY.md" target="_blank" rel="noopener">安全披露政策 ↗</a>
           </div>
         </div>
         <div class="verify-box" id="verify">
@@ -1146,8 +1197,11 @@
         <details><summary>v19.11 · 实用工具集</summary><p>六件原生小工具集中到独立深色小窗：哈希、取色、印章、Base64、时间戳、强随机密码。</p></details>
         <div class="foot-links">
           <a href="https://github.com/wj5666619/MiniToolbox" target="_blank" rel="noopener">源码仓库</a>
+          <a href="https://github.com/wj5666619/MiniToolbox/blob/main/LICENSE" target="_blank" rel="noopener">MIT 许可证</a>
+          <a href="https://github.com/wj5666619/MiniToolbox/blob/main/CHANGELOG.md" target="_blank" rel="noopener">更新日志</a>
           <a href="https://github.com/wj5666619/MiniToolbox/releases" target="_blank" rel="noopener">全部版本</a>
           <a href="https://github.com/wj5666619/MiniToolbox/blob/main/企业管理指南.md" target="_blank" rel="noopener">企业管理指南</a>
+          <a href="https://github.com/wj5666619/MiniToolbox/blob/main/SECURITY.md" target="_blank" rel="noopener">安全披露</a>
           <a href="https://github.com/wj5666619/MiniToolbox/issues" target="_blank" rel="noopener">问题反馈</a>
         </div>
       </div>
@@ -1165,17 +1219,17 @@
       <p>一台电脑的小事，交给它就行。26+ 项原生工具，88 个网页工具按需加载，一个 3.4 MB 的 exe。</p>
     </div>
     <nav class="foot-nav" aria-label="页脚导航">
-      <a href="#system">系统</a><a href="#matrix">能力</a><a href="#station">工具站</a><a href="#skins">皮肤</a><a href="#enterprise">企业</a><a href="#download">下载</a>
+      <a href="#system">系统</a><a href="#matrix">能力</a><a href="#station">工具站</a><a href="#skins">皮肤</a><a href="#enterprise">企业</a><a href="#community">开源</a><a href="#download">下载</a>
     </nav>
   </div>
   <div class="foot-legal">
-    <span>© 2026 MINI TOOLBOX / WINDOWS 10–11 / V<span data-ver>19.13</span></span>
+    <span>© 2026 MINI TOOLBOX / WINDOWS 10–11 / V<span data-ver>19.15</span> / MIT</span>
     <span>独立作品 · 与腾讯无关 · 视觉语言参考工业游戏站点，未使用其素材</span>
   </div>
 </footer>
 
 <div class="mobile-dock" id="mobileDock" aria-label="快速下载">
-  <a href="https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe" data-download-link data-track="download"><span>下载 EXE</span><small>v<span data-ver>19.13</span> · <span data-size-mb>26 MB</span></small></a>
+  <a href="https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe" data-download-link data-track="download"><span>下载 EXE</span><small>v<span data-ver>19.15</span> · <span data-size-mb>3.4 MB</span></small></a>
   <button id="dockClose" type="button" aria-label="关闭快速下载">×</button>
 </div>
 <div class="chip-tip" id="chipTip" role="tooltip"></div>

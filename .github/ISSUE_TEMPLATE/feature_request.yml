@@ -1,0 +1,58 @@
+name: 功能建议
+description: 新工具、交互改进或企业能力建议
+title: "[Feature] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请先说明「谁在什么场景下需要」，再描述方案。项目优先单文件、轻量、可回退，较大的功能会先评估体积与维护成本。
+  - type: dropdown
+    id: area
+    attributes:
+      label: 相关区域
+      options:
+        - 系统 / 清理 / 重装
+        - 媒体 / 下载 / 去水印 / 录屏
+        - 文件 / 加密 / 重命名
+        - 效率 / 热键 / 剪贴板 / 互传
+        - Steam / 游戏
+        - 工具站 / 网页工具
+        - 皮肤 / 外观 / 音效
+        - 企业策略 / 审计 / 部署
+        - 更新 / 安装 / 打包
+        - 官网 / 文档
+        - 其他
+    validations:
+      required: true
+  - type: textarea
+    id: scenario
+    attributes:
+      label: 使用场景
+      description: 现在怎么做、卡在哪、多久遇到一次
+      placeholder: "我在公司电脑上需要..."
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 期望方案
+      description: 界面、交互、输入输出；如果有替代方案也写一下
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: 体积 / 依赖 / 兼容性影响
+      description: 是否需要新组件、联网、管理员权限，预计增加多少 MB
+    validations:
+      required: false
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 提交前确认
+      options:
+        - label: 已搜索过相似建议
+          required: true
+        - label: 愿意按项目约束提交 PR（可选）
+          required: false

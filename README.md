@@ -1,14 +1,18 @@
 # 小工具箱 · MiniToolbox
 
 [![Release](https://img.shields.io/github/v/release/wj5666619/MiniToolbox?color=c8f751)](https://github.com/wj5666619/MiniToolbox/releases/latest)
+[![Build](https://github.com/wj5666619/MiniToolbox/actions/workflows/build.yml/badge.svg)](https://github.com/wj5666619/MiniToolbox/actions/workflows/build.yml)
 [![Downloads](https://img.shields.io/github/downloads/wj5666619/MiniToolbox/total?color=5ad2ff)](https://github.com/wj5666619/MiniToolbox/releases)
 [![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-0078d4)](#)
 [![Size](https://img.shields.io/badge/size-3.4%20MB-2ea043)](#)
+[![License](https://img.shields.io/badge/license-MIT-2ea043)](LICENSE)
 [![Enterprise](https://img.shields.io/badge/enterprise-policy%20%2B%20audit%20%2B%20deploy-8957e5)](#企业部署)
 
 **官网 · 下载页**：<https://wj5666619.github.io/MiniToolbox/> ｜ **最新版**：v19.15 ｜ **免安装 · 单文件 · 源码公开 · 企业就绪**
 
 一台电脑的小事，交给它就行：定时关机、C 盘清理、Steam 进阶、视频与音乐下载、去水印、局域网剪贴板、录屏、单文件加密……26+ 项日常工具，外加 88 个网页工具（首次打开按需下载离线包），主程序单文件 3.37 MB，双击就跑，不写注册表、不留后台服务，五套皮肤一键换。企业环境另有策略管控、审计日志、更新验签与部署脚本。
+
+> 仓库已包含完整可编译源码（入口 `定时关机.cs` + `Src/` 144 个 C# 文件）、构建脚本、部署脚本、GitHub Actions、官网与社区文档。下载二进制请以 [Releases](https://github.com/wj5666619/MiniToolbox/releases) 为准。
 
 ![小工具箱工作台](docs/assets/workbench.png)
 
@@ -51,6 +55,22 @@ SHA256  b8d2a498398677aa4d7e7e05cdc3d2c9c5c9e3a7ffcaee323833a1506e3bc38f
 1. 下载 `MiniToolbox.exe`，放到任意目录（建议非系统盘）。
 2. 双击运行，首次启动有三步引导：功能概览 → 选皮肤 → 音效与托盘说明。
 3. 顶部搜索框或 `Ctrl+K` 指令舱，输几个字就能跳到任意功能。
+
+## 源码与社区
+
+| 入口 | 用途 |
+| --- | --- |
+| [源码目录](Src) | 144 个 C# 文件：主窗口、各功能页、皮肤、音效、配置、诊断、策略、审计、验签 |
+| [build.ps1](build.ps1) | 一键编译、可选签名、计算 SHA256、写 update.json、7z 打包 |
+| [官网源码](docs/index.html) | GitHub Pages 静态站，含下载、功能矩阵、皮肤演示、企业说明、校验与 FAQ |
+| [CHANGELOG.md](CHANGELOG.md) | 按版本记录功能、修复与破坏性变更 |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | 构建环境、代码风格、提交与 PR 流程 |
+| [SECURITY.md](SECURITY.md) | 漏洞披露渠道、响应时限与安全边界 |
+| [LICENSE](LICENSE) | MIT；第三方组件许可见 [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md) |
+| [Issues](https://github.com/wj5666619/MiniToolbox/issues) | Bug 报告与功能建议，附模板与日志要求 |
+| [Actions](https://github.com/wj5666619/MiniToolbox/actions/workflows/build.yml) | Windows CI：每次 push / tag 编译并留存构建产物 |
+
+> 源码可读、可改、可自行构建；发布版二进制以 Releases 资产为准。构建需要 .NET Framework 4.x 自带的 `csc.exe`，不依赖 Visual Studio 或 NuGet。
 
 ## 企业部署
 
@@ -171,7 +191,7 @@ SHA256  b8d2a498398677aa4d7e7e05cdc3d2c9c5c9e3a7ffcaee323833a1506e3bc38f
 ### v19.3 改动
 
 - 新增官方网站：<https://wj5666619.github.io/MiniToolbox/>，含下载、功能、皮肤、实拍截图、更新日志与构建说明。
-- 关于页「源码与编译」重写：给出仓库与官网地址、真实的 125 文件源码结构、`build.ps1` 与 csc 命令。
+- 关于页「源码与编译」重写：给出仓库与官网地址、源码结构、`build.ps1` 与 csc 命令。
 
 ### v19.2 改动
 
@@ -184,12 +204,14 @@ SHA256  b8d2a498398677aa4d7e7e05cdc3d2c9c5c9e3a7ffcaee323833a1506e3bc38f
 
 ## 从源码构建
 
-需要 .NET Framework 4.x 自带的 `csc.exe`，无需 Visual Studio、无需 NuGet。
+需要 .NET Framework 4.x 自带的 `csc.exe`，无需 Visual Studio、无需 NuGet。构建前确认根目录存在 `定时关机.ico`、`皮肤.txt`、`sam_tool.zip`、`clean_tool.zip`，以及 `refs\WV2Core.dll`、`WV2WinForms.dll`、`WV2Loader32.dll`、`WV2Loader64.dll`；输出为 `小工具箱.exe`，并把版本、大小、SHA256 写入 `发布\update.json`（不会自动发 Release）。
 
 ```powershell
 .\build.ps1          # 编译 → 签名 → 算 SHA256 写 update.json → 7z 打包
-.\build.ps1 -NoSign  # 跳过签名
+.\build.ps1 -NoSign  # 跳过签名，适合本地验证
 ```
+
+> 仓库源码对应开发中的 v19.15 维护版；Release 里的二进制是已发布构建。自行构建的 exe 版本号与哈希可能不同，请以自己的 `update.json` 为准，不要覆盖官方发布资产。
 
 只编 `定时关机.cs` 会缺类型，必须带 `Src\*.cs`：
 
@@ -202,13 +224,17 @@ csc.exe /nologo /target:winexe /optimize+ /codepage:65001 `
 
 ```
 定时关机.cs          入口、主窗口骨架、RoundBtn 自绘控件
-Src\               140 个源文件（各功能页、皮肤、音效、配置、诊断、策略、审计、验签）
-官网\              官方网站静态页（同 docs\，由 GitHub Pages 发布）
+Src\               144 个源文件（各功能页、皮肤、音效、配置、诊断、策略、审计、验签）
+docs\              官方网站静态页（GitHub Pages 发布目录）
+refs\              WebView2 托管 DLL（编译引用 + 内嵌资源）
 发布\              update 清单、README、签名与上传脚本
+.github\           Actions 构建与 Issue / PR 模板
 部署.ps1           企业安装 / 卸载 / 状态 / 机器级策略模板
 策略示例.json       企业策略模板
 企业管理指南.md     策略字段、审计动作、验签与排障说明
 build.ps1          一键构建
+LICENSE            MIT 许可证（原始代码）
+THIRD-PARTY-NOTICES.md  第三方组件与许可说明
 ```
 
 ## 常见问题
@@ -219,12 +245,17 @@ build.ps1          一键构建
 
 **支持哪些系统？** Windows 10 / 11 为主，Win 8.1 可运行。
 
-## 说明
+## 安全与许可
 
-源码公开，欢迎读、改、提 Issue。二次分发请保留出处与本仓库链接；自签名证书不随代码分发，自行构建的版本请自行签名。仓库暂未附开源许可证文件，商用或再分发前请先开 Issue 确认。
+- **安全披露**：请不要用公开 Issue 提交可被利用的漏洞；按 [SECURITY.md](SECURITY.md) 的私密渠道联系，附最小复现与版本号。
+- **校验发布包**：只从 Releases 或官网下载，下载后核对页面公布的 SHA256；自签名证书只用于作者发布链路，不替代哈希校验。
+- **源码许可**：原始代码采用 [MIT](LICENSE)。仓库内嵌或按需下载的第三方组件（如 Light-Help、FFmpeg、7-Zip、工具站项目）沿用各自许可证，详见 [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md)。
+- **二次分发**：请保留出处、许可证与第三方声明；自签名证书不随代码分发，自行构建的版本请自行签名。
 
 - Issues：<https://github.com/wj5666619/MiniToolbox/issues>
 - 官网：<https://wj5666619.github.io/MiniToolbox/>
+- 更新日志：[CHANGELOG.md](CHANGELOG.md)
+- 贡献指南：[CONTRIBUTING.md](CONTRIBUTING.md)
 - 企业管理指南：<https://github.com/wj5666619/MiniToolbox/blob/main/企业管理指南.md>
 - 部署脚本：<https://github.com/wj5666619/MiniToolbox/blob/main/部署.ps1>
 - 策略模板：<https://github.com/wj5666619/MiniToolbox/blob/main/策略示例.json>
