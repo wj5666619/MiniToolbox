@@ -373,7 +373,7 @@
   .dotarena-tools button:hover{border-color:var(--ink); color:var(--ink)}
   .dotarena-tools button.solo{background:var(--ink); border-color:var(--ink); color:#fff}
   .dotarena-stage{
-    position:relative; min-height:420px; margin-top:20px; border:1px solid rgba(11,12,11,.16); overflow:hidden; background:#fff;
+    position:relative; min-height:420px; margin-top:0; border:1px solid rgba(11,12,11,.16); overflow:hidden; background:#fff;
     background-image:radial-gradient(rgba(11,12,11,.05) .65px,transparent .7px); background-size:18px 18px;
   }
   .dotarena-stage canvas{position:absolute; inset:0; width:100%; height:100%; display:block; cursor:pointer; touch-action:pan-y}
@@ -382,10 +382,13 @@
   }
   .dotarena-stage::before{left:10px; top:10px; border-width:1px 0 0 1px}
   .dotarena-stage::after{right:10px; bottom:10px; border-width:0 1px 1px 0}
-  .dotarena-round,.dotarena-hint,.dotarena-sig{position:absolute; z-index:1; font-family:var(--mono); font-size:8px; letter-spacing:.1em; color:rgba(11,12,11,.34); pointer-events:none}
+  .dotarena-round,.dotarena-move,.dotarena-hint,.dotarena-sig{position:absolute; z-index:1; font-family:var(--mono); font-size:8px; letter-spacing:.1em; color:rgba(11,12,11,.34); pointer-events:none}
   .dotarena-round{right:16px; top:12px}
+  .dotarena-move{left:22px; top:14px; color:rgba(11,12,11,.52)}
   .dotarena-hint{left:16px; bottom:12px}
   .dotarena-sig{right:16px; bottom:12px}
+  .duel-legend{display:flex; flex-wrap:wrap; gap:7px 22px; margin-top:18px; padding:9px 14px; border:1px solid rgba(11,12,11,.16); border-bottom:0; background:#fff; font-family:var(--mono); font-size:9px; letter-spacing:.08em; color:rgba(11,12,11,.52)}
+  .duel-legend b{font-weight:400; color:rgba(11,12,11,.74); margin-right:4px}
   @media(max-width:900px){
     .dotlab-stage{grid-template-columns:1fr}
     .dotlab-panel{order:1}
@@ -998,16 +1001,23 @@
           <h3>两个火柴人，<br>全用黑点。</h3>
         </div>
         <div class="dotarena-side">
-          <p class="dotarena-copy">头、肩、肘、拳、膝、脚，全部由黑点组成，没有一根实线。命中处会先散成点尘，再重新凝聚。点擂台换一招，也可以直接叫停。</p>
+          <p class="dotarena-copy">三回合、八次命中，拳、肘、膝、脚轮番上场，全部由黑点组成，没有一根实线。命中处会先散成点尘，再重新凝聚。点擂台换一招，也可以直接叫停。</p>
           <div class="dotarena-tools">
             <button type="button" id="duelSkip">换一招 →</button>
             <button type="button" id="duelToggle" class="solo">停手</button>
           </div>
         </div>
       </div>
+      <div class="duel-legend" aria-hidden="true">
+        <span><b>01</b> 点阵成骨</span>
+        <span><b>02</b> 命中散尘</span>
+        <span><b>03</b> 收束重聚</span>
+        <span><b>04</b> 三回合 / 八次命中</span>
+      </div>
       <div class="dotarena-stage">
         <canvas id="duelCanvas" aria-label="两个由黑点组成的火柴人正在对打，被击中的部位会散成点尘再重新凝聚，点击擂台换一招"></canvas>
         <span class="dotarena-round" id="duelRound" aria-hidden="true">ROUND / 01</span>
+        <span class="dotarena-move" id="duelMove" aria-hidden="true">GUARD / 对峙</span>
         <span class="dotarena-hint" aria-hidden="true">CLICK / NEXT MOVE</span>
         <span class="dotarena-sig" aria-hidden="true">DOTS ONLY / NO LINES</span>
       </div>
@@ -2258,19 +2268,35 @@
     const ctx = dc.getContext('2d');
     const stage = dc.parentElement;
     const roundEl = document.getElementById('duelRound');
+    const moveEl = document.getElementById('duelMove');
     const skipBtn = document.getElementById('duelSkip');
     const toggleBtn = document.getElementById('duelToggle');
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const DURATION = 5.8;
+    const DURATION = 8.4;
     const HITS = [
-      {t:1.36, s:'L', part:'head', power:1},
-      {t:1.98, s:'R', part:'head', power:1},
-      {t:3.04, s:'L', part:'legF', power:.85},
-      {t:4.45, s:'both', part:'head', power:1.25},
-      {t:5.30, s:'R', part:'legF', power:.85}
+      {t:1.18, s:'L', part:'head', power:1, limb:'handF'},
+      {t:2.05, s:'R', part:'head', power:1, limb:'handF'},
+      {t:3.26, s:'L', part:'legF', power:.9, limb:'footF'},
+      {t:4.35, s:'L', part:'armB', power:.95, limb:'handF'},
+      {t:4.95, s:'R', part:'head', power:1.1, limb:'handF'},
+      {t:5.85, s:'both', part:'head', power:1.3, limb:'handF'},
+      {t:6.78, s:'L', part:'legB', power:.9, limb:'footF'},
+      {t:7.35, s:'L', part:'head', power:1.15, limb:'footF'}
+    ];
+    const MOVES = [
+      {t:0.00, label:'GUARD / 对峙'},
+      {t:0.82, label:'JAB / 刺拳'},
+      {t:1.95, label:'CROSS / 直拳'},
+      {t:2.85, label:'SWEEP / 扫腿'},
+      {t:4.08, label:'HOOK / 勾拳'},
+      {t:4.60, label:'UPPERCUT / 上勾'},
+      {t:5.55, label:'CLASH / 对撞'},
+      {t:6.68, label:'LOW SWEEP / 低扫'},
+      {t:7.05, label:'JUMP KICK / 飞踢'},
+      {t:7.90, label:'RESET / 归位'}
     ];
     const basePose = {
-      lean:0, crouch:0, shift:0, tilt:0,
+      lean:0, crouch:0, shift:0, tilt:0, lift:0,
       handF:[28,-88], handB:[8,-74], footF:[16,80], footB:[-22,80]
     };
     const mk = o => Object.assign({}, basePose, o);
@@ -2282,29 +2308,58 @@
       kick: mk({lean:-.2, crouch:0, shift:18, tilt:-.06, handF:[18,-96], handB:[0,-80], footF:[72,-42], footB:[-6,80]}),
       duck: mk({lean:-.08, crouch:.75, shift:-4, tilt:.02, handF:[20,-86], handB:[8,-78], footF:[18,80], footB:[-20,80]}),
       recoil: mk({lean:-.22, crouch:.08, shift:-10, tilt:-.04, handF:[14,-98], handB:[2,-84], footF:[8,80], footB:[-28,80]}),
-      clash: mk({lean:.10, crouch:0, shift:10, tilt:.03, handF:[72,-90], handB:[30,-84], footF:[24,80], footB:[-14,80]})
+      clash: mk({lean:.10, crouch:0, shift:10, tilt:.03, handF:[72,-90], handB:[30,-84], footF:[24,80], footB:[-14,80]}),
+      sweep: mk({lean:-.12, crouch:.48, shift:20, tilt:-.04, handF:[30,-70], handB:[-18,-58], footF:[80,66], footB:[-14,80]}),
+      sweepReach: mk({lean:-.16, crouch:.55, shift:24, tilt:-.06, handF:[38,-64], handB:[-24,-52], footF:[58,62], footB:[-10,80]}),
+      hop: mk({lift:50, crouch:.15, shift:-2, lean:-.05, handF:[20,-86], handB:[2,-72], footF:[18,-16], footB:[-12,-20]}),
+      land: mk({lift:6, crouch:.38, shift:4, lean:.02, handF:[26,-78], handB:[8,-68], footF:[24,72], footB:[-18,72]}),
+      dash: mk({lean:.32, crouch:.12, shift:26, tilt:.04, handF:[52,-62], handB:[18,-80], footF:[32,80], footB:[-8,80]}),
+      hook: mk({lean:.26, crouch:.14, shift:24, tilt:.10, handF:[84,-38], handB:[22,-82], footF:[30,80], footB:[-10,80]}),
+      guardLow: mk({lean:.02, crouch:.34, shift:0, handF:[14,-62], handB:[4,-54], footF:[16,80], footB:[-20,80]}),
+      uppercutPrep: mk({lean:-.12, crouch:.62, shift:6, handF:[24,-84], handB:[10,-46], footF:[18,80], footB:[-22,80]}),
+      uppercut: mk({lean:-.02, crouch:.25, shift:28, tilt:-.10, handF:[84,-104], handB:[18,-76], footF:[26,80], footB:[-12,80]}),
+      knee: mk({lean:.18, crouch:.28, shift:20, handF:[40,-104], handB:[8,-76], footF:[46,-26], footB:[-8,80]}),
+      guardHigh: mk({lean:.06, crouch:.12, shift:0, handF:[26,-116], handB:[14,-106], footF:[16,80], footB:[-20,80]}),
+      launch: mk({lean:-.10, crouch:.64, shift:6, handF:[20,-58], handB:[0,-62], footF:[18,80], footB:[-24,80]}),
+      jumpKick: mk({lift:52, lean:-.28, crouch:.18, shift:30, tilt:-.12, handF:[24,-102], handB:[0,-82], footF:[92,-66], footB:[-6,40]}),
+      recoilBody: mk({lean:-.32, crouch:.38, shift:-18, tilt:-.05, handF:[18,-70], handB:[0,-62], footF:[10,80], footB:[-30,80]})
     };
     const KEYS = [
       {t:0.00, L:'guard', R:'guard', round:1},
-      {t:0.75, L:'guard', R:'guard'},
-      {t:1.05, L:'jab',   R:'block'},
-      {t:1.36, L:'jab',   R:'block'},
-      {t:1.66, L:'guard', R:'cross'},
-      {t:1.98, L:'block', R:'cross'},
-      {t:2.30, L:'guard', R:'guard'},
-      {t:2.78, L:'kick',  R:'duck'},
-      {t:3.16, L:'kick',  R:'duck'},
-      {t:3.52, L:'guard', R:'recoil'},
-      {t:3.90, L:'guard', R:'guard', round:2},
-      {t:4.35, L:'clash', R:'clash'},
-      {t:4.78, L:'guard', R:'guard', round:3},
-      {t:5.05, L:'duck', R:'kick'},
-      {t:5.38, L:'duck', R:'kick'},
-      {t:5.80, L:'guard', R:'guard'}
+      {t:0.55, L:'guard', R:'guard'},
+      {t:0.82, L:'jab',   R:'block'},
+      {t:1.14, L:'jab',   R:'block'},
+      {t:1.55, L:'guard', R:'guard'},
+      {t:1.95, L:'block', R:'cross'},
+      {t:2.35, L:'block', R:'cross'},
+      {t:2.62, L:'guard', R:'guard'},
+      {t:2.85, L:'sweep', R:'hop'},
+      {t:3.08, L:'sweepReach', R:'land'},
+      {t:3.26, L:'sweepReach', R:'land'},
+      {t:3.45, L:'guard', R:'recoil'},
+      {t:3.78, L:'guard', R:'guard', round:2},
+      {t:4.08, L:'dash',  R:'guardLow'},
+      {t:4.28, L:'hook',  R:'guardLow'},
+      {t:4.62, L:'guard', R:'uppercutPrep'},
+      {t:4.88, L:'block', R:'uppercut'},
+      {t:5.18, L:'guard', R:'guard'},
+      {t:5.55, L:'guard', R:'guard', round:3},
+      {t:5.70, L:'dash',  R:'dash'},
+      {t:5.85, L:'clash', R:'clash'},
+      {t:6.10, L:'recoil', R:'recoil'},
+      {t:6.45, L:'guard', R:'guard'},
+      {t:6.68, L:'sweep', R:'land'},
+      {t:6.98, L:'guard', R:'recoil'},
+      {t:7.05, L:'launch', R:'guardHigh'},
+      {t:7.22, L:'jumpKick', R:'guardHigh'},
+      {t:7.58, L:'land', R:'recoil'},
+      {t:7.90, L:'guard', R:'guard'},
+      {t:8.20, L:'guard', R:'guard'},
+      {t:8.40, L:'guard', R:'guard'}
     ];
     let W=0, H=0, DPR=1, SCALE=1, GROUND=0;
-    let t0=performance.now(), offset=reduce?1.4:0, playing=!reduce, visible=false, raf=0;
-    let lastRound=0;
+    let t0=performance.now(), offset=reduce?.65:0, playing=!reduce, visible=false, raf=0;
+    let lastRound=0, lastMove='';
     const REFORM=.78;
     let curFx=null;
 
@@ -2341,7 +2396,7 @@
     }
     function mixPose(a, b, u){
       const out = {};
-      for(const k of ['lean','crouch','shift','tilt']) out[k] = a[k] + (b[k] - a[k]) * u;
+      for(const k of ['lean','crouch','shift','tilt','lift']) out[k] = a[k] + (b[k] - a[k]) * u;
       for(const k of ['handF','handB','footF','footB']){
         out[k] = [a[k][0] + (b[k][0] - a[k][0]) * u, a[k][1] + (b[k][1] - a[k][1]) * u];
       }
@@ -2358,6 +2413,11 @@
       let r = 1;
       for(const k of KEYS) if(k.round && k.t <= time) r = k.round;
       return r;
+    }
+    function moveAt(time){
+      let label = MOVES[0].label;
+      for(const m of MOVES) if(m.t <= time) label = m.label;
+      return label;
     }
     function rawDot(x, y, r, strong, alpha){
       if(alpha <= .004) return;
@@ -2436,7 +2496,7 @@
     }
     function figure(cx, dir, pose, seed, side, time){
       ctx.save();
-      ctx.translate(cx + dir * pose.shift * SCALE, GROUND - 80 * SCALE);
+      ctx.translate(cx + dir * pose.shift * SCALE, GROUND - (80 + pose.lift) * SCALE);
       ctx.scale(dir * SCALE, SCALE);
 
       const torsoLen = 58 * (1 - pose.crouch * .26);
@@ -2503,16 +2563,20 @@
       const dir = side === 'L' ? 1 : -1;
       const cx = W * .5 + (side === 'L' ? -1 : 1) * Math.max(120, 100 * SCALE) / 2;
       const point = pose[limb];
-      return [cx + dir * (pose.shift + point[0]) * SCALE, GROUND - 80 * SCALE + point[1] * SCALE];
+      return [cx + dir * (pose.shift + point[0]) * SCALE, GROUND - (80 + pose.lift) * SCALE + point[1] * SCALE];
     }
     function hitPoint(hit, time, sep){
       if(hit.s === 'both') return [W * .5, GROUND - 168 * SCALE];
       const target = hit.s === 'L' ? 'R' : 'L';
+      if(hit.part === 'armF') return limbWorld(target, time, 'handF');
+      if(hit.part === 'armB') return limbWorld(target, time, 'handB');
+      if(hit.part === 'legF') return limbWorld(target, time, 'footF');
+      if(hit.part === 'legB') return limbWorld(target, time, 'footB');
       const dir = target === 'L' ? 1 : -1;
       const pose = poseAt(target, time);
       const cx = W * .5 + (target === 'L' ? -1 : 1) * sep / 2;
       const x = cx + dir * (pose.shift + Math.sin(pose.lean) * 22) * SCALE;
-      const y = GROUND - 80 * SCALE + (hit.part === 'head' ? -89 : 55) * SCALE;
+      const y = GROUND - 80 * SCALE + (-89 + pose.lift) * SCALE;
       return [x, y];
     }
     function trailFx(time, sep){
@@ -2522,7 +2586,7 @@
         const fade = raw < 0 ? 1 + raw / .20 : 1 - raw / .03;
         const attackers = hit.s === 'both' ? ['L', 'R'] : [hit.s];
         for(const side of attackers){
-          const limb = hit.part === 'head' ? 'handF' : 'footF';
+          const limb = hit.limb || (hit.part === 'legF' || hit.part === 'legB' ? 'footF' : 'handF');
           const p1 = limbWorld(side, time, limb);
           const p0 = limbWorld(side, time - .11, limb);
           for(let i=1; i<=10; i++){
@@ -2614,6 +2678,11 @@
         roundEl.textContent = 'ROUND / 0' + r;
         lastRound = r;
       }
+      const mv = moveAt(time);
+      if(moveEl && mv !== lastMove){
+        moveEl.textContent = mv;
+        lastMove = mv;
+      }
     }
     function timeNow(now){ return ((now - t0) / 1000 + offset) % DURATION; }
     function resize(){
@@ -2677,7 +2746,7 @@
     resize();
     if(reduce){
       if(toggleBtn){ toggleBtn.textContent = '静态'; toggleBtn.disabled = true; }
-      drawFrame(2.5);
+      drawFrame(.65);
     } else {
       start();
     }
