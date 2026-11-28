@@ -223,6 +223,7 @@
   .btn-primary{background:var(--orange); border-color:var(--orange); color:#0b0c0b}
   .btn-primary:hover{background:#ff6733}
   .btn-ghost{background:transparent; color:currentColor}
+  .dot-entry .ar{color:var(--orange)}
   .btn-ghost:hover{background:currentColor; color:var(--bone)}
   .s-dark .btn-ghost:hover{background:#ece8de; color:#0a0b0a}
   .btn .ar{font-size:14px; line-height:1}
@@ -307,6 +308,60 @@
   .mouse::after{content:""; width:1px; height:6px; background:currentColor; position:absolute; left:8px; top:5px; animation:wheel 1.8s infinite}
   .hero-foot .right{text-align:right}
   .hero-foot a:hover{color:var(--orange)}
+  /* ---------- dot lab ---------- */
+  .dotlab{position:relative; padding:clamp(62px,8vw,102px) var(--px) clamp(54px,7vw,86px); border-bottom:1px solid var(--line); background:#fff; overflow:hidden}
+  .dotlab-stage{display:grid; grid-template-columns:minmax(276px,.72fr) minmax(0,1.45fr); gap:clamp(28px,4vw,60px); align-items:stretch; margin-top:34px}
+  .dotlab-panel{display:flex; flex-direction:column; gap:16px; border-top:2px solid var(--ink); padding-top:18px; min-width:0}
+  .dotlab-kicker{font-family:var(--mono); font-size:9px; letter-spacing:.14em; color:var(--orange); text-transform:uppercase}
+  .dotlab-form label{display:block; margin-bottom:8px; font-family:var(--mono); font-size:9px; letter-spacing:.12em; color:rgba(11,12,11,.56)}
+  .dotlab-row{display:flex; gap:8px}
+  .dotlab-row input{
+    flex:1; min-width:0; padding:12px 13px; border:1px solid rgba(11,12,11,.18); background:#fff;
+    color:var(--ink); font-family:var(--sans); font-size:13px; outline:none;
+  }
+  .dotlab-row input::placeholder{color:rgba(11,12,11,.36)}
+  .dotlab-row input:focus{border-color:var(--orange)}
+  .dotlab-row button{
+    padding:0 16px; border:1px solid var(--ink); background:var(--ink); color:#fff;
+    font-family:var(--mono); font-size:9px; letter-spacing:.1em; cursor:pointer; transition:background .2s,border-color .2s;
+  }
+  .dotlab-row button:hover{background:var(--orange); border-color:var(--orange)}
+  .dotlab-quick{display:flex; flex-wrap:wrap; gap:6px}
+  .dotlab-quick button{
+    padding:6px 9px; border:1px solid rgba(11,12,11,.16); background:#fff; color:rgba(11,12,11,.62);
+    font-family:var(--mono); font-size:8px; letter-spacing:.08em; cursor:pointer; transition:border-color .2s,color .2s;
+  }
+  .dotlab-quick button:hover{border-color:var(--orange); color:var(--orange)}
+  .dotlab-actions{display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; margin-top:auto; padding-top:14px}
+  .dotlab-actions button{
+    padding:7px 10px; border:1px solid rgba(11,12,11,.18); background:#fff; color:var(--ink);
+    font-family:var(--mono); font-size:8px; letter-spacing:.08em; cursor:pointer; transition:border-color .2s,color .2s;
+  }
+  .dotlab-actions button:hover{border-color:var(--orange); color:var(--orange)}
+  .dotlab-status{font-family:var(--mono); font-size:8px; letter-spacing:.08em; color:rgba(11,12,11,.42); margin-left:auto}
+  .dotlab-canvas{
+    position:relative; min-height:390px; border:1px solid rgba(11,12,11,.16); overflow:hidden; background:#fff;
+    background-image:radial-gradient(rgba(11,12,11,.055) .65px,transparent .7px); background-size:18px 18px;
+  }
+  .dotlab-canvas canvas{position:absolute; inset:0; width:100%; height:100%; display:block; cursor:crosshair; touch-action:pan-y}
+  .dotlab-canvas::before,.dotlab-canvas::after{
+    content:""; position:absolute; z-index:1; width:18px; height:18px; pointer-events:none; border-color:var(--orange); border-style:solid;
+  }
+  .dotlab-canvas::before{left:10px; top:10px; border-width:1px 0 0 1px}
+  .dotlab-canvas::after{right:10px; bottom:10px; border-width:0 1px 1px 0}
+  .dotlab-hint{position:absolute; z-index:1; left:16px; bottom:12px; font-family:var(--mono); font-size:8px; letter-spacing:.1em; color:rgba(11,12,11,.34); pointer-events:none}
+  .dotlab-count{position:absolute; z-index:1; right:16px; top:12px; font-family:var(--mono); font-size:8px; letter-spacing:.1em; color:rgba(11,12,11,.34); pointer-events:none}
+  @media(max-width:900px){
+    .dotlab-stage{grid-template-columns:1fr}
+    .dotlab-panel{order:1}
+    .dotlab-canvas{order:2; min-height:300px}
+    .dotlab-actions{margin-top:0}
+  }
+  @media(max-width:600px){
+    .dotlab-canvas{min-height:250px}
+    .dotlab-row{flex-wrap:wrap}
+    .dotlab-row button{min-height:42px; flex:0 0 88px}
+  }
   @keyframes wheel{0%,100%{transform:translateY(0);opacity:.25}50%{transform:translateY(7px);opacity:1}}
   /* ---------- system ---------- */
   .system-layout{display:grid; grid-template-columns:minmax(0,1fr) minmax(380px,1.08fr); gap:clamp(36px,7vw,96px); align-items:start}
@@ -814,6 +869,7 @@
         <div class="hero-actions">
           <a class="btn btn-primary" href="https://github.com/wj5666619/MiniToolbox/releases/latest/download/MiniToolbox.exe" data-download-link data-track="download"><span>获取 EXE</span><span class="ar">↓</span></a>
           <a class="btn btn-ghost" href="#station"><span>查看工具站</span><span class="ar">→</span></a>
+          <a class="btn btn-ghost dot-entry" href="#dotplay"><span>黑点拼字</span><span class="ar">↗</span></a>
         </div>
         <div class="hero-meta">
           <span><b>WIN 10 / 11</b> · x64 / x86</span>
@@ -845,9 +901,50 @@
       <div class="hstat"><b>0<em>步</em></b><span>INSTALL / 安装步骤</span></div>
     </div>
     <div class="hero-foot">
-      <span>“环门” / THE LAUNCHER</span>
+      <span>“环门” / THE LAUNCHER · <a href="#dotplay">黑点拼字 ↗</a></span>
       <span class="mid">向下 <span class="mouse" aria-hidden="true"></span> 滑动</span>
       <span class="right"><a href="#download">最新版本 v<span data-ver>19.15</span></a> / <a href="https://github.com/wj5666619/MiniToolbox">查看源码</a></span>
+    </div>
+  </section>
+
+  <!-- DOT LAB -->
+  <section class="dotlab" id="dotplay" data-theme="light" aria-labelledby="dotlabTitle">
+    <div class="sec-head reveal">
+      <span class="idx">PLAY<br>DOT LAB</span>
+      <div>
+        <span class="kicker">INTERACTIVE / LOCAL CANVAS</span>
+        <h2 id="dotlabTitle">黑点，<br>听你的。</h2>
+      </div>
+      <p class="lead">输入 1–8 个字，黑点会排成你的句子；点一下画布或按“抖散”，它们会散开，再自己聚拢。只在本机绘制，不上传。</p>
+    </div>
+    <div class="dotlab-stage reveal">
+      <div class="dotlab-panel">
+        <span class="dotlab-kicker">TYPE / SCATTER / REPEAT</span>
+        <form class="dotlab-form" id="dotLabForm">
+          <label for="dotLabInput">让黑点拼一句</label>
+          <div class="dotlab-row">
+            <input id="dotLabInput" type="text" maxlength="8" autocomplete="off" spellcheck="false" placeholder="例如：下班 / 搞快点 / 88" />
+            <button type="submit">拼字 →</button>
+          </div>
+        </form>
+        <div class="dotlab-quick" aria-label="快捷短语">
+          <button type="button" data-dot-quick="88">88</button>
+          <button type="button" data-dot-quick="下班">下班</button>
+          <button type="button" data-dot-quick="清干净">清干净</button>
+          <button type="button" data-dot-quick="双击就跑">双击就跑</button>
+          <button type="button" data-dot-quick="周五">周五</button>
+        </div>
+        <div class="dotlab-actions">
+          <button type="button" id="dotLabScatter">抖散一下</button>
+          <button type="button" id="dotLabReset">还原 88</button>
+          <span class="dotlab-status" id="dotLabStatus" aria-live="polite">当前：88</span>
+        </div>
+      </div>
+      <div class="dotlab-canvas">
+        <canvas id="dotCanvas" aria-label="黑点拼字画布，点击可抖散"></canvas>
+        <span class="dotlab-hint" aria-hidden="true">CLICK / SCATTER</span>
+        <span class="dotlab-count" id="dotLabCount" aria-hidden="true">DOT / 88</span>
+      </div>
     </div>
   </section>
 
@@ -1826,6 +1923,257 @@
   window.addEventListener('mouseout', () => { mouse.x=-9999; mouse.y=-9999; });
   resizeCanvas();
   if(reduce){ draw(0,true); } else { start(); }
+
+  // dot lab
+  (function initDotLab(){
+    const dc = document.getElementById('dotCanvas');
+    if(!dc) return;
+    const dctx = dc.getContext('2d');
+    const stage = dc.parentElement;
+    const dotForm = document.getElementById('dotLabForm');
+    const dotInput = document.getElementById('dotLabInput');
+    const dotStatus = document.getElementById('dotLabStatus');
+    const dotCount = document.getElementById('dotLabCount');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const mouse = {x:-9999,y:-9999};
+    let W=0, H=0, DPR=1, parts=[], raf=0, dlast=0, text='', visible=false;
+    let timer=0, composing=false;
+
+    function cleanValue(value){
+      return [...String(value || '').replace(/\s+/g,' ').trim()].slice(0,8).join('');
+    }
+    function currentLabel(){ return text || '88'; }
+    function setStatus(value){
+      if(dotStatus) dotStatus.textContent = value;
+      if(dotCount) dotCount.textContent = text ? 'DOT / TEXT' : 'DOT / 88';
+    }
+
+    function rebuild(){
+      const old = parts;
+      if(!W || !H){ parts=[]; return; }
+      const label = currentLabel();
+      const maxW = W * .76;
+      const maxH = H * .70;
+      const pad = 6;
+      const off = document.createElement('canvas');
+      off.width = Math.ceil(maxW) + pad*2;
+      off.height = Math.ceil(maxH) + pad*2;
+      const octx = off.getContext('2d');
+      octx.clearRect(0,0,off.width,off.height);
+      octx.fillStyle = '#000';
+      octx.textAlign = 'center';
+      octx.textBaseline = 'middle';
+      const cjk = /[\u2E80-\u9FFF\uF900-\uFAFF]/.test(label);
+      const family = cjk
+        ? '"Microsoft YaHei","PingFang SC","Noto Sans SC",sans-serif'
+        : '"Arial Black","Segoe UI Black","Bahnschrift Condensed",sans-serif';
+      const weight = cjk ? 600 : 900;
+      const chars = [...label];
+      let fontSize = maxH * .92;
+      function setFont(size){ octx.font = weight + ' ' + Math.floor(size) + 'px ' + family; }
+      function layout(size){
+        setFont(size);
+        const widths = chars.map(ch => octx.measureText(ch).width);
+        const tracking = size * (cjk ? .18 : .04);
+        return {widths, tracking, total: widths.reduce((a,b) => a+b, 0) + tracking * (chars.length - 1)};
+      }
+      let metrics = layout(fontSize);
+      if(metrics.total > maxW){
+        fontSize *= maxW / metrics.total;
+        metrics = layout(fontSize);
+      }
+      setFont(fontSize);
+      let penX = off.width/2 - metrics.total/2;
+      for(let i=0; i<chars.length; i++){
+        const w = metrics.widths[i] || octx.measureText(chars[i]).width;
+        octx.fillText(chars[i], penX + w/2, off.height/2 + fontSize*.03);
+        penX += w + metrics.tracking;
+      }
+      const data = octx.getImageData(0,0,off.width,off.height).data;
+      const edge = [], fill = [];
+      const iw = off.width, ih = off.height;
+      for(let y=0; y<ih; y+=1){
+        for(let x=0; x<iw; x+=1){
+          if(data[(y*iw+x)*4+3] < 90) continue;
+          const aL = x > 0 ? data[(y*iw+x-1)*4+3] : 0;
+          const aR = x < iw-1 ? data[(y*iw+x+1)*4+3] : 0;
+          const aU = y > 0 ? data[((y-1)*iw+x)*4+3] : 0;
+          const aD = y < ih-1 ? data[((y+1)*iw+x)*4+3] : 0;
+          if(aL < 40 || aR < 40 || aU < 40 || aD < 40) edge.push([x,y,1]);
+          else fill.push([x,y,0]);
+        }
+      }
+      const pts = edge.length ? edge : fill;
+      if(!pts.length){ parts=[]; return; }
+      const count = Math.min(3600, Math.max(1100, Math.round(W*H/110)));
+      const chosen = [];
+      let seed = 20261128;
+      const edgeN = Math.min(Math.round(count * (cjk ? .45 : .18)), edge.length);
+      for(let i=0; i<edgeN; i++){
+        seed = (seed * 1664525 + 1013904223) >>> 0;
+        chosen.push(edge[seed % edge.length]);
+      }
+      const fillN = count - edgeN;
+      for(let i=0; i<fillN && fill.length; i++){
+        seed = (seed * 1664525 + 1013904223) >>> 0;
+        chosen.push(fill[seed % fill.length]);
+      }
+      if(chosen.length < count){
+        seed = (seed * 1664525 + 1013904223) >>> 0;
+        chosen.push(pts[seed % pts.length]);
+      }
+      const cx = W * .5, cy = H * .53;
+      parts = chosen.map((p, i) => {
+        const prev = old.length ? old[i % old.length] : null;
+        return {
+          x: prev ? prev.x : Math.random()*W,
+          y: prev ? prev.y : Math.random()*H,
+          tx: cx - off.width/2 + p[0] + (Math.random()-.5)*(p[2] ? 1.0 : 1.8),
+          ty: cy - off.height/2 + p[1] + (Math.random()-.5)*(p[2] ? 1.0 : 1.8),
+          vx: prev ? prev.vx : 0,
+          vy: prev ? prev.vy : 0,
+          s: p[2] ? 1.6 : (Math.random() < .10 ? 2.9 : 2.05),
+          o: Math.random() < .06,
+          d: Math.random()*Math.PI*2
+        };
+      });
+    }
+
+    function draw(t, once){
+      if(!W || !H) return;
+      dctx.clearRect(0,0,W,H);
+      const active = !once;
+      const radius = Math.max(54, Math.min(140, W*.18));
+      for(const p of parts){
+        if(active){
+          const dx = p.x - p.tx, dy = p.y - p.ty;
+          p.vx += (-dx*.022) + Math.cos(t*.001 + p.d)*.008;
+          p.vy += (-dy*.022) + Math.sin(t*.0012 + p.d)*.008;
+          const mx = p.x - mouse.x, my = p.y - mouse.y;
+          const md = mx*mx + my*my;
+          if(md < radius*radius && md > 1){
+            const f = (radius*radius - md) / (radius*radius) * .75;
+            p.vx += (mx / Math.sqrt(md)) * f;
+            p.vy += (my / Math.sqrt(md)) * f;
+          }
+          p.vx *= .90; p.vy *= .90;
+          p.x += p.vx; p.y += p.vy;
+          if(Math.abs(p.x-p.tx) + Math.abs(p.y-p.ty) < 1.2){
+            p.x = p.tx; p.y = p.ty; p.vx = 0; p.vy = 0;
+          }
+        } else { p.x = p.tx; p.y = p.ty; }
+        dctx.fillStyle = p.o ? 'rgba(255,77,18,.84)' : 'rgba(11,12,11,.68)';
+        if(p.s > 1.8){
+          dctx.beginPath(); dctx.arc(p.x,p.y,p.s,0,6.283); dctx.fill();
+        } else {
+          dctx.fillRect(p.x,p.y,p.s,p.s);
+        }
+      }
+    }
+
+    function loop(t){
+      if(!visible){ raf=0; return; }
+      if(t - dlast > 32){ draw(t,false); dlast=t; }
+      raf = requestAnimationFrame(loop);
+    }
+    function start(){
+      if(reduceMotion) return;
+      if(!raf && visible) raf = requestAnimationFrame(loop);
+    }
+    function resize(){
+      const cw = stage.clientWidth, ch = stage.clientHeight;
+      if(!cw || !ch || (cw === W && ch === H)) return;
+      W = cw; H = ch;
+      DPR = Math.min(window.devicePixelRatio || 1, 2);
+      dc.width = Math.floor(W*DPR); dc.height = Math.floor(H*DPR);
+      dctx.setTransform(DPR,0,0,DPR,0,0);
+      rebuild();
+      if(reduceMotion) draw(0,true); else start();
+    }
+
+    function apply(value, syncInput){
+      text = cleanValue(value);
+      if(syncInput && dotInput) dotInput.value = text;
+      setStatus(text ? '当前：' + text : '当前：88');
+      rebuild();
+      if(reduceMotion) draw(0,true); else start();
+    }
+
+    function scatter(){
+      if(!parts.length || reduceMotion) return;
+      for(const p of parts){
+        const angle = Math.random()*Math.PI*2;
+        const force = 5 + Math.random()*10;
+        p.vx += Math.cos(angle)*force;
+        p.vy += Math.sin(angle)*force;
+      }
+      start();
+      setStatus('抖散 / 正在聚拢');
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => setStatus(text ? '当前：' + text : '当前：88'), 1400);
+    }
+
+    if(dotForm && dotInput){
+      dotInput.addEventListener('compositionstart', () => { composing=true; });
+      dotInput.addEventListener('compositionend', () => {
+        composing=false;
+        window.clearTimeout(timer);
+        timer = window.setTimeout(() => apply(dotInput.value, false), 300);
+      });
+      dotInput.addEventListener('input', () => {
+        if(composing) return;
+        window.clearTimeout(timer);
+        timer = window.setTimeout(() => apply(dotInput.value, false), 300);
+      });
+      dotInput.addEventListener('keydown', e => {
+        if(e.key === 'Escape'){
+          e.preventDefault();
+          apply('', true);
+          dotInput.blur();
+        }
+      });
+      dotForm.addEventListener('submit', e => {
+        e.preventDefault();
+        apply(dotInput.value, true);
+      });
+      document.querySelectorAll('[data-dot-quick]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const value = btn.getAttribute('data-dot-quick') || '88';
+          if(dotInput) dotInput.value = value;
+          apply(value, false);
+        });
+      });
+    }
+    const scatterBtn = document.getElementById('dotLabScatter');
+    if(scatterBtn) scatterBtn.addEventListener('click', scatter);
+    const resetBtn = document.getElementById('dotLabReset');
+    if(resetBtn) resetBtn.addEventListener('click', () => {
+      if(dotInput) dotInput.value = '';
+      apply('', false);
+      if(dotInput) dotInput.focus();
+    });
+    dc.addEventListener('click', scatter);
+    dc.addEventListener('pointermove', e => {
+      const r = dc.getBoundingClientRect();
+      mouse.x = e.clientX - r.left;
+      mouse.y = e.clientY - r.top;
+    }, {passive:true});
+    dc.addEventListener('pointerleave', () => { mouse.x=-9999; mouse.y=-9999; });
+    if('ResizeObserver' in window){
+      new ResizeObserver(resize).observe(stage);
+    } else {
+      window.addEventListener('resize', resize);
+    }
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(entries => {
+        visible = entries.some(entry => entry.isIntersecting);
+        if(visible) start();
+      }, {rootMargin:'160px 0px'}).observe(stage);
+    } else {
+      visible = true;
+    }
+    resize();
+  })();
 })();
 </script>
 </body>
