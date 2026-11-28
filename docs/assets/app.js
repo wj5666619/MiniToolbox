@@ -754,17 +754,21 @@
     const moveEl = document.getElementById('duelMove');
     const skipBtn = document.getElementById('duelSkip');
     const toggleBtn = document.getElementById('duelToggle');
+    const soundBtn = document.getElementById('duelSound');
+    const bigEl = document.getElementById('duelBig');
+    const bigZhEl = document.getElementById('duelBigZh');
+    const comboEl = document.getElementById('duelCombo');
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const DURATION = 8.4;
     const HITS = [
-      {t:1.18, s:'L', part:'head', power:1, limb:'handF'},
-      {t:2.05, s:'R', part:'head', power:1, limb:'handF'},
-      {t:3.26, s:'L', part:'legF', power:.9, limb:'footF'},
-      {t:4.35, s:'L', part:'armB', power:.95, limb:'handF'},
-      {t:4.95, s:'R', part:'head', power:1.1, limb:'handF'},
-      {t:5.85, s:'both', part:'head', power:1.3, limb:'handF'},
-      {t:6.78, s:'L', part:'legB', power:.9, limb:'footF'},
-      {t:7.35, s:'L', part:'head', power:1.15, limb:'footF'}
+      {t:1.18, s:'L', part:'head', power:1, limb:'handF', word:'JAB', zh:'刺拳'},
+      {t:2.05, s:'R', part:'head', power:1, limb:'handF', word:'CROSS', zh:'直拳'},
+      {t:3.26, s:'L', part:'legF', power:.9, limb:'footF', word:'SWEEP', zh:'扫腿'},
+      {t:4.35, s:'L', part:'armB', power:.95, limb:'handF', word:'HOOK', zh:'勾拳'},
+      {t:4.95, s:'R', part:'head', power:1.1, limb:'handF', word:'UPPER', zh:'上勾'},
+      {t:5.85, s:'both', part:'head', power:1.3, limb:'handF', word:'CLASH', zh:'对撞'},
+      {t:6.78, s:'L', part:'legB', power:.9, limb:'footF', word:'LOW', zh:'低扫'},
+      {t:7.35, s:'L', part:'head', power:1.15, limb:'footF', word:'KICK', zh:'飞踢'}
     ];
     const MOVES = [
       {t:0.00, label:'GUARD / 对峙'},
@@ -841,13 +845,127 @@
       {t:8.40, L:'guard', R:'guard'}
     ];
     let W=0, H=0, DPR=1, SCALE=1, GROUND=0;
-    let t0=performance.now(), offset=reduce?.65:0, playing=!reduce, visible=false, raf=0;
-    let lastRound=0, lastMove='';
+    const previewT = parseFloat(new URLSearchParams(location.search).get('t'));
+    const previewMode = !reduce && Number.isFinite(previewT) && previewT >= 0 && previewT <= DURATION;
+    let t0=performance.now(), offset=previewMode ? previewT : (reduce?.65:0), playing=!reduce && !previewMode, visible=false, raf=0;
+    let lastRound=0, lastMove='', lastBig=-1, lastTime=offset, bonusUntil=0;
+    let soundOn=false, audio=null, dotInvert=false, figAlpha=1, ghostMode=false;
+    const sounded=new Set(), whooshed=new Set(), userBursts=[];
+    const pointer={x:.5, y:.5, active:false};
+    let riserDone=false;
     const REFORM=.78;
     let curFx=null;
 
+    const CAM = (()=>{
+      const list=[{t:0, z:1, x:0, y:0}];
+      HITS.forEach(hit=>{
+        const clash = hit.s === 'both';
+        const leg = hit.part === 'legF' || hit.part === 'legB';
+        const side = clash ? 0 : (hit.s === 'L' ? 1 : -1);
+        const x = side * (leg ? 20 : 28);
+        const y = clash ? 0 : (leg ? 18 : -13);
+        const z = clash ? .94 : (leg ? 1.08 : 1.15);
+        list.push({t:Math.max(0, hit.t-.20), z:1, x:0, y:0});
+        list.push({t:hit.t-.07, z, x, y});
+        list.push({t:hit.t+.10, z, x, y});
+        list.push({t:Math.min(DURATION, hit.t+.32), z:1, x:0, y:0});
+      });
+      return list.sort((a,b)=>a.t-b.t);
+    })();
+
     const easeOut = u => 1 - Math.pow(1 - u, 3);
     const easeInOut = u => u < .5 ? 4*u*u*u : 1 - Math.pow(-2*u + 2, 3) / 2;
+
+    function poseClock(time){
+      const stop = freezeAt(time);
+      if(stop) return stop.t;
+      for(const hit of HITS){
+        const d = signedAge(hit, time);
+        if(d >= -.20 && d < 0){
+          return hit.t - .20 + (d + .20) * .55;
+        }
+      }
+      return time;
+    }
+
+    function cameraAt(time){
+      let a = CAM[0], b = CAM[CAM.length - 1];
+      for(let i=0; i<CAM.length-1; i++){
+        if(CAM[i+1].t <= time){ a = CAM[i+1]; }
+        else { b = CAM[i+1]; break; }
+      }
+      if(!b || b.t === a.t) return a;
+      const u = Math.max(0, Math.min(1, (time-a.t)/(b.t-a.t)));
+      const e = u*u*(3-2*u);
+      return {
+        z: a.z + (b.z-a.z)*e,
+        x: a.x + (b.x-a.x)*e,
+        y: a.y + (b.y-a.y)*e
+      };
+    }
+    function freezeAt(time){
+      for(const hit of HITS){
+        const age = hitAge(hit, time);
+        if(age >= 0 && age < .055 + hit.power * .035) return hit;
+      }
+      return null;
+    }
+    function activeFlash(time){
+      for(const hit of HITS){
+        const age = hitAge(hit, time);
+        if(age >= 0 && age < .045) return {clash: true};
+      }
+      return null;
+    }
+    function hitUI(time){
+      if(performance.now() < bonusUntil) return;
+      let current = -1;
+      for(let i=0; i<HITS.length; i++){
+        const age = hitAge(HITS[i], time);
+        if(age >= 0 && age < .50) current = i;
+      }
+      if(current < 0 || current === lastBig) return;
+      lastBig = current;
+      const hit = HITS[current];
+      if(bigEl) bigEl.textContent = hit.word;
+      if(bigZhEl) bigZhEl.textContent = hit.zh;
+      if(comboEl) comboEl.textContent = 'HIT / 0' + (current + 1);
+      for(const el of [bigEl, bigZhEl, comboEl]){
+        if(!el) continue;
+        el.classList.remove('hit');
+      }
+      if(bigEl) void bigEl.offsetWidth;
+      for(const el of [bigEl, bigZhEl, comboEl]){
+        if(el) el.classList.add('hit');
+      }
+    }
+    function showBonus(){
+      lastBig = 99;
+      bonusUntil = performance.now() + 760;
+      if(bigEl) bigEl.textContent = 'BONUS';
+      if(bigZhEl) bigZhEl.textContent = '补一拳';
+      if(comboEl) comboEl.textContent = 'BONUS / +01';
+      for(const el of [bigEl, bigZhEl, comboEl]){
+        if(!el) continue;
+        el.classList.remove('hit');
+      }
+      if(bigEl) void bigEl.offsetWidth;
+      for(const el of [bigEl, bigZhEl, comboEl]){
+        if(el) el.classList.add('hit');
+      }
+    }
+    function resetDuelUI(){
+      lastBig = -1;
+      bonusUntil = 0;
+      sounded.clear();
+      whooshed.clear();
+      userBursts.length = 0;
+      riserDone = false;
+      if(comboEl) comboEl.textContent = 'COMBO / 00';
+      for(const el of [bigEl, bigZhEl, comboEl]){
+        if(el) el.classList.remove('hit');
+      }
+    }
     function targetsSide(hit, side){
       const target = hit.s === 'L' ? 'R' : hit.s === 'R' ? 'L' : 'B';
       return target === 'B' || target === side;
@@ -904,14 +1022,15 @@
     }
     function rawDot(x, y, r, strong, alpha){
       if(alpha <= .004) return;
-      ctx.fillStyle = strong
-        ? 'rgba(11,12,11,' + (alpha * .95).toFixed(3) + ')'
-        : 'rgba(11,12,11,' + (alpha * .84).toFixed(3) + ')';
+      ctx.fillStyle = dotInvert
+        ? (strong ? 'rgba(255,255,255,' + (alpha * .96).toFixed(3) + ')' : 'rgba(255,255,255,' + (alpha * .86).toFixed(3) + ')')
+        : (strong ? 'rgba(11,12,11,' + (alpha * .95).toFixed(3) + ')' : 'rgba(11,12,11,' + (alpha * .84).toFixed(3) + ')');
       ctx.beginPath();
       ctx.arc(x, y, r, 0, 6.283);
       ctx.fill();
     }
     function dot(x, y, r, strong, alpha){
+      alpha *= figAlpha;
       if(curFx){
         const fx = curFx;
         const d = Math.hypot(x - fx.cx, y - fx.cy);
@@ -1027,7 +1146,7 @@
       const kneeF = joint(hipF, pose.footF, 46, 'forward');
       const kneeB = joint(hipB, pose.footB, 46, 'forward');
 
-      beginPart('torso', side, chest[0] * .5, chest[1] * .55, time);
+      if(!ghostMode) beginPart('torso', side, chest[0] * .5, chest[1] * .55, time);
       bone([0, 0], chest, seed, 1.85, 1);
       bone(shB, shF, seed + 1, 1.8, 1);
       bone(hipB, hipF, seed + 2, 1.8, 1);
@@ -1037,30 +1156,30 @@
       node(hipF, seed + 28);
       node(hipB, seed + 32);
 
-      beginPart('armF', side, (shF[0] + pose.handF[0]) * .5, (shF[1] + pose.handF[1]) * .5, time);
+      if(!ghostMode) beginPart('armF', side, (shF[0] + pose.handF[0]) * .5, (shF[1] + pose.handF[1]) * .5, time);
       bone(shF, elbowF, seed + 4, 2.0, 1);
       bone(elbowF, pose.handF, seed + 5, 2.0, 1);
       fist(pose.handF, elbowF, seed + 15, 1);
 
-      beginPart('armB', side, (shB[0] + pose.handB[0]) * .5, (shB[1] + pose.handB[1]) * .5, time);
+      if(!ghostMode) beginPart('armB', side, (shB[0] + pose.handB[0]) * .5, (shB[1] + pose.handB[1]) * .5, time);
       bone(shB, elbowB, seed + 6, 2.0, 1);
       bone(elbowB, pose.handB, seed + 7, 2.0, 1);
       fist(pose.handB, elbowB, seed + 16, 1);
 
-      beginPart('legF', side, (hipF[0] + pose.footF[0]) * .5, (hipF[1] + pose.footF[1]) * .5, time);
+      if(!ghostMode) beginPart('legF', side, (hipF[0] + pose.footF[0]) * .5, (hipF[1] + pose.footF[1]) * .5, time);
       bone(hipF, kneeF, seed + 8, 2.0, 1);
       bone(kneeF, pose.footF, seed + 9, 2.0, 1);
       foot(pose.footF, seed + 17, 1);
       node(kneeF, seed + 36);
       if(pose.footF[1] < 70) cluster(kneeF, seed + 19, .9);
 
-      beginPart('legB', side, (hipB[0] + pose.footB[0]) * .5, (hipB[1] + pose.footB[1]) * .5, time);
+      if(!ghostMode) beginPart('legB', side, (hipB[0] + pose.footB[0]) * .5, (hipB[1] + pose.footB[1]) * .5, time);
       bone(hipB, kneeB, seed + 10, 2.0, 1);
       bone(kneeB, pose.footB, seed + 11, 2.0, 1);
       foot(pose.footB, seed + 18, 1);
       node(kneeB, seed + 40);
 
-      beginPart('head', side, head[0], head[1], time);
+      if(!ghostMode) beginPart('head', side, head[0], head[1], time);
       const hc = Math.cos(tilt), hs = Math.sin(tilt);
       for(let i=0; i<40; i++){
         const ang = (i / 40) * 6.283;
@@ -1091,6 +1210,172 @@
       ctx.restore();
       curFx = null;
     }
+    function ghostFigures(time, sep){
+      if(reduce) return;
+      for(const hit of HITS){
+        const raw = signedAge(hit, time);
+        if(raw < -.15 || raw > .035) continue;
+        const sides = hit.s === 'both' ? ['L', 'R'] : [hit.s];
+        for(const side of sides){
+          const cx = W * .5 + (side === 'L' ? -1 : 1) * sep / 2;
+          const dir = side === 'L' ? 1 : -1;
+          const seed = side === 'L' ? 4 : 9;
+          for(const off of [.04, .075, .11]){
+            const pt = hit.t - off;
+            ghostMode = true;
+            figAlpha = .13;
+            figure(cx, dir, poseAt(side, pt), seed, side, time);
+          }
+        }
+      }
+      ghostMode = false;
+      figAlpha = 1;
+    }
+    function sceneFx(time, sep){
+      if(reduce) return;
+      for(const hit of HITS){
+        const age = hitAge(hit, time);
+        if(age < 0 || age > .64) continue;
+        const [tx] = hitPoint(hit, time, sep);
+        const k = age / .64;
+        const a = Math.pow(1 - k, 1.7) * hit.power;
+        const baseY = GROUND + 4;
+        for(let ring=0; ring<3; ring++){
+          const rr = (6 + k * (58 + hit.power * 18)) * (1 + ring * .34);
+          const n = 30 + ring * 8;
+          for(let i=0; i<n; i++){
+            const ang = (i / n) * 6.283 + ring * .14;
+            rawDot(tx + Math.cos(ang) * rr * 1.55, baseY + Math.sin(ang) * rr * .30,
+              .64 + (1 - k) * .5, false, a * (.42 - ring * .09));
+          }
+        }
+        for(let i=0; i<7; i++){
+          const ang = hash(i, hit.t + 21) * 6.283;
+          const len = 12 + k * (54 + hit.power * 16);
+          for(let j=0; j<5; j++){
+            const q = j / 4;
+            rawDot(tx + Math.cos(ang) * len * q, baseY + Math.sin(ang) * len * q * .18,
+              .58 + (1 - q) * .24, false, a * (.32 - q * .04));
+          }
+        }
+        for(let i=0; i<18; i++){
+          const dx = (hash(i, hit.t + 31) - .5) * (26 + k * 60);
+          const dy = (5 + hash(i, hit.t + 41) * 34) * k;
+          rawDot(tx + dx, baseY - dy, .72 + hash(i, hit.t + 51) * .5, false, a * .38);
+        }
+      }
+    }
+    function userFx(){
+      const now = performance.now();
+      for(let i=userBursts.length-1; i>=0; i--){
+        const b = userBursts[i];
+        const age = (now - b.start) / 1000;
+        if(age > .52){ userBursts.splice(i, 1); continue; }
+        const k = age / .52;
+        const a = Math.pow(1 - k, 2);
+        for(let ring=0; ring<2; ring++){
+          const rr = (4 + k * 54) * (1 + ring * .42);
+          for(let j=0; j<24; j++){
+            const ang = (j / 24) * 6.283;
+            rawDot(b.x + Math.cos(ang) * rr, b.y + Math.sin(ang) * rr * .82,
+              .8 + (1 - k) * .8, false, a * (.62 - ring * .18));
+          }
+        }
+        for(let j=0; j<14; j++){
+          const ang = hash(j, b.seed) * 6.283;
+          const len = (8 + k * 46) * (.7 + hash(j, b.seed + 3) * .6);
+          rawDot(b.x + Math.cos(ang) * len, b.y + Math.sin(ang) * len * .85,
+            .8, false, a * .55);
+        }
+      }
+    }
+    function ensureAudio(){
+      if(audio) return true;
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if(!AC) return false;
+      try { audio = new AC(); } catch(e){ return false; }
+      return true;
+    }
+    function noiseBurst(dur, freq, gain, q){
+      if(!audio) return;
+      const sr = audio.sampleRate;
+      const len = Math.max(1, Math.floor(sr * dur));
+      const buf = audio.createBuffer(1, len, sr);
+      const data = buf.getChannelData(0);
+      for(let i=0; i<len; i++){
+        const env = Math.pow(1 - i / len, 2.2);
+        data[i] = (Math.random() * 2 - 1) * env;
+      }
+      const src = audio.createBufferSource();
+      const filter = audio.createBiquadFilter();
+      const g = audio.createGain();
+      src.buffer = buf;
+      filter.type = 'bandpass';
+      filter.frequency.value = freq;
+      filter.Q.value = q || .8;
+      g.gain.value = gain;
+      src.connect(filter).connect(g).connect(audio.destination);
+      src.start();
+    }
+    function tone(freq, dur, gain, type, slide){
+      if(!audio) return;
+      const now = audio.currentTime;
+      const osc = audio.createOscillator();
+      const g = audio.createGain();
+      osc.type = type || 'sine';
+      osc.frequency.setValueAtTime(freq, now);
+      if(slide) osc.frequency.exponentialRampToValueAtTime(Math.max(30, freq + slide), now + dur);
+      g.gain.setValueAtTime(gain, now);
+      g.gain.exponentialRampToValueAtTime(.001, now + dur);
+      osc.connect(g).connect(audio.destination);
+      osc.start(now);
+      osc.stop(now + dur + .01);
+    }
+    function playHitSound(hit){
+      if(!soundOn || !audio) return;
+      if(hit.s === 'both' || hit.power > 1.2){
+        noiseBurst(.26, 240, .38, .55);
+        tone(46, .42, .30, 'sine', -18);
+        tone(120, .16, .16, 'triangle', -70);
+      } else {
+        noiseBurst(.11, 520, .34, .7);
+        tone(92, .16, .16, 'sine', -34);
+        if(hit.part === 'legF' || hit.part === 'legB') noiseBurst(.08, 760, .18, .5);
+      }
+    }
+    function playWhoosh(){
+      if(!soundOn || !audio) return;
+      noiseBurst(.16, 1250, .12, .45);
+    }
+    function playBonus(){
+      if(!soundOn || !audio) return;
+      noiseBurst(.08, 700, .25, .6);
+      tone(180, .12, .12, 'triangle', -80);
+    }
+    function playRiser(){
+      if(!soundOn || !audio) return;
+      tone(90, .30, .09, 'sawtooth', 520);
+      noiseBurst(.22, 900, .06, .4);
+    }
+    function syncSound(time){
+      if(!soundOn || !audio) return;
+      if(time >= 5.52 && time < 5.80 && !riserDone){
+        riserDone = true;
+        playRiser();
+      }
+      for(let i=0; i<HITS.length; i++){
+        const hit = HITS[i];
+        if(time >= hit.t - .20 && time < hit.t - .01 && !whooshed.has(i)){
+          whooshed.add(i);
+          playWhoosh();
+        }
+        if(time >= hit.t && time < hit.t + .10 && !sounded.has(i)){
+          sounded.add(i);
+          playHitSound(hit);
+        }
+      }
+    }
+
     function limbWorld(side, time, limb){
       const pose = poseAt(side, time);
       const dir = side === 'L' ? 1 : -1;
@@ -1174,41 +1459,67 @@
     }
     function drawFrame(time){
       if(!W || !H) return;
-      ctx.clearRect(0, 0, W, H);
+      const flash = reduce ? null : activeFlash(time);
+      dotInvert = !!flash && flash.clash;
+      if(flash){
+        ctx.fillStyle = flash.clash ? '#0b0c0b' : '#ffffff';
+        ctx.fillRect(0, 0, W, H);
+      } else {
+        ctx.clearRect(0, 0, W, H);
+      }
       const energy = hitEnergy(time);
+      const cam = cameraAt(time);
+      const px = pointer.active && !reduce ? (pointer.x - .5) * 8 : 0;
+      const py = pointer.active && !reduce ? (pointer.y - .5) * 6 : 0;
       ctx.save();
+      ctx.translate(W * .5 + cam.x + px, GROUND * .58 + cam.y + py);
+      ctx.scale(cam.z, cam.z);
+      ctx.translate(-W * .5, -GROUND * .58);
       if(energy > 0){
         ctx.translate(W * .5, GROUND * .58);
         ctx.scale(1 + energy * .014, 1 + energy * .014);
         ctx.translate(-W * .5, -GROUND * .58);
         ctx.translate(Math.sin(time * 137) * 1.8 * energy, Math.cos(time * 113) * 1.1 * energy);
       }
-      ctx.fillStyle = 'rgba(11,12,11,.13)';
-      for(let x=14; x<W; x+=28){
-        ctx.beginPath(); ctx.arc(x, GROUND + 6, .85, 0, 6.283); ctx.fill();
-      }
-      ctx.fillStyle = 'rgba(11,12,11,.14)';
-      for(let i=0; i<96; i++){
-        const ang = (i / 96) * 6.283;
-        ctx.beginPath();
-        ctx.arc(W * .5 + Math.cos(ang) * W * .27, GROUND + Math.sin(ang) * 26, 1.0, 0, 6.283);
-        ctx.fill();
+      if(!flash){
+        ctx.fillStyle = 'rgba(11,12,11,.13)';
+        for(let x=14; x<W; x+=28){
+          ctx.beginPath(); ctx.arc(x, GROUND + 6, .85, 0, 6.283); ctx.fill();
+        }
+        ctx.fillStyle = 'rgba(11,12,11,.14)';
+        for(let i=0; i<96; i++){
+          const ang = (i / 96) * 6.283;
+          ctx.beginPath();
+          ctx.arc(W * .5 + Math.cos(ang) * W * .27, GROUND + Math.sin(ang) * 26, 1.0, 0, 6.283);
+          ctx.fill();
+        }
       }
       const sep = Math.max(120, 100 * SCALE);
-      const stop = HITS.find(h => { const a = hitAge(h, time); return a >= 0 && a < .06; });
-      const poseTime = stop ? stop.t : time;
+      const poseTime = poseClock(time);
+      sceneFx(time, sep);
+      ghostFigures(poseTime, sep);
+      figAlpha = 1;
+      ghostMode = false;
       trailFx(poseTime, sep);
       figure(W * .5 - sep / 2, 1, poseAt('L', poseTime), 4, 'L', time);
       figure(W * .5 + sep / 2, -1, poseAt('R', poseTime), 9, 'R', time);
+      userFx();
       impactFx(time, sep);
       ctx.restore();
-      if(time < .12){
+      dotInvert = false;
+      figAlpha = 1;
+      ghostMode = false;
+      if(!flash && time < .12){
         ctx.fillStyle = 'rgba(255,255,255,' + (1 - time / .12).toFixed(3) + ')';
         ctx.fillRect(0, 0, W, H);
       }
+      hitUI(time);
       const r = roundAt(time);
       if(roundEl && r !== lastRound){
         roundEl.textContent = 'ROUND / 0' + r;
+        roundEl.classList.remove('pop');
+        void roundEl.offsetWidth;
+        roundEl.classList.add('pop');
         lastRound = r;
       }
       const mv = moveAt(time);
@@ -1232,7 +1543,11 @@
     }
     function loop(now){
       if(!visible || !playing){ raf = 0; return; }
-      drawFrame(timeNow(now));
+      const t = timeNow(now);
+      if(t < lastTime - .25) resetDuelUI();
+      lastTime = t;
+      drawFrame(t);
+      syncSound(t);
       raf = requestAnimationFrame(loop);
     }
     function start(){
@@ -1246,23 +1561,64 @@
         playing = false;
         if(raf){ cancelAnimationFrame(raf); raf = 0; }
         if(toggleBtn) toggleBtn.textContent = '开打';
+        sounded.clear();
+        whooshed.clear();
         drawFrame(offset);
       } else {
         t0 = performance.now();
+        lastTime = offset;
         playing = true;
         if(toggleBtn) toggleBtn.textContent = '停手';
         start();
       }
     }
     function skip(){
+      resetDuelUI();
       offset = (timeNow(performance.now()) + 1.35) % DURATION;
+      lastTime = offset;
       t0 = performance.now();
       drawFrame(offset);
       start();
     }
     if(toggleBtn) toggleBtn.addEventListener('click', pause);
     if(skipBtn) skipBtn.addEventListener('click', skip);
-    dc.addEventListener('click', skip);
+    if(soundBtn){
+      soundBtn.setAttribute('aria-pressed', 'false');
+      soundBtn.addEventListener('click', async () => {
+        if(!ensureAudio()){
+          soundBtn.textContent = '声音不可用';
+          soundBtn.disabled = true;
+          return;
+        }
+        if(audio.state === 'suspended'){
+          try { await audio.resume(); } catch(e){}
+        }
+        soundOn = !soundOn;
+        soundBtn.textContent = soundOn ? '声音 ON' : '声音 OFF';
+        soundBtn.setAttribute('aria-pressed', String(soundOn));
+        if(soundOn){
+          tone(420, .06, .10, 'triangle', 30);
+          resetDuelUI();
+        }
+      });
+    }
+    dc.addEventListener('pointermove', e => {
+      const rect = dc.getBoundingClientRect();
+      pointer.x = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      pointer.y = Math.max(0, Math.min(1, (e.clientY - rect.top) / rect.height));
+      pointer.active = true;
+    });
+    dc.addEventListener('pointerleave', () => { pointer.active = false; });
+    dc.addEventListener('pointerdown', e => {
+      if(reduce) return;
+      const rect = dc.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      userBursts.push({x, y, start:performance.now(), seed:Math.random() * 100});
+      playBonus();
+      showBonus();
+      drawFrame(playing ? timeNow(performance.now()) : offset);
+    });
     if('ResizeObserver' in window){
       new ResizeObserver(resize).observe(stage);
     } else {
@@ -1277,8 +1633,10 @@
       visible = true;
     }
     resize();
+    if(previewMode && toggleBtn) toggleBtn.textContent = '定格';
     if(reduce){
       if(toggleBtn){ toggleBtn.textContent = '静态'; toggleBtn.disabled = true; }
+      if(soundBtn){ soundBtn.disabled = true; soundBtn.textContent = '声音 OFF'; }
       drawFrame(.65);
     } else {
       start();
