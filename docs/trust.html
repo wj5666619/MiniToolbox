@@ -19,7 +19,7 @@
 <meta property="og:url" content="https://wj5666619.github.io/MiniToolbox/trust.html" />
 <meta property="og:image" content="https://wj5666619.github.io/MiniToolbox/assets/workbench_v1913.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="theme-color" content="#0a0b0a" />
+<meta name="theme-color" content="#ffffff" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230b0c0b'/%3E%3Crect x='10' y='10' width='44' height='44' fill='none' stroke='%23ff4d12' stroke-width='3'/%3E%3Crect x='24' y='24' width='16' height='16' fill='%23d9d6ce'/%3E%3C/svg%3E" />
 <script type="application/ld+json">
 {
@@ -110,6 +110,19 @@ footer{padding:50px 0 38px;color:var(--sub)}
 @media (max-width:900px){.grid,.deploy{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr}.step::after{display:none}.nav{display:none}.sec-head{grid-template-columns:1fr}.idx{padding:0}}
 @media (max-width:600px){.wrap{width:calc(100% - 32px)}.grid,.deploy{grid-template-columns:1fr}.hero{padding-top:54px}h1{font-size:42px}.hd{gap:12px}.pill{display:none}th,td{padding:11px 6px}td:first-child{width:36%}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+/* white-only surface theme */
+:root{--ink:#0b0c0b;--bone:#ffffff;--paper:#ffffff;--line:rgba(11,12,11,.16);--sub:rgba(11,12,11,.60)}
+body{background:#ffffff;color:var(--ink)}
+header{background:rgba(255,255,255,.95)}
+.brand i::after{background:var(--orange)}
+.pill,.badge{color:var(--ink)}
+.badge,.card,.step{background:#ffffff}
+.step{background:#ffffff}
+td code,.card code,p code{background:rgba(11,12,11,.06)}
+.skip{background:var(--ink);color:#fff}
+.hero::after{color:rgba(11,12,11,.045)}
+footer{color:var(--sub)}
 </style>
 </head>
 <body>
